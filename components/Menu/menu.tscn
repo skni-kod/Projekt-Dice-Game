@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmp3p3laig5vj"]
+
+[ext_resource type="Script" path="res://components/Menu/menu.gd" id="1_i436h"]
+
+[sub_resource type="Theme" id="Theme_n5s6d"]
+Button/fonts/font = null
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_vafk8"]
+
+[node name="menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i436h")
+metadata/_edit_horizontal_guides_ = [0.0]
+metadata/_edit_vertical_guides_ = [0.0]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -68.0
+offset_right = 33.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="graj" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Wyjście")
+theme = SubResource("Theme_n5s6d")
+text = "Graj"
+icon = SubResource("ViewportTexture_vafk8")
+
+[node name="Opcje" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Opcje"
+
+[node name="Donejt" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Donejt"
+
+[node name="Wyjście" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Wyjście"
+
+[connection signal="pressed" from="VBoxContainer/graj" to="." method="_on_graj_pressed"]
+[connection signal="pressed" from="VBoxContainer/graj" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Opcje" to="." method="_on_opcje_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/Donejt" to="." method="_on_donejt_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/Donejt" to="." method="_on_donejt_pressed"]
+[connection signal="pressed" from="VBoxContainer/Wyjście" to="." method="_on_wyjście_pressed"]
