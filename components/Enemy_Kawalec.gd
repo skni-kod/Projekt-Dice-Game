@@ -1,4 +1,5 @@
 extends Sprite2D
+signal kawalec_pokonany
 var enemy_hp = 69: set = set_enemy_hp
 var enemy_attack = 0
 func _ready():
@@ -8,7 +9,9 @@ func set_enemy_hp(new_enemy_hp):
 	$enemy_hp_text.text = str(enemy_hp)
 	$enemy_hp_text.show()
 	$enemy_hp.value=enemy_hp
-	
+	if(enemy_hp>=0):
+		emit_signal("kawalec_pokonany")
+
 func Roll() -> void:
 	enemy_hp=enemy_hp-5
 	enemy_attack = randi_range(1,3)
