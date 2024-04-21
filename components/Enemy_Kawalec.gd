@@ -9,10 +9,11 @@ func set_enemy_hp(new_enemy_hp):
 	$enemy_hp_text.text = str(enemy_hp)
 	$enemy_hp_text.show()
 	$enemy_hp.value=enemy_hp
-	if(enemy_hp>=0):
+	if(enemy_hp<=0):
 		emit_signal("kawalec_pokonany")
+		queue_free()
 
-func Roll() -> void:
+func _on_roll_pressed() -> void:
 	enemy_hp=enemy_hp-5
 	enemy_attack = randi_range(1,3)
 	print(enemy_attack)

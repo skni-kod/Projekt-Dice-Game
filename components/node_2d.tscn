@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://m7s3xp2xoqfy"]
+[gd_scene load_steps=11 format=3 uid="uid://m7s3xp2xoqfy"]
 
 [ext_resource type="Texture2D" uid="uid://brocaxjf0csnc" path="res://data/sprites/attack.png" id="1_6qxan"]
 [ext_resource type="Script" path="res://components/Tunel.gd" id="1_i17ih"]
@@ -8,10 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://s86emd55fdhu" path="res://data/sprites/defense+.png" id="4_aw65w"]
 [ext_resource type="Texture2D" uid="uid://chomilp4fcoei" path="res://data/sprites/dice_blank.png" id="4_mes1h"]
 [ext_resource type="Script" path="res://scripts/Dice.gd" id="4_nijcb"]
-[ext_resource type="Texture2D" uid="uid://b2eiwkpnihcut" path="res://data/textures/Kawalec.png" id="5_6ifvb"]
 [ext_resource type="Texture2D" uid="uid://b6oas1x5edqdw" path="res://data/sprites/special.png" id="5_sco6w"]
-[ext_resource type="Script" path="res://components/Enemy_Kawalec.gd" id="6_1teik"]
-[ext_resource type="Script" path="res://components/enemy_hp.gd" id="7_4mmnb"]
 [ext_resource type="Script" path="res://components/Stat_Buttons.gd" id="7_fjklp"]
 
 [node name="main_scene" type="Node2D"]
@@ -29,34 +26,6 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(0, -218)
 scale = Vector2(0.804748, 0.696995)
 script = ExtResource("1_i17ih")
-
-[node name="Enemy_Kawalec" type="Sprite2D" parent="Tunel"]
-texture = ExtResource("5_6ifvb")
-script = ExtResource("6_1teik")
-
-[node name="Attack_text" type="Label" parent="Tunel/Enemy_Kawalec"]
-offset_left = -138.0
-offset_top = 159.0
-offset_right = -6.0
-offset_bottom = 185.0
-scale = Vector2(1.98, 1.98)
-text = "Hi hi haha"
-
-[node name="enemy_hp_text" type="Label" parent="Tunel/Enemy_Kawalec"]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "69"
-
-[node name="enemy_hp" type="ProgressBar" parent="Tunel/Enemy_Kawalec"]
-offset_left = -138.115
-offset_top = 210.578
-offset_right = 375.885
-offset_bottom = 277.578
-scale = Vector2(0.575032, 0.575032)
-max_value = 69.0
-step = 1.0
-show_percentage = false
-script = ExtResource("7_4mmnb")
 
 [node name="Dices" type="Node2D" parent="."]
 position = Vector2(-563, -310)
@@ -241,8 +210,6 @@ offset_bottom = 300.0
 [node name="Stats" type="Node2D" parent="."]
 
 [connection signal="pressed" from="Roll" to="Dices" method="Roll"]
-[connection signal="pressed" from="Roll" to="Tunel/Enemy_Kawalec" method="Roll"]
-[connection signal="kawalec_pokonany" from="Tunel/Enemy_Kawalec" to="Tunel" method="_on_enemy_kawalec_kawalec_pokonany"]
 [connection signal="mouse_entered" from="Stat_Buttons/Atak" to="Stat_Buttons" method="_on_atak_mouse_entered"]
 [connection signal="mouse_exited" from="Stat_Buttons/Atak" to="Stat_Buttons" method="_on_atak_mouse_exited"]
 [connection signal="pressed" from="Stat_Buttons/Atak" to="Dices" method="Consume" binds= [[1, 1]]]
