@@ -13,3 +13,6 @@ func _on_enemy_kawalec_kawalec_pokonany():
 
 
 
+
+func _on_roll_pressed():
+	pass # Replace with function body.

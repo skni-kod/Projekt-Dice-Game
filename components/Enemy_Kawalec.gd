@@ -4,6 +4,10 @@ var enemy_hp = 69: set = set_enemy_hp
 var enemy_attack = 0
 func _ready():
 	$enemy_hp.value=enemy_hp
+	var Roll = get_node("/root/main_scene/Roll")
+	Roll.connect("on_roll_pressed",Roll._on_pressed)
+func _init():
+	pass
 func set_enemy_hp(new_enemy_hp):
 	enemy_hp=new_enemy_hp
 	$enemy_hp_text.text = str(enemy_hp)

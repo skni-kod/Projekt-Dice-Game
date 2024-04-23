@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://m7s3xp2xoqfy"]
+[gd_scene load_steps=12 format=3 uid="uid://m7s3xp2xoqfy"]
 
 [ext_resource type="Texture2D" uid="uid://brocaxjf0csnc" path="res://data/sprites/attack.png" id="1_6qxan"]
 [ext_resource type="Script" path="res://components/Tunel.gd" id="1_i17ih"]
+[ext_resource type="Script" path="res://components/Roll.gd" id="1_tgbf4"]
 [ext_resource type="Texture2D" uid="uid://dcwa3irn113l8" path="res://data/sprites/attack+.png" id="2_gmxty"]
 [ext_resource type="Texture2D" uid="uid://0438thmurme3" path="res://data/sprites/defense.png" id="3_i8ryy"]
 [ext_resource type="Script" path="res://scripts/DiceManager.gd" id="3_oprlb"]
@@ -20,6 +21,7 @@ offset_right = -449.96
 offset_bottom = -72.0
 scale = Vector2(2.675, 2.675)
 text = "Roll"
+script = ExtResource("1_tgbf4")
 metadata/_edit_use_anchors_ = true
 
 [node name="Tunel" type="Node2D" parent="."]
@@ -209,6 +211,9 @@ offset_bottom = 300.0
 
 [node name="Stats" type="Node2D" parent="."]
 
+[connection signal="pressed" from="Roll" to="Roll" method="_on_roll_pressed"]
+[connection signal="pressed" from="Roll" to="Roll" method="_on_pressed"]
+[connection signal="pressed" from="Roll" to="Tunel" method="_on_roll_pressed"]
 [connection signal="pressed" from="Roll" to="Dices" method="Roll"]
 [connection signal="mouse_entered" from="Stat_Buttons/Atak" to="Stat_Buttons" method="_on_atak_mouse_entered"]
 [connection signal="mouse_exited" from="Stat_Buttons/Atak" to="Stat_Buttons" method="_on_atak_mouse_exited"]
