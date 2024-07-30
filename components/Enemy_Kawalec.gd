@@ -2,7 +2,9 @@ extends Sprite2D
 var enemy_hp = 69: set = set_enemy_hp
 var enemy_attack = 0
 func _ready():
+	add_to_group("Enemies")
 	$enemy_hp.value=enemy_hp
+	
 func set_enemy_hp(new_enemy_hp):
 	enemy_hp=new_enemy_hp
 	$enemy_hp_text.text = str(enemy_hp)
