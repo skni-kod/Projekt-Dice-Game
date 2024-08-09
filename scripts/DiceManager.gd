@@ -1,5 +1,5 @@
 extends Node2D
-
+signal Potwierdzenie
 var dices = [];
 
 func _ready() -> void:
@@ -34,5 +34,6 @@ func Consume(faceTypes = []) -> bool:
 		if claimedDices[i] == true:
 			dices[i].currentFace = Dice.FaceType.Blank
 			dices[i].UpdateDisplay()
-			
+		Global.TestRzutu = 1;
+		emit_signal("Potwierdzenie")
 	return true
