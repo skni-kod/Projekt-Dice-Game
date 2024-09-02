@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2eiwkpnihcut"
-path="res://.godot/imported/Kawalec.png-8f9839b84628a8aec75413d3fe6cdec8.ctex"
+uid="uid://fyjb3wkqwkd0"
+path="res://.godot/imported/wcaleniestocktlo.jpeg-caf6c13365d593d51212b7729de11ea8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://data/textures/Kawalec.png"
-dest_files=["res://.godot/imported/Kawalec.png-8f9839b84628a8aec75413d3fe6cdec8.ctex"]
+source_file="res://data/textures/wcaleniestocktlo.jpeg"
+dest_files=["res://.godot/imported/wcaleniestocktlo.jpeg-caf6c13365d593d51212b7729de11ea8.ctex"]
 
 [params]
 
