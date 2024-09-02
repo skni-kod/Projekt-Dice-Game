@@ -7,10 +7,11 @@ position = Vector2(0, -218)
 scale = Vector2(0.804748, 0.696995)
 script = ExtResource("2_yalai")
 
-[node name="Attack_text" type="Label" parent="."]
+[node name="Attack_text" type="RichTextLabel" parent="."]
 offset_left = -138.0
 offset_top = 159.0
-offset_right = -6.0
-offset_bottom = 185.0
-scale = Vector2(1.98, 1.98)
-text = "Hi hi haha"
+offset_right = 863.0
+offset_bottom = 1159.0
+scale = Vector2(1.5, 1.5)
+bbcode_enabled = true
+text = "ha ha BBCode [color=green]test[/color]"

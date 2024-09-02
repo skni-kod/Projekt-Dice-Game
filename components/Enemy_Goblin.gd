@@ -10,19 +10,18 @@ func Roll() -> void:
 			2:
 				Global.gracz_hp=Global.gracz_hp-10
 			3:
-				$Attack_text.text = "goblin czaruje"
-				$Attack_text.show()
+				pass
 	enemy_attack = randi_range(1,3)
 	print(enemy_attack)
 	match enemy_attack:
 			1:  
-				$Attack_text.text = "goblin szykuje atak"
+				$Attack_text.text = "goblin szykuje atak [img={50}x{50}]res://data/sprites/attack.png[/img]5"
 				$Attack_text.show()
 			2:
-				$Attack_text.text = "goblin szykuje atak specjalny"
+				$Attack_text.text = "goblin szykuje atak specjalny [img={50}x{50}]res://data/sprites/attack+.png[/img]10"
 				$Attack_text.show()
 			3:
-				$Attack_text.text = "goblin czaruje"
+				$Attack_text.text = "goblin potyka się o własne nogi [img={50}x{50}]res://data/sprites/dice_blank.png[/img]"
 				$Attack_text.show()
 
 func Die() -> void:
