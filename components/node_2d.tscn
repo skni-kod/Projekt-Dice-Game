@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://m7s3xp2xoqfy"]
+[gd_scene load_steps=16 format=3 uid="uid://m7s3xp2xoqfy"]
 
 [ext_resource type="Texture2D" uid="uid://brocaxjf0csnc" path="res://data/sprites/attack.png" id="1_6qxan"]
 [ext_resource type="Script" path="res://components/node_2d.gd" id="1_nj05h"]
@@ -13,6 +13,8 @@
 [ext_resource type="Script" path="res://components/Stat_Buttons.gd" id="7_fjklp"]
 [ext_resource type="Script" path="res://components/Atak.gd" id="8_6xjs2"]
 [ext_resource type="Script" path="res://components/Atak_Plus.gd" id="10_2aax2"]
+[ext_resource type="Script" path="res://components/Obrona.gd" id="12_uw1r0"]
+[ext_resource type="Script" path="res://components/Obrona_Plus.gd" id="14_37oyb"]
 
 [node name="main_scene" type="Node2D"]
 script = ExtResource("1_nj05h")
@@ -27,6 +29,10 @@ max_value = 69.0
 step = 1.0
 show_percentage = false
 script = ExtResource("2_a3x7q")
+
+[node name="gracz_tarcza" type="RichTextLabel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Roll" type="Button" parent="."]
 offset_left = -561.0
@@ -141,6 +147,7 @@ offset_right = -100.0
 offset_bottom = 200.0
 icon = ExtResource("3_i8ryy")
 expand_icon = true
+script = ExtResource("12_uw1r0")
 metadata/_edit_use_anchors_ = true
 
 [node name="Obrona_Plus" type="Button" parent="Stat_Buttons"]
@@ -149,6 +156,7 @@ offset_top = 100.0
 offset_bottom = 200.0
 icon = ExtResource("4_aw65w")
 expand_icon = true
+script = ExtResource("14_37oyb")
 metadata/_edit_use_anchors_ = true
 
 [node name="Special" type="Button" parent="Stat_Buttons"]
@@ -233,9 +241,11 @@ offset_bottom = 300.0
 [connection signal="pressed" from="Stat_Buttons/Atak_Plus" to="Dices" method="Consume" binds= [[1, 1, 1]]]
 [connection signal="mouse_entered" from="Stat_Buttons/Obrona" to="Stat_Buttons" method="_on_obrona_mouse_entered"]
 [connection signal="mouse_exited" from="Stat_Buttons/Obrona" to="Stat_Buttons" method="_on_obrona_mouse_exited"]
+[connection signal="pressed" from="Stat_Buttons/Obrona" to="Stat_Buttons/Obrona" method="_on_pressed"]
 [connection signal="pressed" from="Stat_Buttons/Obrona" to="Dices" method="Consume" binds= [[2, 2]]]
 [connection signal="mouse_entered" from="Stat_Buttons/Obrona_Plus" to="Stat_Buttons" method="_on_obrona_plus_mouse_entered"]
 [connection signal="mouse_exited" from="Stat_Buttons/Obrona_Plus" to="Stat_Buttons" method="_on_obrona_plus_mouse_exited"]
+[connection signal="pressed" from="Stat_Buttons/Obrona_Plus" to="Stat_Buttons/Obrona_Plus" method="_on_pressed"]
 [connection signal="pressed" from="Stat_Buttons/Obrona_Plus" to="Dices" method="Consume" binds= [[2, 2, 2]]]
 [connection signal="mouse_entered" from="Stat_Buttons/Special" to="Stat_Buttons" method="_on_special_mouse_entered"]
 [connection signal="mouse_exited" from="Stat_Buttons/Special" to="Stat_Buttons" method="_on_special_mouse_exited"]

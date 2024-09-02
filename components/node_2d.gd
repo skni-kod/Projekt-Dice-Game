@@ -12,5 +12,9 @@ func Roll() -> void:
 func harm(damage):
 	enemy_hp=enemy_hp-damage;
 	$enemy_hp.value=enemy_hp
-func def():
-	pass
+	if(enemy_hp<=0):
+		get_tree().call_group("Enemies", "Die")
+func def(defence):
+	Global.Tarcza=Global.Tarcza+defence;
+	$gracz_tarcza.text = str(Global.Tarcza)
+	

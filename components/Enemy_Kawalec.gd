@@ -17,6 +17,7 @@ func Roll() -> void:
 				$Attack_text.text = "Kawalec czaruje"
 				$Attack_text.show()
 
-		
+func Die() -> void:
+	queue_free()
 
 	
