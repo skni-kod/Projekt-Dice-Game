@@ -18,6 +18,6 @@ func harm(damage):
 	if(enemy_hp<=0):
 		get_tree().call_group("Enemies", "Die")
 func def(defence):
-	Global.Tarcza=Global.Tarcza+defence;
-	$"gracz_tarcza/gracz_tarcza_ilość".text = str(Global.Tarcza)
+	Global.gracz_tarcza=Global.gracz_tarcza+defence;
+	$"gracz_tarcza/gracz_tarcza_ilość".text = str(Global.gracz_tarcza)
 	

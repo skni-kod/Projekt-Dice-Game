@@ -10,8 +10,8 @@ script = ExtResource("2_yalai")
 [node name="Attack_text" type="RichTextLabel" parent="."]
 offset_left = -138.0
 offset_top = 159.0
-offset_right = 863.0
-offset_bottom = 1159.0
+offset_right = 81.0
+offset_bottom = 251.0
 scale = Vector2(1.5, 1.5)
 bbcode_enabled = true
 text = "ha ha BBCode [color=green]test[/color]"
