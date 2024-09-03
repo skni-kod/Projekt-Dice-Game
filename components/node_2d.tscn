@@ -64,6 +64,7 @@ offset_left = 750.0
 offset_top = 255.0
 offset_right = 790.0
 offset_bottom = 295.0
+text = "0"
 metadata/_edit_use_anchors_ = true
 
 [node name="Roll" type="Button" parent="."]
