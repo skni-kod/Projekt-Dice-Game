@@ -6,5 +6,5 @@ func _on_pressed():
 	await get_tree().create_timer(0.05).timeout
 	var root = get_tree().current_scene
 	if(Global.TestRzutu == 1):
-		root.harm(9)
+		Global.harm(9)
 		Global.TestRzutu = 0;
