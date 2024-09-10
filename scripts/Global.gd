@@ -4,6 +4,7 @@ var enemy_hp;
 var TestRzutu = 0;
 var gracz_tarcza: int = 0: set = _set_gracz_tarcza
 var gracz_hp: int = 100: set = _set_gracz_hp
+var spawner_licznik = 0
 
 func _ready():
 	enemy_hp = 100;
@@ -22,6 +23,7 @@ func harm(damage):
 	something1.value=enemy_hp
 	if(enemy_hp<=0):
 		get_tree().call_group("Enemies", "Die")
+		spawner()
 
 func _set_gracz_tarcza(zmiana : int):
 		gracz_tarcza = zmiana
@@ -39,4 +41,25 @@ func _set_gracz_hp(new_value : int):
 		print(gracz_hp)
 		var progress_bar = get_node("/root/main_scene/gracz_hp")
 		progress_bar.value = gracz_hp
+
+##SPAWNER
+
+func spawner():
+		var enemy_goblin_scene = load("res://enemies/enemy_goblin.tscn")
+		var spawn_enemy_goblin = enemy_goblin_scene.instantiate()
+		var parent = get_node("/root/main_scene")
+		spawner_licznik =+ 1;
+		match spawner_licznik:
+			1:  
+				enemy_hp = 100;
+				parent.add_child(spawn_enemy_goblin)
+			2:
+				enemy_hp = 100;
+				parent.add_child(spawn_enemy_goblin)
+			3:
+				enemy_hp = 100;
+				parent.add_child(spawn_enemy_goblin)
+		var something4 = get_node("/root/main_scene/enemy_hp")
+		something4.value=enemy_hp
+
 
