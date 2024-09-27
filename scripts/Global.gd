@@ -47,6 +47,8 @@ func _set_gracz_hp(new_value : int):
 func spawner():
 		var enemy_goblin_scene = load("res://enemies/enemy_goblin.tscn")
 		var spawn_enemy_goblin = enemy_goblin_scene.instantiate()
+		var enemy_slime_scene = load("res://enemies/enemy_slime.tscn")
+		var spawn_enemy_slime = enemy_slime_scene.instantiate()
 		var parent = get_node("/root/main_scene")
 		spawner_licznik =+ 1;
 		match spawner_licznik:
@@ -55,7 +57,7 @@ func spawner():
 				parent.add_child(spawn_enemy_goblin)
 			2:
 				enemy_hp = 100;
-				parent.add_child(spawn_enemy_goblin)
+				parent.add_child(spawn_enemy_slime)
 			3:
 				enemy_hp = 100;
 				parent.add_child(spawn_enemy_goblin)
