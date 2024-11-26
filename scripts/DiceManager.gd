@@ -53,6 +53,8 @@ func Consume(faceTypes = []) -> bool:
 	for i in range(dices.size()):
 		if claimedDices[i] == true:
 			dices[i].currentFace = Dice.FaceType.Blank
+			if dices[i].button_pressed:
+				dices[i].button_pressed = false
 			dices[i].UpdateDisplay()
 		Global.TestRzutu = 1;
 		emit_signal("Potwierdzenie")
