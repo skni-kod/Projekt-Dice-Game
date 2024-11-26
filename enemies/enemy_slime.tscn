@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://bt3fu5yqhswuv"]
+
+[ext_resource type="Script" path="res://components/Enemy_Goblin.gd" id="1_015yf"]
+[ext_resource type="Texture2D" uid="uid://cdcex0dr54txm" path="res://data/sprites/enemies/szlim.png" id="2_5yo5h"]
+
+[node name="Enemy_Slime" type="Sprite2D" groups=["Enemies"]]
+top_level = true
+position = Vector2(0, -218)
+scale = Vector2(0.804748, 0.696995)
+script = ExtResource("1_015yf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -20)
+scale = Vector2(0.28, 0.28)
+texture = ExtResource("2_5yo5h")
+
+[node name="Attack_text" type="RichTextLabel" parent="."]
+offset_left = -138.0
+offset_top = 159.0
+offset_right = 174.0
+offset_bottom = 251.0
+scale = Vector2(1.5, 1.5)
+bbcode_enabled = true
+text = "ha ha BBCode [color=green]test[/color]"

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2eiwkpnihcut"
-path="res://.godot/imported/Kawalec.png-8f9839b84628a8aec75413d3fe6cdec8.ctex"
+uid="uid://bc6s21cwy146q"
+path="res://.godot/imported/goblin.png-e7cdb6a37af10018324c54692308dcfa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://data/textures/Kawalec.png"
-dest_files=["res://.godot/imported/Kawalec.png-8f9839b84628a8aec75413d3fe6cdec8.ctex"]
+source_file="res://data/sprites/enemies/goblin.png"
+dest_files=["res://.godot/imported/goblin.png-e7cdb6a37af10018324c54692308dcfa.ctex"]
 
 [params]
 

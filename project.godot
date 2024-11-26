@@ -14,3 +14,7 @@ config/name="generic-fantasy-card-roguelike-with-dices"
 run/main_scene="res://components/node_2d.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://scripts/Global.gd"
