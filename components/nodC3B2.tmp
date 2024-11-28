@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://m7s3xp2xoqfy"]
+[gd_scene load_steps=18 format=3 uid="uid://m7s3xp2xoqfy"]
 
 [ext_resource type="Texture2D" uid="uid://brocaxjf0csnc" path="res://data/sprites/attack.png" id="1_6qxan"]
 [ext_resource type="Script" path="res://components/node_2d.gd" id="1_nj05h"]
@@ -14,7 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://b6oas1x5edqdw" path="res://data/sprites/special.png" id="5_sco6w"]
 [ext_resource type="Script" path="res://components/Stat_Buttons.gd" id="7_fjklp"]
 [ext_resource type="Script" path="res://components/Atak.gd" id="8_6xjs2"]
-[ext_resource type="Texture2D" uid="uid://cngl825iogtkt" path="res://data/sprites/dice_blank_selected.png" id="9_e0spb"]
 [ext_resource type="Script" path="res://components/Atak_Plus.gd" id="10_2aax2"]
 [ext_resource type="Script" path="res://components/Obrona.gd" id="12_uw1r0"]
 [ext_resource type="Script" path="res://components/Obrona_Plus.gd" id="14_37oyb"]
@@ -77,104 +76,58 @@ scale = Vector2(2.675, 2.675)
 text = "Roll"
 metadata/_edit_use_anchors_ = true
 
-[node name="Roll2" type="Button" parent="."]
-offset_left = -561.0
-offset_top = -17.0
-offset_right = -449.96
-offset_bottom = 14.0
-scale = Vector2(2.675, 2.675)
-text = "Reroll"
-metadata/_edit_use_anchors_ = true
-
 [node name="Dices" type="Node2D" parent="."]
 position = Vector2(-563, -310)
 script = ExtResource("3_oprlb")
 
-[node name="Dice1" type="TextureButton" parent="Dices"]
-offset_right = 100.0
-offset_bottom = 100.0
-focus_mode = 0
-toggle_mode = true
-action_mode = 0
-button_mask = 0
-texture_normal = ExtResource("4_mes1h")
-texture_pressed = ExtResource("9_e0spb")
+[node name="Dice1" type="Button" parent="Dices"]
+offset_right = 108.0
+offset_bottom = 108.0
+icon = ExtResource("4_mes1h")
+flat = true
 script = ExtResource("4_nijcb")
 
-[node name="Icon" type="Sprite2D" parent="Dices/Dice1"]
-position = Vector2(50, 50)
-
-[node name="Dice2" type="TextureButton" parent="Dices"]
+[node name="Dice2" type="Button" parent="Dices"]
 offset_left = 100.0
-offset_right = 200.0
-offset_bottom = 100.0
-focus_mode = 0
-toggle_mode = true
-button_mask = 0
-texture_normal = ExtResource("4_mes1h")
-texture_pressed = ExtResource("9_e0spb")
+offset_right = 208.0
+offset_bottom = 108.0
+icon = ExtResource("4_mes1h")
+flat = true
 script = ExtResource("4_nijcb")
 
-[node name="Icon" type="Sprite2D" parent="Dices/Dice2"]
-position = Vector2(50, 50)
-
-[node name="Dice3" type="TextureButton" parent="Dices"]
+[node name="Dice3" type="Button" parent="Dices"]
 offset_left = 200.0
-offset_right = 300.0
-offset_bottom = 100.0
-focus_mode = 0
-toggle_mode = true
-button_mask = 0
-texture_normal = ExtResource("4_mes1h")
-texture_pressed = ExtResource("9_e0spb")
+offset_right = 308.0
+offset_bottom = 108.0
+icon = ExtResource("4_mes1h")
+flat = true
 script = ExtResource("4_nijcb")
 
-[node name="Icon" type="Sprite2D" parent="Dices/Dice3"]
-position = Vector2(50, 50)
-
-[node name="Dice4" type="TextureButton" parent="Dices"]
+[node name="Dice4" type="Button" parent="Dices"]
 offset_top = 100.0
-offset_right = 100.0
-offset_bottom = 200.0
-focus_mode = 0
-toggle_mode = true
-button_mask = 0
-texture_normal = ExtResource("4_mes1h")
-texture_pressed = ExtResource("9_e0spb")
+offset_right = 108.0
+offset_bottom = 208.0
+icon = ExtResource("4_mes1h")
+flat = true
 script = ExtResource("4_nijcb")
 
-[node name="Icon" type="Sprite2D" parent="Dices/Dice4"]
-position = Vector2(50, 50)
-
-[node name="Dice5" type="TextureButton" parent="Dices"]
+[node name="Dice5" type="Button" parent="Dices"]
 offset_left = 100.0
 offset_top = 100.0
-offset_right = 200.0
-offset_bottom = 200.0
-focus_mode = 0
-toggle_mode = true
-button_mask = 0
-texture_normal = ExtResource("4_mes1h")
-texture_pressed = ExtResource("9_e0spb")
+offset_right = 208.0
+offset_bottom = 208.0
+icon = ExtResource("4_mes1h")
+flat = true
 script = ExtResource("4_nijcb")
 
-[node name="Icon" type="Sprite2D" parent="Dices/Dice5"]
-position = Vector2(50, 50)
-
-[node name="Dice6" type="TextureButton" parent="Dices"]
+[node name="Dice6" type="Button" parent="Dices"]
 offset_left = 200.0
 offset_top = 100.0
-offset_right = 300.0
-offset_bottom = 200.0
-focus_mode = 0
-toggle_mode = true
-button_mask = 0
-texture_normal = ExtResource("4_mes1h")
-texture_pressed = ExtResource("9_e0spb")
+offset_right = 308.0
+offset_bottom = 208.0
+icon = ExtResource("4_mes1h")
+flat = true
 script = ExtResource("4_nijcb")
-
-[node name="Icon" type="Sprite2D" parent="Dices/Dice6"]
-position = Vector2(50, 50)
 
 [node name="Stat_Buttons" type="Node2D" parent="."]
 script = ExtResource("7_fjklp")
@@ -287,18 +240,8 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Stats" type="Node2D" parent="."]
 
-[node name="Roll3" type="Button" parent="."]
-offset_left = -561.0
-offset_top = -17.0
-offset_right = -449.96
-offset_bottom = 14.0
-scale = Vector2(2.675, 2.675)
-text = "Reroll"
-metadata/_edit_use_anchors_ = true
-
 [connection signal="pressed" from="Roll" to="." method="Roll"]
 [connection signal="pressed" from="Roll" to="Dices" method="Roll"]
-[connection signal="pressed" from="Roll2" to="Dices" method="Reroll"]
 [connection signal="mouse_entered" from="Stat_Buttons/Atak" to="Stat_Buttons" method="_on_atak_mouse_entered"]
 [connection signal="mouse_exited" from="Stat_Buttons/Atak" to="Stat_Buttons" method="_on_atak_mouse_exited"]
 [connection signal="pressed" from="Stat_Buttons/Atak" to="Stat_Buttons/Atak" method="_on_pressed"]
@@ -327,4 +270,3 @@ metadata/_edit_use_anchors_ = true
 [connection signal="mouse_entered" from="Stat_Buttons/Special4" to="Stat_Buttons" method="_on_special_4_mouse_entered"]
 [connection signal="mouse_exited" from="Stat_Buttons/Special4" to="Stat_Buttons" method="_on_special_4_mouse_exited"]
 [connection signal="pressed" from="Stat_Buttons/Special4" to="Dices" method="Consume"]
-[connection signal="pressed" from="Roll3" to="Dices" method="Reroll"]
