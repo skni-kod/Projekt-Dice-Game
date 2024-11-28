@@ -107,6 +107,7 @@ offset_right = 200.0
 offset_bottom = 100.0
 focus_mode = 0
 toggle_mode = true
+action_mode = 0
 button_mask = 0
 texture_normal = ExtResource("4_mes1h")
 texture_pressed = ExtResource("9_e0spb")
@@ -121,6 +122,7 @@ offset_right = 300.0
 offset_bottom = 100.0
 focus_mode = 0
 toggle_mode = true
+action_mode = 0
 button_mask = 0
 texture_normal = ExtResource("4_mes1h")
 texture_pressed = ExtResource("9_e0spb")
@@ -135,6 +137,7 @@ offset_right = 100.0
 offset_bottom = 200.0
 focus_mode = 0
 toggle_mode = true
+action_mode = 0
 button_mask = 0
 texture_normal = ExtResource("4_mes1h")
 texture_pressed = ExtResource("9_e0spb")
@@ -150,6 +153,7 @@ offset_right = 200.0
 offset_bottom = 200.0
 focus_mode = 0
 toggle_mode = true
+action_mode = 0
 button_mask = 0
 texture_normal = ExtResource("4_mes1h")
 texture_pressed = ExtResource("9_e0spb")
@@ -165,6 +169,7 @@ offset_right = 300.0
 offset_bottom = 200.0
 focus_mode = 0
 toggle_mode = true
+action_mode = 0
 button_mask = 0
 texture_normal = ExtResource("4_mes1h")
 texture_pressed = ExtResource("9_e0spb")
@@ -215,7 +220,7 @@ script = ExtResource("12_4mrkr")
 action = 3
 metadata/_edit_use_anchors_ = true
 
-[node name="Special" type="Button" parent="ActionButtons"]
+[node name="Special1" type="Button" parent="ActionButtons"]
 anchors_preset = -1
 anchor_left = 1.5
 anchor_top = 2.0
@@ -318,9 +323,9 @@ metadata/_edit_use_anchors_ = true
 [connection signal="mouse_entered" from="ActionButtons/Obrona_Plus" to="ActionButtons" method="_on_obrona_plus_mouse_entered"]
 [connection signal="mouse_exited" from="ActionButtons/Obrona_Plus" to="ActionButtons" method="_on_obrona_plus_mouse_exited"]
 [connection signal="pressed" from="ActionButtons/Obrona_Plus" to="ActionButtons/Obrona_Plus" method="_on_button_press"]
-[connection signal="mouse_entered" from="ActionButtons/Special" to="ActionButtons" method="_on_special_mouse_entered"]
-[connection signal="mouse_exited" from="ActionButtons/Special" to="ActionButtons" method="_on_special_mouse_exited"]
-[connection signal="pressed" from="ActionButtons/Special" to="ActionButtons/Special" method="_on_button_press" binds= [[3, 3]]]
+[connection signal="mouse_entered" from="ActionButtons/Special1" to="ActionButtons" method="_on_special_mouse_entered"]
+[connection signal="mouse_exited" from="ActionButtons/Special1" to="ActionButtons" method="_on_special_mouse_exited"]
+[connection signal="pressed" from="ActionButtons/Special1" to="ActionButtons/Special1" method="_on_button_press"]
 [connection signal="mouse_entered" from="ActionButtons/Special2" to="ActionButtons" method="_on_special_2_mouse_entered"]
 [connection signal="mouse_exited" from="ActionButtons/Special2" to="ActionButtons" method="_on_special_2_mouse_exited"]
 [connection signal="pressed" from="ActionButtons/Special2" to="ActionButtons/Special2" method="_on_button_press"]

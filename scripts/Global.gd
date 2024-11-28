@@ -27,7 +27,10 @@ func harm(damage):
 	if(enemy_hp<=0):
 		get_tree().call_group("Enemies", "Die")
 		spawner()
-
+func armor(defense):
+	gracz_tarcza=gracz_tarcza+defense;
+	var something = get_node("/root/main_scene/gracz_tarcza/gracz_tarcza_ilość")
+	something.text = str(gracz_tarcza)
 func _set_gracz_tarcza(zmiana : int):
 		gracz_tarcza = zmiana
 		if(gracz_tarcza<0):

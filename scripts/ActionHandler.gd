@@ -18,21 +18,27 @@ func HandleAction(act):
 				Global.harm(20)	
 			
 		Action.Defence:
-			pass 
+			if Global.diceManager.ConsumeN(Dice.FaceType.Defense,2):
+				Global.armor(7)
 		Action.DefencePlus:
-			pass 
+			if Global.diceManager.ConsumeN(Dice.FaceType.Defense,3):
+				Global.armor(15) 
 			
 		Action.Special1:
-			pass 
+			if Global.diceManager.ConsumeN(Dice.FaceType.Special,3):
+				pass 
 			
 		Action.Special2:
-			pass 
+			if Global.diceManager.ConsumeN(Dice.FaceType.Special,4):
+				pass 
 			
 		Action.Special3:
-			pass 
+			if Global.diceManager.ConsumeN(Dice.FaceType.Special,5):
+				pass 
 			
 		Action.Special4:
-			pass 
+			if Global.diceManager.ConsumeN(Dice.FaceType.Defense,6):
+				pass 
 
 func _on_button_press():
 	HandleAction(action)
