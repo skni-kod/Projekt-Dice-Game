@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://m7s3xp2xoqfy"]
+[gd_scene load_steps=16 format=3 uid="uid://m7s3xp2xoqfy"]
 
 [ext_resource type="Texture2D" uid="uid://brocaxjf0csnc" path="res://data/sprites/attack.png" id="1_6qxan"]
 [ext_resource type="Script" path="res://components/node_2d.gd" id="1_nj05h"]
@@ -13,11 +13,8 @@
 [ext_resource type="Script" path="res://scripts/Dice.gd" id="4_nijcb"]
 [ext_resource type="Texture2D" uid="uid://b6oas1x5edqdw" path="res://data/sprites/special.png" id="5_sco6w"]
 [ext_resource type="Script" path="res://components/Stat_Buttons.gd" id="7_fjklp"]
-[ext_resource type="Script" path="res://components/Atak.gd" id="8_6xjs2"]
 [ext_resource type="Texture2D" uid="uid://cngl825iogtkt" path="res://data/sprites/dice_blank_selected.png" id="9_e0spb"]
-[ext_resource type="Script" path="res://components/Atak_Plus.gd" id="10_2aax2"]
-[ext_resource type="Script" path="res://components/Obrona.gd" id="12_uw1r0"]
-[ext_resource type="Script" path="res://components/Obrona_Plus.gd" id="14_37oyb"]
+[ext_resource type="Script" path="res://scripts/ActionHandler.gd" id="12_4mrkr"]
 
 [node name="main_scene" type="Node2D"]
 script = ExtResource("1_nj05h")
@@ -176,47 +173,49 @@ script = ExtResource("4_nijcb")
 [node name="Icon" type="Sprite2D" parent="Dices/Dice6"]
 position = Vector2(50, 50)
 
-[node name="Stat_Buttons" type="Node2D" parent="."]
+[node name="ActionButtons" type="Node2D" parent="."]
 script = ExtResource("7_fjklp")
 
-[node name="Atak" type="Button" parent="Stat_Buttons"]
+[node name="Atak" type="Button" parent="ActionButtons"]
 offset_left = -200.0
 offset_right = -100.0
 offset_bottom = 100.0
-tooltip_text = "Ble Ble"
 icon = ExtResource("1_6qxan")
 expand_icon = true
-script = ExtResource("8_6xjs2")
+script = ExtResource("12_4mrkr")
 metadata/_edit_use_anchors_ = true
 
-[node name="Atak_Plus" type="Button" parent="Stat_Buttons"]
+[node name="Atak_Plus" type="Button" parent="ActionButtons"]
 offset_left = -100.0
 offset_bottom = 100.0
 icon = ExtResource("2_gmxty")
 expand_icon = true
-script = ExtResource("10_2aax2")
+script = ExtResource("12_4mrkr")
+action = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Obrona" type="Button" parent="Stat_Buttons"]
+[node name="Obrona" type="Button" parent="ActionButtons"]
 offset_left = -200.0
 offset_top = 100.0
 offset_right = -100.0
 offset_bottom = 200.0
 icon = ExtResource("3_i8ryy")
 expand_icon = true
-script = ExtResource("12_uw1r0")
+script = ExtResource("12_4mrkr")
+action = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="Obrona_Plus" type="Button" parent="Stat_Buttons"]
+[node name="Obrona_Plus" type="Button" parent="ActionButtons"]
 offset_left = -100.0
 offset_top = 100.0
 offset_bottom = 200.0
 icon = ExtResource("4_aw65w")
 expand_icon = true
-script = ExtResource("14_37oyb")
+script = ExtResource("12_4mrkr")
+action = 3
 metadata/_edit_use_anchors_ = true
 
-[node name="Special" type="Button" parent="Stat_Buttons"]
+[node name="Special" type="Button" parent="ActionButtons"]
 anchors_preset = -1
 anchor_left = 1.5
 anchor_top = 2.0
@@ -228,9 +227,11 @@ icon = ExtResource("5_sco6w")
 icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
+script = ExtResource("12_4mrkr")
+action = 4
 metadata/_edit_use_anchors_ = true
 
-[node name="Special2" type="Button" parent="Stat_Buttons"]
+[node name="Special2" type="Button" parent="ActionButtons"]
 anchors_preset = -1
 anchor_left = 1.5
 anchor_top = 2.0
@@ -243,9 +244,11 @@ icon = ExtResource("5_sco6w")
 icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
+script = ExtResource("12_4mrkr")
+action = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="Special3" type="Button" parent="Stat_Buttons"]
+[node name="Special3" type="Button" parent="ActionButtons"]
 anchors_preset = -1
 anchor_left = 1.5
 anchor_top = 2.0
@@ -258,9 +261,11 @@ icon = ExtResource("5_sco6w")
 icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
+script = ExtResource("12_4mrkr")
+action = 6
 metadata/_edit_use_anchors_ = true
 
-[node name="Special4" type="Button" parent="Stat_Buttons"]
+[node name="Special4" type="Button" parent="ActionButtons"]
 anchors_preset = -1
 anchor_left = 1.5
 anchor_top = 2.0
@@ -274,9 +279,11 @@ icon = ExtResource("5_sco6w")
 icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
+script = ExtResource("12_4mrkr")
+action = 7
 metadata/_edit_use_anchors_ = true
 
-[node name="Action_Description" type="RichTextLabel" parent="Stat_Buttons"]
+[node name="Action_Description" type="RichTextLabel" parent="ActionButtons"]
 offset_left = -200.0
 offset_top = 225.0
 offset_right = 200.0
@@ -299,32 +306,28 @@ metadata/_edit_use_anchors_ = true
 [connection signal="pressed" from="Roll" to="." method="Roll"]
 [connection signal="pressed" from="Roll" to="Dices" method="Roll"]
 [connection signal="pressed" from="Roll2" to="Dices" method="Reroll"]
-[connection signal="mouse_entered" from="Stat_Buttons/Atak" to="Stat_Buttons" method="_on_atak_mouse_entered"]
-[connection signal="mouse_exited" from="Stat_Buttons/Atak" to="Stat_Buttons" method="_on_atak_mouse_exited"]
-[connection signal="pressed" from="Stat_Buttons/Atak" to="Stat_Buttons/Atak" method="_on_pressed"]
-[connection signal="pressed" from="Stat_Buttons/Atak" to="Dices" method="Consume" binds= [[1, 1]]]
-[connection signal="mouse_entered" from="Stat_Buttons/Atak_Plus" to="Stat_Buttons" method="_on_atak_plus_mouse_entered"]
-[connection signal="mouse_exited" from="Stat_Buttons/Atak_Plus" to="Stat_Buttons" method="_on_atak_plus_mouse_exited"]
-[connection signal="pressed" from="Stat_Buttons/Atak_Plus" to="Stat_Buttons/Atak_Plus" method="_on_pressed"]
-[connection signal="pressed" from="Stat_Buttons/Atak_Plus" to="Dices" method="Consume" binds= [[1, 1, 1]]]
-[connection signal="mouse_entered" from="Stat_Buttons/Obrona" to="Stat_Buttons" method="_on_obrona_mouse_entered"]
-[connection signal="mouse_exited" from="Stat_Buttons/Obrona" to="Stat_Buttons" method="_on_obrona_mouse_exited"]
-[connection signal="pressed" from="Stat_Buttons/Obrona" to="Stat_Buttons/Obrona" method="_on_pressed"]
-[connection signal="pressed" from="Stat_Buttons/Obrona" to="Dices" method="Consume" binds= [[2, 2]]]
-[connection signal="mouse_entered" from="Stat_Buttons/Obrona_Plus" to="Stat_Buttons" method="_on_obrona_plus_mouse_entered"]
-[connection signal="mouse_exited" from="Stat_Buttons/Obrona_Plus" to="Stat_Buttons" method="_on_obrona_plus_mouse_exited"]
-[connection signal="pressed" from="Stat_Buttons/Obrona_Plus" to="Stat_Buttons/Obrona_Plus" method="_on_pressed"]
-[connection signal="pressed" from="Stat_Buttons/Obrona_Plus" to="Dices" method="Consume" binds= [[2, 2, 2]]]
-[connection signal="mouse_entered" from="Stat_Buttons/Special" to="Stat_Buttons" method="_on_special_mouse_entered"]
-[connection signal="mouse_exited" from="Stat_Buttons/Special" to="Stat_Buttons" method="_on_special_mouse_exited"]
-[connection signal="pressed" from="Stat_Buttons/Special" to="Dices" method="Consume" binds= [[3, 3]]]
-[connection signal="mouse_entered" from="Stat_Buttons/Special2" to="Stat_Buttons" method="_on_special_2_mouse_entered"]
-[connection signal="mouse_exited" from="Stat_Buttons/Special2" to="Stat_Buttons" method="_on_special_2_mouse_exited"]
-[connection signal="pressed" from="Stat_Buttons/Special2" to="Dices" method="Consume"]
-[connection signal="mouse_entered" from="Stat_Buttons/Special3" to="Stat_Buttons" method="_on_special_3_mouse_entered"]
-[connection signal="mouse_exited" from="Stat_Buttons/Special3" to="Stat_Buttons" method="_on_special_3_mouse_exited"]
-[connection signal="pressed" from="Stat_Buttons/Special3" to="Dices" method="Consume"]
-[connection signal="mouse_entered" from="Stat_Buttons/Special4" to="Stat_Buttons" method="_on_special_4_mouse_entered"]
-[connection signal="mouse_exited" from="Stat_Buttons/Special4" to="Stat_Buttons" method="_on_special_4_mouse_exited"]
-[connection signal="pressed" from="Stat_Buttons/Special4" to="Dices" method="Consume"]
+[connection signal="mouse_entered" from="ActionButtons/Atak" to="ActionButtons" method="_on_atak_plus_mouse_entered"]
+[connection signal="mouse_exited" from="ActionButtons/Atak" to="ActionButtons" method="_on_atak_plus_mouse_exited"]
+[connection signal="pressed" from="ActionButtons/Atak" to="ActionButtons/Atak" method="_on_button_press"]
+[connection signal="mouse_entered" from="ActionButtons/Atak_Plus" to="ActionButtons" method="_on_atak_plus_mouse_entered"]
+[connection signal="mouse_exited" from="ActionButtons/Atak_Plus" to="ActionButtons" method="_on_atak_plus_mouse_exited"]
+[connection signal="pressed" from="ActionButtons/Atak_Plus" to="ActionButtons/Atak_Plus" method="_on_button_press"]
+[connection signal="mouse_entered" from="ActionButtons/Obrona" to="ActionButtons" method="_on_obrona_mouse_entered"]
+[connection signal="mouse_exited" from="ActionButtons/Obrona" to="ActionButtons" method="_on_obrona_mouse_exited"]
+[connection signal="pressed" from="ActionButtons/Obrona" to="ActionButtons/Obrona" method="_on_button_press"]
+[connection signal="mouse_entered" from="ActionButtons/Obrona_Plus" to="ActionButtons" method="_on_obrona_plus_mouse_entered"]
+[connection signal="mouse_exited" from="ActionButtons/Obrona_Plus" to="ActionButtons" method="_on_obrona_plus_mouse_exited"]
+[connection signal="pressed" from="ActionButtons/Obrona_Plus" to="ActionButtons/Obrona_Plus" method="_on_button_press"]
+[connection signal="mouse_entered" from="ActionButtons/Special" to="ActionButtons" method="_on_special_mouse_entered"]
+[connection signal="mouse_exited" from="ActionButtons/Special" to="ActionButtons" method="_on_special_mouse_exited"]
+[connection signal="pressed" from="ActionButtons/Special" to="ActionButtons/Special" method="_on_button_press" binds= [[3, 3]]]
+[connection signal="mouse_entered" from="ActionButtons/Special2" to="ActionButtons" method="_on_special_2_mouse_entered"]
+[connection signal="mouse_exited" from="ActionButtons/Special2" to="ActionButtons" method="_on_special_2_mouse_exited"]
+[connection signal="pressed" from="ActionButtons/Special2" to="ActionButtons/Special2" method="_on_button_press"]
+[connection signal="mouse_entered" from="ActionButtons/Special3" to="ActionButtons" method="_on_special_3_mouse_entered"]
+[connection signal="mouse_exited" from="ActionButtons/Special3" to="ActionButtons" method="_on_special_3_mouse_exited"]
+[connection signal="pressed" from="ActionButtons/Special3" to="ActionButtons/Special3" method="_on_button_press"]
+[connection signal="mouse_entered" from="ActionButtons/Special4" to="ActionButtons" method="_on_special_4_mouse_entered"]
+[connection signal="mouse_exited" from="ActionButtons/Special4" to="ActionButtons" method="_on_special_4_mouse_exited"]
+[connection signal="pressed" from="ActionButtons/Special4" to="ActionButtons/Special4" method="_on_button_press"]
 [connection signal="pressed" from="Roll3" to="Dices" method="Reroll"]

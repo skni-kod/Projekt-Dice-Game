@@ -2,6 +2,7 @@ extends Node
 
 var enemy_hp;
 var TestRzutu = 0;
+var diceManager: DiceManager
 var gracz_tarcza: int = 0: set = _set_gracz_tarcza
 var gracz_hp: int = 100: set = _set_gracz_hp
 var spawner_licznik = 0
@@ -16,6 +17,8 @@ func _ready():
 	something1.value = enemy_hp
 	var something2 = get_node("/root/main_scene/gracz_hp")
 	something2.value = gracz_hp
+	
+	diceManager = get_node("/root/main_scene/Dices") as DiceManager
 
 func harm(damage):
 	enemy_hp=enemy_hp-damage;

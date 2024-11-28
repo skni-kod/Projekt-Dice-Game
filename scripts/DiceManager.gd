@@ -56,6 +56,11 @@ func Consume(faceTypes = []) -> bool:
 			if dices[i].button_pressed:
 				dices[i].button_pressed = false
 			dices[i].UpdateDisplay()
-		Global.TestRzutu = 1;
-		emit_signal("Potwierdzenie")
 	return true
+	
+func ConsumeN(faceType, n) -> bool:
+	var faces = []
+	for i in range(n):
+		faces.append(faceType)
+		
+	return Consume(faces);
