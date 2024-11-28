@@ -6,9 +6,9 @@ func _ready():
 func Roll() -> void:
 	match enemy_attack:
 			1:  
-				Global.gracz_tarcza=Global.gracz_tarcza-5
+				Global.playerStats.DealDamage(5)
 			2:
-				Global.gracz_tarcza=Global.gracz_tarcza-10
+				Global.playerStats.DealDamage(10)
 			3:
 				pass
 	enemy_attack = randi_range(1,3)

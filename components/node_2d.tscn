@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://m7s3xp2xoqfy"]
+[gd_scene load_steps=18 format=3 uid="uid://m7s3xp2xoqfy"]
 
 [ext_resource type="Texture2D" uid="uid://brocaxjf0csnc" path="res://data/sprites/attack.png" id="1_6qxan"]
 [ext_resource type="Script" path="res://components/node_2d.gd" id="1_nj05h"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://components/Stat_Buttons.gd" id="7_fjklp"]
 [ext_resource type="Texture2D" uid="uid://cngl825iogtkt" path="res://data/sprites/dice_blank_selected.png" id="9_e0spb"]
 [ext_resource type="Script" path="res://scripts/ActionHandler.gd" id="12_4mrkr"]
+[ext_resource type="Script" path="res://scripts/Stats.gd" id="16_juie0"]
 
 [node name="main_scene" type="Node2D"]
 script = ExtResource("1_nj05h")
@@ -30,42 +31,6 @@ offset_bottom = 327.0
 texture = ExtResource("2_sq8ph")
 metadata/_edit_use_anchors_ = true
 
-[node name="gracz_hp" type="ProgressBar" parent="."]
-offset_left = -138.0
-offset_top = 210.0
-offset_right = 376.0
-offset_bottom = 277.0
-scale = Vector2(0.575032, 0.575032)
-step = 1.0
-script = ExtResource("2_ykvo0")
-metadata/_edit_use_anchors_ = true
-
-[node name="enemy_hp" type="ProgressBar" parent="."]
-offset_left = -138.0
-offset_top = -150.0
-offset_right = 376.0
-offset_bottom = -83.0
-scale = Vector2(0.575032, 0.575032)
-step = 1.0
-script = ExtResource("2_a3x7q")
-metadata/_edit_use_anchors_ = true
-
-[node name="gracz_tarcza" type="Node2D" parent="."]
-position = Vector2(-513, -260)
-
-[node name="gracz_tarcza_ikona" type="Sprite2D" parent="gracz_tarcza"]
-position = Vector2(730, 268)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_i8ryy")
-
-[node name="gracz_tarcza_ilość" type="RichTextLabel" parent="gracz_tarcza"]
-offset_left = 750.0
-offset_top = 255.0
-offset_right = 790.0
-offset_bottom = 295.0
-text = "0"
-metadata/_edit_use_anchors_ = true
-
 [node name="Roll" type="Button" parent="."]
 offset_left = -561.0
 offset_top = -103.0
@@ -75,7 +40,7 @@ scale = Vector2(2.675, 2.675)
 text = "Roll"
 metadata/_edit_use_anchors_ = true
 
-[node name="Roll2" type="Button" parent="."]
+[node name="Reroll" type="Button" parent="."]
 offset_left = -561.0
 offset_top = -17.0
 offset_right = -449.96
@@ -303,20 +268,73 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Stats" type="Node2D" parent="."]
+[node name="Enemy" type="Node2D" parent="." node_paths=PackedStringArray("health_display", "armor_display")]
+script = ExtResource("16_juie0")
+max_health = 100
+health_display = NodePath("HpDisplay")
+armor_display = NodePath("ArmorDisplay/text")
 
-[node name="Roll3" type="Button" parent="."]
-offset_left = -561.0
-offset_top = -17.0
-offset_right = -449.96
-offset_bottom = 14.0
-scale = Vector2(2.675, 2.675)
-text = "Reroll"
+[node name="HpDisplay" type="ProgressBar" parent="Enemy"]
+offset_left = -138.0
+offset_top = -150.0
+offset_right = 376.0
+offset_bottom = -83.0
+scale = Vector2(0.575032, 0.575032)
+step = 1.0
+script = ExtResource("2_a3x7q")
+metadata/_edit_use_anchors_ = true
+
+[node name="ArmorDisplay" type="Node2D" parent="Enemy"]
+position = Vector2(-555, -402)
+
+[node name="icon" type="Sprite2D" parent="Enemy/ArmorDisplay"]
+position = Vector2(730, 268)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_i8ryy")
+
+[node name="text" type="RichTextLabel" parent="Enemy/ArmorDisplay"]
+offset_left = 750.0
+offset_top = 255.0
+offset_right = 790.0
+offset_bottom = 295.0
+text = "0"
+metadata/_edit_use_anchors_ = true
+
+[node name="Player" type="Node2D" parent="." node_paths=PackedStringArray("health_display", "armor_display")]
+script = ExtResource("16_juie0")
+max_health = 100
+health_display = NodePath("HpDisplay")
+armor_display = NodePath("ArmorDisplay/text")
+
+[node name="ArmorDisplay" type="Node2D" parent="Player"]
+position = Vector2(-513, -260)
+
+[node name="icon" type="Sprite2D" parent="Player/ArmorDisplay"]
+position = Vector2(730, 268)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_i8ryy")
+
+[node name="text" type="RichTextLabel" parent="Player/ArmorDisplay"]
+offset_left = 750.0
+offset_top = 255.0
+offset_right = 790.0
+offset_bottom = 295.0
+text = "0"
+metadata/_edit_use_anchors_ = true
+
+[node name="HpDisplay" type="ProgressBar" parent="Player"]
+offset_left = -138.0
+offset_top = 210.0
+offset_right = 376.0
+offset_bottom = 277.0
+scale = Vector2(0.575032, 0.575032)
+step = 1.0
+script = ExtResource("2_ykvo0")
 metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Roll" to="." method="Roll"]
 [connection signal="pressed" from="Roll" to="Dices" method="Roll"]
-[connection signal="pressed" from="Roll2" to="Dices" method="Reroll"]
+[connection signal="pressed" from="Reroll" to="Dices" method="Reroll"]
 [connection signal="mouse_entered" from="ActionButtons/Atak" to="ActionButtons" method="_on_atak_plus_mouse_entered"]
 [connection signal="mouse_exited" from="ActionButtons/Atak" to="ActionButtons" method="_on_atak_plus_mouse_exited"]
 [connection signal="pressed" from="ActionButtons/Atak" to="ActionButtons/Atak" method="_on_button_press"]
@@ -341,4 +359,4 @@ metadata/_edit_use_anchors_ = true
 [connection signal="mouse_entered" from="ActionButtons/Special4" to="ActionButtons" method="_on_special_4_mouse_entered"]
 [connection signal="mouse_exited" from="ActionButtons/Special4" to="ActionButtons" method="_on_special_4_mouse_exited"]
 [connection signal="pressed" from="ActionButtons/Special4" to="ActionButtons/Special4" method="_on_button_press"]
-[connection signal="pressed" from="Roll3" to="Dices" method="Reroll"]
+[connection signal="onDeath" from="Enemy" to="." method="_on_enemy_on_death"]

@@ -11,18 +11,18 @@ func HandleAction(act):
 	match act:
 		Action.Attack:
 			if Global.diceManager.ConsumeN(Dice.FaceType.Attack,2):
-				Global.harm(9)
+				Global.enemyStats.DealDamage(9)
 		
 		Action.AttackPlus:
 			if Global.diceManager.ConsumeN(Dice.FaceType.Attack,3):
-				Global.harm(20)	
+				Global.enemyStats.DealDamage(20)
 			
 		Action.Defence:
 			if Global.diceManager.ConsumeN(Dice.FaceType.Defense,2):
-				Global.armor(7)
+				Global.playerStats.AddArmor(7)
 		Action.DefencePlus:
 			if Global.diceManager.ConsumeN(Dice.FaceType.Defense,3):
-				Global.armor(15) 
+				Global.playerStats.AddArmor(15)
 			
 		Action.Special1:
 			if Global.diceManager.ConsumeN(Dice.FaceType.Special,3):
