@@ -10,6 +10,8 @@ func _ready():
 	enemy_hp = 100;
 	var enemy_goblin_scene = load("res://enemies/enemy_goblin.tscn")
 	var spawn_enemy_goblin = enemy_goblin_scene.instantiate()
+	var enemy_slime_scene = load("res://enemies/enemy_slime.tscn")
+	var spawn_enemy_slime = enemy_slime_scene.instantiate()
 	var parent = get_node("/root/main_scene")
 	parent.add_child(spawn_enemy_goblin)
 	var something1 = get_node("/root/main_scene/enemy_hp")
@@ -45,22 +47,22 @@ func _set_gracz_hp(new_value : int):
 ##SPAWNER
 
 func spawner():
-		var enemy_goblin_scene = load("res://enemies/enemy_goblin.tscn")
-		var spawn_enemy_goblin = enemy_goblin_scene.instantiate()
 		var enemy_slime_scene = load("res://enemies/enemy_slime.tscn")
 		var spawn_enemy_slime = enemy_slime_scene.instantiate()
+		var enemy_goblin_scene = load("res://enemies/enemy_goblin.tscn")
+		var spawn_enemy_goblin = enemy_goblin_scene.instantiate()
 		var parent = get_node("/root/main_scene")
-		spawner_licznik =+ 1;
+		spawner_licznik=spawner_licznik+1;
 		match spawner_licznik:
 			1:  
 				enemy_hp = 100;
-				parent.add_child(spawn_enemy_goblin)
+				parent.add_child(spawn_enemy_slime)
 			2:
 				enemy_hp = 100;
-				parent.add_child(spawn_enemy_slime)
+				parent.add_child(spawn_enemy_goblin)
 			3:
 				enemy_hp = 100;
-				parent.add_child(spawn_enemy_goblin)
+				parent.add_child(spawn_enemy_slime)
 		var something4 = get_node("/root/main_scene/enemy_hp")
 		something4.value=enemy_hp
 
