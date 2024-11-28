@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://m7s3xp2xoqfy"]
+[gd_scene load_steps=17 format=3 uid="uid://m7s3xp2xoqfy"]
 
 [ext_resource type="Texture2D" uid="uid://brocaxjf0csnc" path="res://data/sprites/attack.png" id="1_6qxan"]
 [ext_resource type="Script" path="res://components/node_2d.gd" id="1_nj05h"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://chomilp4fcoei" path="res://data/sprites/dice_blank.png" id="4_mes1h"]
 [ext_resource type="Script" path="res://scripts/Dice.gd" id="4_nijcb"]
 [ext_resource type="Texture2D" uid="uid://b6oas1x5edqdw" path="res://data/sprites/special.png" id="5_sco6w"]
+[ext_resource type="AudioStream" uid="uid://bjv2joeyhwiht" path="res://data/sounds/rolling-dice-2-102706.mp3" id="6_y4v3x"]
 [ext_resource type="Script" path="res://components/Stat_Buttons.gd" id="7_fjklp"]
 [ext_resource type="Texture2D" uid="uid://cngl825iogtkt" path="res://data/sprites/dice_blank_selected.png" id="9_e0spb"]
 [ext_resource type="Script" path="res://scripts/ActionHandler.gd" id="12_4mrkr"]
@@ -82,6 +83,11 @@ offset_bottom = 14.0
 scale = Vector2(2.675, 2.675)
 text = "Reroll"
 metadata/_edit_use_anchors_ = true
+
+[node name="sound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-561, -103)
+scale = Vector2(2.675, 2.675)
+stream = ExtResource("6_y4v3x")
 
 [node name="Dices" type="Node2D" parent="."]
 position = Vector2(-563, -310)

@@ -18,6 +18,8 @@ func SelectedDiceCount() -> int:
 	return c
 		
 func Roll() -> void:
+	var sound = $/root/main_scene/sound
+	sound.play()
 	for dice in dices:
 		dice.button_pressed = false
 			
@@ -28,6 +30,8 @@ func Roll() -> void:
 		
 
 func Reroll() -> void:
+	var sound2 = $/root/main_scene/sound
+	sound2.play()
 	current_max_selected_dices = current_max_selected_dices - SelectedDiceCount()
 	for dice in dices:
 		if dice.button_pressed:
