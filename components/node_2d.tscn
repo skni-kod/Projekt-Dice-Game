@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://m7s3xp2xoqfy"]
+[gd_scene load_steps=41 format=3 uid="uid://m7s3xp2xoqfy"]
 
 [ext_resource type="Texture2D" uid="uid://brocaxjf0csnc" path="res://data/sprites/attack.png" id="1_6qxan"]
 [ext_resource type="Script" path="res://components/node_2d.gd" id="1_nj05h"]
@@ -17,6 +17,100 @@
 [ext_resource type="Texture2D" uid="uid://cngl825iogtkt" path="res://data/sprites/dice_blank_selected.png" id="9_e0spb"]
 [ext_resource type="Script" path="res://scripts/ActionHandler.gd" id="12_4mrkr"]
 [ext_resource type="Script" path="res://scripts/Stats.gd" id="16_juie0"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_gpx1j"]
+device = -1
+pressed = true
+keycode = 32
+physical_keycode = 32
+key_label = 32
+unicode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_h1jpe"]
+events = [SubResource("InputEventKey_gpx1j")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_xc8jq"]
+device = -1
+keycode = 4194442
+unicode = 52
+
+[sub_resource type="Shortcut" id="Shortcut_xpydi"]
+events = [SubResource("InputEventKey_xc8jq")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_vwybg"]
+device = -1
+keycode = 4194443
+unicode = 53
+
+[sub_resource type="Shortcut" id="Shortcut_2hsbf"]
+events = [SubResource("InputEventKey_vwybg")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_4u7mm"]
+device = -1
+keycode = 4194444
+unicode = 54
+
+[sub_resource type="Shortcut" id="Shortcut_2eif3"]
+events = [SubResource("InputEventKey_4u7mm")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_oko5g"]
+device = -1
+keycode = 4194439
+unicode = 49
+
+[sub_resource type="Shortcut" id="Shortcut_kbdob"]
+events = [SubResource("InputEventKey_oko5g")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_utf5r"]
+device = -1
+keycode = 4194440
+unicode = 50
+
+[sub_resource type="Shortcut" id="Shortcut_3fgaf"]
+events = [SubResource("InputEventKey_utf5r")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_q1erg"]
+device = -1
+keycode = 4194441
+unicode = 51
+
+[sub_resource type="Shortcut" id="Shortcut_evova"]
+events = [SubResource("InputEventKey_q1erg")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_s2ad0"]
+device = -1
+pressed = true
+keycode = 70
+unicode = 102
+
+[sub_resource type="Shortcut" id="Shortcut_rhfiy"]
+events = [SubResource("InputEventKey_s2ad0")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_tfu7m"]
+device = -1
+keycode = 71
+unicode = 103
+
+[sub_resource type="Shortcut" id="Shortcut_g3nbu"]
+events = [SubResource("InputEventKey_tfu7m")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_sd1du"]
+device = -1
+keycode = 86
+unicode = 118
+
+[sub_resource type="Shortcut" id="Shortcut_ggk13"]
+events = [SubResource("InputEventKey_sd1du")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_iheks"]
+device = -1
+keycode = 66
+unicode = 98
+
+[sub_resource type="Shortcut" id="Shortcut_0pd6j"]
+events = [SubResource("InputEventKey_iheks")]
+
+[sub_resource type="Shortcut" id="Shortcut_g0snw"]
 
 [node name="main_scene" type="Node2D"]
 script = ExtResource("1_nj05h")
@@ -37,6 +131,7 @@ offset_top = -103.0
 offset_right = -449.96
 offset_bottom = -72.0
 scale = Vector2(2.675, 2.675)
+shortcut = SubResource("Shortcut_h1jpe")
 text = "Roll"
 metadata/_edit_use_anchors_ = true
 
@@ -56,6 +151,7 @@ focus_mode = 0
 toggle_mode = true
 action_mode = 0
 button_mask = 0
+shortcut = SubResource("Shortcut_xpydi")
 texture_normal = ExtResource("4_mes1h")
 texture_pressed = ExtResource("9_e0spb")
 script = ExtResource("4_nijcb")
@@ -71,6 +167,7 @@ focus_mode = 0
 toggle_mode = true
 action_mode = 0
 button_mask = 0
+shortcut = SubResource("Shortcut_2hsbf")
 texture_normal = ExtResource("4_mes1h")
 texture_pressed = ExtResource("9_e0spb")
 script = ExtResource("4_nijcb")
@@ -86,6 +183,7 @@ focus_mode = 0
 toggle_mode = true
 action_mode = 0
 button_mask = 0
+shortcut = SubResource("Shortcut_2eif3")
 texture_normal = ExtResource("4_mes1h")
 texture_pressed = ExtResource("9_e0spb")
 script = ExtResource("4_nijcb")
@@ -101,6 +199,7 @@ focus_mode = 0
 toggle_mode = true
 action_mode = 0
 button_mask = 0
+shortcut = SubResource("Shortcut_kbdob")
 texture_normal = ExtResource("4_mes1h")
 texture_pressed = ExtResource("9_e0spb")
 script = ExtResource("4_nijcb")
@@ -117,6 +216,7 @@ focus_mode = 0
 toggle_mode = true
 action_mode = 0
 button_mask = 0
+shortcut = SubResource("Shortcut_3fgaf")
 texture_normal = ExtResource("4_mes1h")
 texture_pressed = ExtResource("9_e0spb")
 script = ExtResource("4_nijcb")
@@ -133,6 +233,7 @@ focus_mode = 0
 toggle_mode = true
 action_mode = 0
 button_mask = 0
+shortcut = SubResource("Shortcut_evova")
 texture_normal = ExtResource("4_mes1h")
 texture_pressed = ExtResource("9_e0spb")
 script = ExtResource("4_nijcb")
@@ -147,6 +248,7 @@ script = ExtResource("7_fjklp")
 offset_left = -200.0
 offset_right = -100.0
 offset_bottom = 100.0
+shortcut = SubResource("Shortcut_rhfiy")
 icon = ExtResource("1_6qxan")
 expand_icon = true
 script = ExtResource("12_4mrkr")
@@ -155,6 +257,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Atak_Plus" type="Button" parent="ActionButtons"]
 offset_left = -100.0
 offset_bottom = 100.0
+shortcut = SubResource("Shortcut_g3nbu")
 icon = ExtResource("2_gmxty")
 expand_icon = true
 script = ExtResource("12_4mrkr")
@@ -166,6 +269,7 @@ offset_left = -200.0
 offset_top = 100.0
 offset_right = -100.0
 offset_bottom = 200.0
+shortcut = SubResource("Shortcut_ggk13")
 icon = ExtResource("3_i8ryy")
 expand_icon = true
 script = ExtResource("12_4mrkr")
@@ -176,6 +280,7 @@ metadata/_edit_use_anchors_ = true
 offset_left = -100.0
 offset_top = 100.0
 offset_bottom = 200.0
+shortcut = SubResource("Shortcut_0pd6j")
 icon = ExtResource("4_aw65w")
 expand_icon = true
 script = ExtResource("12_4mrkr")
@@ -190,6 +295,7 @@ anchor_right = 1.5
 anchor_bottom = 2.0
 offset_right = 100.0
 offset_bottom = 100.0
+shortcut = SubResource("Shortcut_g0snw")
 icon = ExtResource("5_sco6w")
 icon_alignment = 1
 vertical_icon_alignment = 0
@@ -207,6 +313,7 @@ anchor_bottom = 2.0
 offset_left = 100.0
 offset_right = 200.0
 offset_bottom = 100.0
+shortcut = SubResource("Shortcut_g0snw")
 icon = ExtResource("5_sco6w")
 icon_alignment = 1
 vertical_icon_alignment = 0
@@ -224,6 +331,7 @@ anchor_bottom = 2.0
 offset_top = 100.0
 offset_right = 100.0
 offset_bottom = 200.0
+shortcut = SubResource("Shortcut_g0snw")
 icon = ExtResource("5_sco6w")
 icon_alignment = 1
 vertical_icon_alignment = 0
@@ -242,6 +350,7 @@ offset_left = 100.0
 offset_top = 100.0
 offset_right = 200.0
 offset_bottom = 200.0
+shortcut = SubResource("Shortcut_g0snw")
 icon = ExtResource("5_sco6w")
 icon_alignment = 1
 vertical_icon_alignment = 0

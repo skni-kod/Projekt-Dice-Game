@@ -15,6 +15,7 @@ func _ready()->void:
 	set_process_input(true)
 	mouse_entered.connect(self._on_mouse_entered)
 	mouse_exited.connect(self._on_mouse_exit)
+	pressed.connect(self._button_pressed)
 	currentFace = FaceType.Blank
 	manager = get_parent() as DiceManager
 	UpdateDisplay()
@@ -43,10 +44,11 @@ func _on_mouse_entered():
 func _on_mouse_exit():
 	mouse_over = false
 	texture_normal = load("res://data/sprites/dice_blank.png")
-	
+
 func _button_pressed():
-	if currentFace == FaceType.Blank:
-		button_pressed = false
+	if button_pressed:
+		if currentFace == FaceType.Blank or manager.SelectedDiceCount() > manager.current_max_selected_dices:
+			button_pressed = false
 		
 func Select():
 	if currentFace != FaceType.Blank and manager.SelectedDiceCount() < manager.current_max_selected_dices:
