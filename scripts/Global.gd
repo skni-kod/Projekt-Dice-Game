@@ -19,9 +19,11 @@ func _ready():
 func _on_enemy_die():
 	get_tree().call_group("Enemies", "Die")
 	spawner()
+	
+func EndTurn():
+	get_tree().call_group("Enemies", "Roll")
 
 ##SPAWNER
-
 func spawner():
 		var enemy_goblin_scene = load("res://enemies/enemy_goblin.tscn")
 		var spawn_enemy_goblin = enemy_goblin_scene.instantiate()

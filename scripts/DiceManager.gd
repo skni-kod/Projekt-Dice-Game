@@ -16,6 +16,12 @@ func SelectedDiceCount() -> int:
 		if dice.button_pressed:
 			c = c + 1
 	return c
+
+func RollOrReroll() ->void:
+	if SelectedDiceCount() != 0:
+		Reroll()
+	else:
+		Roll()
 		
 func Roll() -> void:
 	var sound = $/root/main_scene/sound
@@ -27,11 +33,12 @@ func Roll() -> void:
 		dice.Randomize(rng)
 	
 	current_max_selected_dices = max_selected_dices
+	Global.EndTurn()
 		
 
 func Reroll() -> void:
-	var sound2 = $/root/main_scene/sound
-	sound2.play()
+	var sound = $/root/main_scene/sound
+	sound.play()
 	current_max_selected_dices = current_max_selected_dices - SelectedDiceCount()
 	for dice in dices:
 		if dice.button_pressed:

@@ -40,15 +40,6 @@ scale = Vector2(2.675, 2.675)
 text = "Roll"
 metadata/_edit_use_anchors_ = true
 
-[node name="Reroll" type="Button" parent="."]
-offset_left = -561.0
-offset_top = -17.0
-offset_right = -449.96
-offset_bottom = 14.0
-scale = Vector2(2.675, 2.675)
-text = "Reroll"
-metadata/_edit_use_anchors_ = true
-
 [node name="sound" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(-561, -103)
 scale = Vector2(2.675, 2.675)
@@ -332,9 +323,7 @@ step = 1.0
 script = ExtResource("2_ykvo0")
 metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="Roll" to="." method="Roll"]
-[connection signal="pressed" from="Roll" to="Dices" method="Roll"]
-[connection signal="pressed" from="Reroll" to="Dices" method="Reroll"]
+[connection signal="pressed" from="Roll" to="Dices" method="RollOrReroll"]
 [connection signal="mouse_entered" from="ActionButtons/Atak" to="ActionButtons" method="_on_atak_plus_mouse_entered"]
 [connection signal="mouse_exited" from="ActionButtons/Atak" to="ActionButtons" method="_on_atak_plus_mouse_exited"]
 [connection signal="pressed" from="ActionButtons/Atak" to="ActionButtons/Atak" method="_on_button_press"]
