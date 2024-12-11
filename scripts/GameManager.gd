@@ -1,21 +1,21 @@
 extends Node
 
 var diceManager: DiceManager
-var playerStats: Stats
+var player: Player
 var enemy: Enemy
 var spawner_licznik = 0
 
 func _ready():
 	Spawn("goblin")
-	playerStats = get_node("/root/main_scene/Player") as Stats
 	diceManager = get_node("/root/main_scene/Dices") as DiceManager
-	
+	player = get_node("/root/main_scene/Player") as Player
+	player._ready()
 	
 func EndPlayerTurn():
 	enemy.DoActions()
 
 func EndEnemyTurn():
-	pass
+	player.DoActions()
 
 func _on_enemy_die():
 	enemy.queue_free()

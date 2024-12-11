@@ -7,7 +7,6 @@ enum Action
 
 @export var action:Action
 
-	
 func HandleAction(act):
 	match act:
 		Action.Attack:
@@ -20,10 +19,10 @@ func HandleAction(act):
 			
 		Action.Defence:
 			if GameManager.diceManager.ConsumeN(Dice.FaceType.Defense,2):
-				GameManager.playerStats.AddArmor(7)
+				GameManager.player.stats.AddArmor(7)
 		Action.DefencePlus:
 			if GameManager.diceManager.ConsumeN(Dice.FaceType.Defense,3):
-				GameManager.playerStats.AddArmor(15)
+				GameManager.player.stats.AddArmor(15)
 			
 		Action.Special1:
 			if GameManager.diceManager.ConsumeN(Dice.FaceType.Special,3):

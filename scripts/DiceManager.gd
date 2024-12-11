@@ -32,7 +32,7 @@ func Roll() -> void:
 		dice.Randomize(rng)
 	
 	current_max_selected_dices = max_selected_dices
-	GameManager.EndPlayerTurn()
+	GameManager.player.EndTurn()
 		
 
 func Reroll() -> void:
