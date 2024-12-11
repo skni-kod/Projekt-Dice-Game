@@ -12,11 +12,11 @@ func HandleAction(act):
 	match act:
 		Action.Attack:
 			if Global.diceManager.ConsumeN(Dice.FaceType.Attack,2):
-				Global.enemyStats.DealDamage(9)
+				Global.enemy.stats.DealDamage(50)
 		
 		Action.AttackPlus:
 			if Global.diceManager.ConsumeN(Dice.FaceType.Attack,3):
-				Global.enemyStats.DealDamage(20)
+				Global.enemy.stats.DealDamage(20)
 			
 		Action.Defence:
 			if Global.diceManager.ConsumeN(Dice.FaceType.Defense,2):
@@ -44,3 +44,8 @@ func HandleAction(act):
 func _on_button_press():
 	HandleAction(action)
 	
+func _on_mouse_entered():
+	$"../ActionDescription".text = Action.keys()[action].replace("Plus","+")
+	
+func _on_mouse_exited():
+	$"../ActionDescription".text = ""

@@ -30,7 +30,7 @@ func _input(event):
 				Select()
 				
 		if !mouse_pressed:
-			texture_normal = load("res://data/sprites/dice_blank.png")
+			texture_normal = load("res://resources/sprites/dice_blank.png")
 			
 
 func _on_mouse_entered():
@@ -43,7 +43,7 @@ func _on_mouse_entered():
 		
 func _on_mouse_exit():
 	mouse_over = false
-	texture_normal = load("res://data/sprites/dice_blank.png")
+	texture_normal = load("res://resources/sprites/dice_blank.png")
 
 func _button_pressed():
 	if button_pressed:
@@ -54,7 +54,7 @@ func Select():
 	if currentFace != FaceType.Blank and manager.SelectedDiceCount() < manager.current_max_selected_dices:
 		button_pressed = true
 	else:
-		texture_normal = load("res://data/sprites/dice_blank_selection_discarded.png")
+		texture_normal = load("res://resources/sprites/dice_blank_selection_discarded.png")
 	
 func Deselect():
 	button_pressed = false
@@ -67,4 +67,4 @@ func UpdateDisplay() -> void:
 	if currentFace == FaceType.Blank:
 		get_child(0).texture = null
 	else:
-		get_child(0).texture = load("res://data/sprites/" + FaceType.keys()[currentFace].to_lower() +".png")
+		get_child(0).texture = load("res://resources/sprites/" + FaceType.keys()[currentFace].to_lower() +".png")

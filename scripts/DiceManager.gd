@@ -1,6 +1,5 @@
 extends Node2D
 class_name DiceManager
-signal Potwierdzenie
 var dices = [];
 var rng = RandomNumberGenerator.new()
 var max_selected_dices = 3
@@ -33,7 +32,7 @@ func Roll() -> void:
 		dice.Randomize(rng)
 	
 	current_max_selected_dices = max_selected_dices
-	Global.EndTurn()
+	Global.EndPlayerTurn()
 		
 
 func Reroll() -> void:
