@@ -17,7 +17,6 @@
 
 [sub_resource type="InputEventKey" id="InputEventKey_gpx1j"]
 device = -1
-pressed = true
 keycode = 32
 physical_keycode = 32
 key_label = 32
