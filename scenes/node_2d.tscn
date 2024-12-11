@@ -254,6 +254,7 @@ shortcut = SubResource("Shortcut_rhfiy")
 icon = ExtResource("7_bocvb")
 expand_icon = true
 script = ExtResource("8_2bhmu")
+action = null
 metadata/_edit_use_anchors_ = true
 
 [node name="Atak_Plus" type="Button" parent="ActionButtons"]

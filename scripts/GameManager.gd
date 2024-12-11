@@ -26,6 +26,7 @@ func spawner():
 	var enemy_prefab = load("res://prefabs/enemies/goblin.tscn")
 	var enemy_instance = enemy_prefab.instantiate()
 	get_node("/root/main_scene").add_child(enemy_instance)
+	
 	enemy = enemy_instance as Enemy
 	enemy._ready()
 	enemy.stats.onDeath.connect(_on_enemy_die)

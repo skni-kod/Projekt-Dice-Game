@@ -19,5 +19,5 @@ func DoActions():
 	
 	# TO DO: Dodać wyświetlanie wiadomości
 	print(attack.message)
-	Global.playerStats.DealDamage(attack.damage)
-	Global.EndEnemyTurn()
+	GameManager.playerStats.DealDamage(attack.damage)
+	GameManager.EndEnemyTurn()
