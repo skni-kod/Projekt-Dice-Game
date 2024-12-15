@@ -31,11 +31,15 @@ func _ready():
 "
 
 [node name="Goblin" type="Sprite2D"]
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("1_nh24v")
+offset = Vector2(0, -550)
 script = ExtResource("1_ar5vr")
 attacks = Array[ExtResource("3_pchjh")]([SubResource("Resource_dh45p"), SubResource("Resource_d16jd")])
 
 [node name="Stats" type="Node2D" parent="." node_paths=PackedStringArray("health_display", "armor_display")]
+position = Vector2(-25, 300)
+scale = Vector2(3, 3)
 script = ExtResource("2_yq5hq")
 max_health = 100
 health_display = NodePath("HpDisplay")
@@ -50,6 +54,13 @@ scale = Vector2(0.575032, 0.575032)
 step = 1.0
 script = SubResource("GDScript_7aia8")
 metadata/_edit_use_anchors_ = true
+
+[node name="AttackMessage" type="RichTextLabel" parent="Stats"]
+offset_left = -59.4444
+offset_top = -116.667
+offset_right = 191.556
+offset_bottom = -76.6667
+text = "attack.message"
 
 [node name="ArmorDisplay" type="Node2D" parent="Stats"]
 position = Vector2(-555, -402)

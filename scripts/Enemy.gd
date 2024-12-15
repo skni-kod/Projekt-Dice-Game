@@ -19,5 +19,6 @@ func DoActions():
 	
 	# TO DO: Dodać wyświetlanie wiadomości
 	print(attack.message)
+	$Stats/AttackMessage.text = str(attack.message)
 	GameManager.player.stats.DealDamage(attack.damage)
 	GameManager.EndEnemyTurn()
