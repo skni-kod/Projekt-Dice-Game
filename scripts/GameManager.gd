@@ -15,6 +15,15 @@ func EndPlayerTurn():
 	enemy.DoActions()
 
 func EndEnemyTurn():
+	for effect in player.temporaryEffects:
+		effect.Apply(player.stats)
+		
+	player.temporaryEffects.reverse()
+	for effect in player.temporaryEffects:
+		if effect.HasExpired():
+			effect.Expire(player.stats)
+			player.temporaryEffects.erase(effect)
+	player.temporaryEffects.reverse()
 	player.DoActions()
 
 func _on_enemy_die():

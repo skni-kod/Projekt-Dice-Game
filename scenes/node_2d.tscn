@@ -377,6 +377,7 @@ script = ExtResource("13_neu1h")
 [node name="Stats" type="Node2D" parent="Player" node_paths=PackedStringArray("health_display", "armor_display")]
 script = ExtResource("13_rpiqy")
 max_health = 100
+initial_armor = 100
 health_display = NodePath("HpDisplay")
 armor_display = NodePath("ArmorDisplay/text")
 

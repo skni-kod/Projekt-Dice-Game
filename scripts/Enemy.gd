@@ -19,5 +19,8 @@ func DoActions():
 	
 	# TO DO: Dodać wyświetlanie wiadomości
 	print(attack.message)
+	if attack.effect:
+		GameManager.player.temporaryEffects.append(attack.effect)
+	
 	GameManager.player.stats.DealDamage(attack.damage)
 	GameManager.EndEnemyTurn()

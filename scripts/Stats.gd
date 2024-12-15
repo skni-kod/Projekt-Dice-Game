@@ -9,30 +9,37 @@ var health: int
 var armor: int
 signal onDeath
 
-
 func _ready():
-	health = max_health
-	armor = initial_armor
-	_UpdateDisplays()
+	SetHealth(max_health)
+	SetMaxHealth(max_health)
+	SetArmor(initial_armor)
 	
 func DealDamage(value):
 	if armor > value:
-		armor = armor - value
+		SetArmor(armor - value)
 	else:
-		value = value - armor
-		armor = 0
-		health = max(health - value, 0)
-	_UpdateDisplays()
+		value -= armor
+		SetArmor(0)
+		SetHealth(max(health - value, 0))
 	if health == 0:
 		onDeath.emit()
 
 func Heal(value):
-	health = min(health+value,max_health)
-	_UpdateDisplays()
-	
+	SetHealth(min(health+value,max_health))
 	
 func AddArmor(value):
-	armor = armor + value
+	SetArmor(armor + value)
+	
+func SetHealth(value):
+	health = min(value, max_health)
+	_UpdateDisplays()
+	
+func SetArmor(value):
+	armor = value
+	_UpdateDisplays()
+	
+func SetMaxHealth(value):
+	max_health = value
 	_UpdateDisplays()
 	
 func _UpdateDisplays():
