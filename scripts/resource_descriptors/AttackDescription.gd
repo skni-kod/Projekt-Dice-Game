@@ -1,4 +1,5 @@
 extends Resource
+# 
 class_name AttackDescription
 
 @export var damage: int

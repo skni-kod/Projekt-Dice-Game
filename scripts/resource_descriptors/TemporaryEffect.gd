@@ -23,10 +23,11 @@ enum ApplyFrequency
 @export var max_round_duration : int
 var round_duration:int;
 
-func _init(affected_stat_ = AffectedStat.Health, operation_ = Operation.Add, value_ = 0.0, apply_frequency = ApplyFrequency.EveryTurn, max_round_duration_ = 0):
+func _init(affected_stat_ = AffectedStat.Health, operation_ = Operation.Add, value_ = 0.0, apply_frequency_ = ApplyFrequency.EveryTurn, max_round_duration_ = 0):
 	affected_stat = affected_stat_
 	operation = operation_
 	value = value_
+	apply_frequency = apply_frequency_
 	max_round_duration = max_round_duration_
 	round_duration
 
