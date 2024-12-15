@@ -1,4 +1,5 @@
 extends Node
+# Klasa odpowiedzialna za zarządzanie graczem.
 class_name Player
 
 var stats:Stats

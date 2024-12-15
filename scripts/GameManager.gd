@@ -10,8 +10,18 @@ func _ready():
 	diceManager = get_node("/root/main_scene/Dices") as DiceManager
 	player = get_node("/root/main_scene/Player") as Player
 	player._ready()
-	
+
 func EndPlayerTurn():
+	for effect in enemy.temporaryEffects:
+		effect.Apply(enemy.stats)
+		
+	enemy.temporaryEffects.reverse()
+	for effect in enemy.temporaryEffects:
+		if effect.HasExpired():
+			effect.Expire(enemy.stats)
+			enemy.temporaryEffects.erase(effect)
+	enemy.temporaryEffects.reverse()
+	
 	enemy.DoActions()
 
 func EndEnemyTurn():
@@ -24,6 +34,7 @@ func EndEnemyTurn():
 			effect.Expire(player.stats)
 			player.temporaryEffects.erase(effect)
 	player.temporaryEffects.reverse()
+	
 	player.DoActions()
 
 func _on_enemy_die():

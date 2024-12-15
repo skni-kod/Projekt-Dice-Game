@@ -1,5 +1,8 @@
 extends Node
+# Klasa zajmująca się przetwarzaniem akcji, które gracz może wykonać.
+class_name ActionHandler
 
+# Zbiór akcji dostępnych dla gracza.
 enum Action
 {
 	Attack, AttackPlus, Defence, DefencePlus, Special1, Special2, Special3, Special4	
@@ -7,6 +10,7 @@ enum Action
 
 @export var action:Action
 
+# Funkcja, przypisująca akcji pewne działanie.
 func HandleAction(act):
 	match act:
 		Action.Attack:
@@ -40,9 +44,10 @@ func HandleAction(act):
 			if GameManager.diceManager.ConsumeN(Dice.FaceType.Defense,6):
 				pass 
 
+# Wywołanie akcji poprzez naciśnięcie odopowiedniego guzika.
 func _on_button_press():
 	HandleAction(action)
-	
+
 func _on_mouse_entered():
 	$"../ActionDescription".text = Action.keys()[action].replace("Plus","+")
 	

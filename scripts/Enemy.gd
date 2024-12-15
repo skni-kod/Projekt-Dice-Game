@@ -1,14 +1,17 @@
 extends Node
+# Klasa odpowiedzialna za zarządzanie przeciwnikiem.
 class_name Enemy
 	
 var stats:Stats
 @export var attacks : Array[AttackDescription]
 var lastAttack : AttackDescription
+var temporaryEffects : Array[TemporaryEffect]
 var rng = RandomNumberGenerator.new()
 
 func _ready() -> void:
 	stats = get_child(0) as Stats
 
+# Funkcja dająca możliwość przeciwnikowi wykonania odpowiednich akcji.
 func DoActions():
 	var attack:AttackDescription
 	if lastAttack and lastAttack.nextAttack:

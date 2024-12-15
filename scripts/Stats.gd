@@ -1,4 +1,5 @@
 extends Node
+# Klasa odpowiedzialna za zarządzanie statystykami.
 class_name Stats
 
 @export var max_health: int
