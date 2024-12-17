@@ -15,11 +15,11 @@ func HandleAction(act):
 	match act:
 		Action.Attack:
 			if GameManager.diceManager.ConsumeN(Dice.FaceType.Attack,2):
-				GameManager.enemy.stats.DealDamage(50)
+				GameManager.selected_enemy.stats.DealDamage(50)
 		
 		Action.AttackPlus:
 			if GameManager.diceManager.ConsumeN(Dice.FaceType.Attack,3):
-				GameManager.enemy.stats.DealDamage(20)
+				GameManager.selected_enemy.stats.DealDamage(20)
 			
 		Action.Defence:
 			if GameManager.diceManager.ConsumeN(Dice.FaceType.Defense,2):

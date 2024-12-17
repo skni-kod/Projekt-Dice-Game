@@ -24,4 +24,4 @@ func DoActions():
 	print(attack.message)
 	$Stats/AttackMessage.text = str(attack.message)
 	GameManager.player.stats.DealDamage(attack.damage)
-	GameManager.EndEnemyTurn()
+	GameManager.EndEnemyTurn(self)
