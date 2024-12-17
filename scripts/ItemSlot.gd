@@ -1,9 +1,10 @@
 extends Area2D
-
+# Klasa obsługująca zachowanie i dane slotu na item.
 class_name ItemSlot
 
-var item_inside : Item
-@export var acceptable_items : Array[Item.Type]
+
+var item_inside : Item # Item wewnątrz slotu.
+@export var acceptable_items : Array[Item.Type] # Przyjmowalne itemy.
 
 func _ready() -> void:
 	for child in get_children():
@@ -11,10 +12,12 @@ func _ready() -> void:
 			PutItem(child as Item)
 			break
 
+# Funkcja do wsadzania itemu do slotu.
+# Automatycznie zajmuje się wcześniejszym slotem itemu.
+# Zwraca Prawda jeżeli udało się przenieść, i Fałsz w przeciwnym wypadku.
 func PutItem(item: Item):
 	if item and item.type not in acceptable_items:
-		item.transform.origin = Vector2(0,0)
-		return
+		return false
 		
 	if item and item.current_slot:
 		item.current_slot.item_inside = null
@@ -26,3 +29,5 @@ func PutItem(item: Item):
 		add_child(item_inside)
 		item_inside.current_slot = self
 		item_inside.transform.origin = Vector2(0,0)
+	
+	return true
