@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://m7s3xp2xoqfy"]
+[gd_scene load_steps=46 format=3 uid="uid://m7s3xp2xoqfy"]
 
 [ext_resource type="Texture2D" uid="uid://fyjb3wkqwkd0" path="res://resources/sprites/wcaleniestocktlo.jpeg" id="1_7xv4b"]
 [ext_resource type="AudioStream" uid="uid://bjv2joeyhwiht" path="res://resources/sounds/rolling-dice-2-102706.mp3" id="2_ysa8a"]
@@ -14,6 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://b6oas1x5edqdw" path="res://resources/sprites/special.png" id="12_0plxn"]
 [ext_resource type="Script" path="res://scripts/Player.gd" id="13_neu1h"]
 [ext_resource type="Script" path="res://scripts/Stats.gd" id="13_rpiqy"]
+[ext_resource type="Script" path="res://scripts/ItemSlot.gd" id="15_f2b61"]
+[ext_resource type="Script" path="res://scripts/Item.gd" id="15_rrrv6"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_gpx1j"]
 device = -1
@@ -108,6 +110,21 @@ events = [SubResource("InputEventKey_iheks")]
 
 [sub_resource type="Shortcut" id="Shortcut_g0snw"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l0w3n"]
+size = Vector2(60, 60)
+
+[sub_resource type="Gradient" id="Gradient_0ex8s"]
+colors = PackedColorArray(0, 0, 0, 0.14902, 1, 1, 1, 0.580392)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_30jvo"]
+frequency = 0.0001
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ugusv"]
+width = 60
+height = 60
+color_ramp = SubResource("Gradient_0ex8s")
+noise = SubResource("FastNoiseLite_30jvo")
+
 [sub_resource type="GDScript" id="GDScript_5vr14"]
 script/source = "extends ProgressBar
 func _ready():
@@ -115,6 +132,9 @@ func _ready():
 	add_theme_stylebox_override(\"fill\", sb)
 	sb.bg_color = Color(\"ff0000\")
 "
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0w4yj"]
+size = Vector2(43, 35)
 
 [node name="main_scene" type="Node2D"]
 
@@ -369,6 +389,18 @@ offset_bottom = 250.0
 fit_content = true
 metadata/_edit_use_anchors_ = true
 
+[node name="Slot1" type="Area2D" parent="."]
+position = Vector2(-230, 261)
+script = ExtResource("15_f2b61")
+acceptable_items = Array[int]([0])
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slot1"]
+shape = SubResource("RectangleShape2D_l0w3n")
+
+[node name="Background" type="Sprite2D" parent="Slot1/CollisionShape2D"]
+texture = SubResource("NoiseTexture2D_ugusv")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Player" type="Node" parent="."]
@@ -406,6 +438,114 @@ scale = Vector2(0.575032, 0.575032)
 step = 1.0
 script = SubResource("GDScript_5vr14")
 metadata/_edit_use_anchors_ = true
+
+[node name="Backpack" type="Node2D" parent="Player"]
+position = Vector2(-454, 232)
+
+[node name="Slot1" type="Area2D" parent="Player/Backpack"]
+position = Vector2(-62, -34)
+script = ExtResource("15_f2b61")
+acceptable_items = Array[int]([0, 1, 2])
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Backpack/Slot1"]
+shape = SubResource("RectangleShape2D_l0w3n")
+
+[node name="Background" type="Sprite2D" parent="Player/Backpack/Slot1/CollisionShape2D"]
+texture = SubResource("NoiseTexture2D_ugusv")
+
+[node name="Slot2" type="Area2D" parent="Player/Backpack"]
+position = Vector2(1, -34)
+script = ExtResource("15_f2b61")
+acceptable_items = Array[int]([0, 1, 2])
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Backpack/Slot2"]
+shape = SubResource("RectangleShape2D_l0w3n")
+
+[node name="Background" type="Sprite2D" parent="Player/Backpack/Slot2/CollisionShape2D"]
+texture = SubResource("NoiseTexture2D_ugusv")
+
+[node name="Slot3" type="Area2D" parent="Player/Backpack"]
+position = Vector2(64, -34)
+script = ExtResource("15_f2b61")
+acceptable_items = Array[int]([0, 1, 2])
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Backpack/Slot3"]
+shape = SubResource("RectangleShape2D_l0w3n")
+
+[node name="Background" type="Sprite2D" parent="Player/Backpack/Slot3/CollisionShape2D"]
+texture = SubResource("NoiseTexture2D_ugusv")
+
+[node name="Slot4" type="Area2D" parent="Player/Backpack"]
+position = Vector2(-62, 30)
+script = ExtResource("15_f2b61")
+acceptable_items = Array[int]([0, 1, 2])
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Backpack/Slot4"]
+shape = SubResource("RectangleShape2D_l0w3n")
+
+[node name="Background" type="Sprite2D" parent="Player/Backpack/Slot4/CollisionShape2D"]
+texture = SubResource("NoiseTexture2D_ugusv")
+
+[node name="Item" type="Area2D" parent="Player/Backpack/Slot4"]
+position = Vector2(-6, -141)
+script = ExtResource("15_rrrv6")
+type = 1
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Backpack/Slot4/Item"]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_0w4yj")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Backpack/Slot4/Item"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("9_00qxl")
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Slot5" type="Area2D" parent="Player/Backpack"]
+position = Vector2(1, 30)
+script = ExtResource("15_f2b61")
+acceptable_items = Array[int]([0, 1, 2])
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Backpack/Slot5"]
+shape = SubResource("RectangleShape2D_l0w3n")
+
+[node name="Background" type="Sprite2D" parent="Player/Backpack/Slot5/CollisionShape2D"]
+texture = SubResource("NoiseTexture2D_ugusv")
+
+[node name="Item" type="Area2D" parent="Player/Backpack/Slot5"]
+position = Vector2(-6, -141)
+script = ExtResource("15_rrrv6")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Backpack/Slot5/Item"]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_0w4yj")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Backpack/Slot5/Item"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("12_0plxn")
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Slot6" type="Area2D" parent="Player/Backpack"]
+position = Vector2(64, 30)
+script = ExtResource("15_f2b61")
+acceptable_items = Array[int]([0, 1, 2])
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Backpack/Slot6"]
+shape = SubResource("RectangleShape2D_l0w3n")
+
+[node name="Background" type="Sprite2D" parent="Player/Backpack/Slot6/CollisionShape2D"]
+texture = SubResource("NoiseTexture2D_ugusv")
 
 [connection signal="pressed" from="Roll" to="Dices" method="RollOrReroll"]
 [connection signal="mouse_entered" from="ActionButtons/Atak" to="ActionButtons/Atak" method="_on_mouse_entered"]

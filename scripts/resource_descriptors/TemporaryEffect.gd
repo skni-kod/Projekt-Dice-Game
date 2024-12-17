@@ -25,7 +25,7 @@ enum ApplyFrequency
 @export var value : float # Wartość, drugi operand operacji
 @export var apply_frequency : ApplyFrequency # Częstotliwość nadawania efektu np. jednorazowo.
 @export var max_round_duration : int # Długość działania efektu.
-var round_duration:int;
+var round_duration = 0;
 
 func _init(affected_stat_ = AffectedStat.Health, operation_ = Operation.Add, value_ = 0.0, apply_frequency_ = ApplyFrequency.EveryTurn, max_round_duration_ = 0):
 	affected_stat = affected_stat_
@@ -33,7 +33,6 @@ func _init(affected_stat_ = AffectedStat.Health, operation_ = Operation.Add, val
 	value = value_
 	apply_frequency = apply_frequency_
 	max_round_duration = max_round_duration_
-	round_duration
 
 # Wartość odwrotna dla value, zależna od operacji, np dla dodawania zwróci -value.
 func _InverseValue():

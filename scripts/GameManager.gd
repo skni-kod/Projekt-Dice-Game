@@ -11,8 +11,8 @@ var current_wave = 0
 var enemies_turn_counter = 0
 
 func _ready():
-	enemy_waves.append(Wave.new(["Goblin"]))
-	enemy_waves.append(Wave.new(["Goblin","Goblin"]))
+	enemy_waves.append(Wave.new(["goblin"]))
+	enemy_waves.append(Wave.new(["goblin","goblin"]))
 	SpawnWave(enemy_waves[current_wave])
 	
 	diceManager = get_node("/root/main_scene/Dices") as DiceManager
