@@ -11,8 +11,10 @@ var current_wave = 0
 var enemies_turn_counter = 0
 
 func _ready():
-	enemy_waves.append(Wave.new(["goblin"]))
-	enemy_waves.append(Wave.new(["goblin","goblin"]))
+	enemy_waves.append(Wave.new(["goblin", "goblin", "goblin"]))
+	enemy_waves.append(Wave.new(["goblin","goblin", "goblin", "goblin"]))
+	#for potwor in enemy_waves[1].enemies:
+		#print(potwor)
 	SpawnWave(enemy_waves[current_wave])
 	
 	diceManager = get_node("/root/main_scene/Dices") as DiceManager
@@ -65,11 +67,13 @@ func _on_enemy_die(enemy:Enemy):
 
 func SpawnWave(wave:Wave):
 	enemies.clear()
+	var indexInWave: int = 0
 	for enemy in wave.enemies:
-		Spawn(enemy)
+		Spawn(enemy, wave.enemies.size(), indexInWave)
+		indexInWave += 1
 	selected_enemy = enemies[0]
 		
-func Spawn(enemyName:String):
+func Spawn(enemyName:String, waveSize: int, indexInWave: int):
 	var enemy_prefab = load("res://prefabs/enemies/" + enemyName + ".tscn")
 	var enemy_instance = enemy_prefab.instantiate()
 	get_node("/root/main_scene").add_child(enemy_instance)
@@ -81,4 +85,6 @@ func Spawn(enemyName:String):
 	
 	# TO DO: dodanie rozmieszczenia przeciwników
 	# TYMCZASOWE
-	enemy_instance.position = Vector2(randf_range(-500,500) ,0)
+	var range: int = 700 / waveSize
+	enemy_instance.position = Vector2(randf_range(-200 + range * indexInWave, -200 + range + range * indexInWave) ,randf_range(-20, 20))
+	#Dodałem spawnowanie przeciwników na przedziale wysokości (-20, 20), żeby można było odróżnić paski życia, bo jest za ciasno dla kolegów golemów
