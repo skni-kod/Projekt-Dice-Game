@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://doshdnk880cao"]
+[gd_scene load_steps=11 format=3 uid="uid://doshdnk880cao"]
 
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_ar5vr"]
 [ext_resource type="Texture2D" uid="uid://bc6s21cwy146q" path="res://resources/sprites/enemies/goblin.png" id="1_nh24v"]
@@ -29,6 +29,8 @@ func _ready():
 	add_theme_stylebox_override(\"fill\", sb)
 	sb.bg_color = Color(\"#8B0000\")
 "
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5hutp"]
 
 [node name="Goblin" type="Sprite2D"]
 scale = Vector2(0.3, 0.3)
@@ -65,11 +67,6 @@ text = "attack.message"
 [node name="ArmorDisplay" type="Node2D" parent="Stats"]
 position = Vector2(-555, -402)
 
-[node name="icon" type="Sprite2D" parent="Stats/ArmorDisplay"]
-position = Vector2(730, 268)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_pqipw")
-
 [node name="text" type="RichTextLabel" parent="Stats/ArmorDisplay"]
 offset_left = 750.0
 offset_top = 255.0
@@ -77,3 +74,16 @@ offset_right = 790.0
 offset_bottom = 295.0
 text = "0"
 metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" type="Area2D" parent="Stats/ArmorDisplay"]
+
+[node name="icon" type="Sprite2D" parent="Stats/ArmorDisplay/Area2D"]
+position = Vector2(730, 268)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_pqipw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stats/ArmorDisplay/Area2D"]
+position = Vector2(560, 110)
+scale = Vector2(10, 10)
+shape = SubResource("CapsuleShape2D_5hutp")
+debug_color = Color(0.811904, 0.213027, 0.858705, 0.42)
