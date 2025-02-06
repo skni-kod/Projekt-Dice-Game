@@ -12,9 +12,9 @@ signal enemy_selected(enemy)
 
 func _ready() -> void:
 	stats = get_child(0) as Stats
-	var area = $Stats/ArmorDisplay/Area2D
+	var area = $Area2D
 	area.input_pickable = true
-	area.input_event.connect(self._on_input_event)
+	#area.input_event.connect(self._on_input_event)
 
 # Funkcja dająca możliwość przeciwnikowi wykonania odpowiednich akcji.
 func DoActions():

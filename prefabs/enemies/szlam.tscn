@@ -1,23 +1,23 @@
-[gd_scene load_steps=11 format=3 uid="uid://doshdnk880cao"]
+[gd_scene load_steps=11 format=3 uid="uid://fkmc8tptxgmn"]
 
-[ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_ar5vr"]
-[ext_resource type="Texture2D" uid="uid://bc6s21cwy146q" path="res://resources/sprites/enemies/goblin.png" id="1_nh24v"]
-[ext_resource type="Script" path="res://scripts/Stats.gd" id="2_yq5hq"]
-[ext_resource type="Script" path="res://scripts/resource_descriptors/AttackDescription.gd" id="3_pchjh"]
-[ext_resource type="Texture2D" uid="uid://0438thmurme3" path="res://resources/sprites/defense.png" id="3_pqipw"]
+[ext_resource type="Texture2D" uid="uid://c42mxfs12amar" path="res://resources/sprites/enemies/GreenSlime.png" id="1_8whgg"]
+[ext_resource type="Script" path="res://scripts/Enemy.gd" id="2_bee8b"]
+[ext_resource type="Script" path="res://scripts/resource_descriptors/AttackDescription.gd" id="3_nlf8j"]
+[ext_resource type="Script" path="res://scripts/Stats.gd" id="4_25euh"]
+[ext_resource type="Texture2D" uid="uid://0438thmurme3" path="res://resources/sprites/defense.png" id="5_j38n5"]
 
 [sub_resource type="Resource" id="Resource_dh45p"]
-script = ExtResource("3_pchjh")
+script = ExtResource("3_nlf8j")
 damage = 0
 message = "Potyka się o nogi"
 
 [sub_resource type="Resource" id="Resource_g7cr7"]
-script = ExtResource("3_pchjh")
+script = ExtResource("3_nlf8j")
 damage = 10
 message = "Mocny Atak"
 
 [sub_resource type="Resource" id="Resource_d16jd"]
-script = ExtResource("3_pchjh")
+script = ExtResource("3_nlf8j")
 damage = 0
 message = "Szykuje Mocny atak"
 nextAttack = SubResource("Resource_g7cr7")
@@ -32,17 +32,17 @@ func _ready():
 	sb.bg_color = Color(\"#8B0000\")
 "
 
-[node name="Goblin" type="Sprite2D"]
-position = Vector2(0, 37)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("1_nh24v")
+[node name="Szlam" type="Sprite2D"]
+position = Vector2(-2, 736)
+scale = Vector2(1.52422, 1.52422)
+texture = ExtResource("1_8whgg")
 offset = Vector2(0, -550)
-script = ExtResource("1_ar5vr")
-attacks = Array[ExtResource("3_pchjh")]([SubResource("Resource_dh45p"), SubResource("Resource_d16jd")])
+script = ExtResource("2_bee8b")
+attacks = Array[ExtResource("3_nlf8j")]([SubResource("Resource_dh45p"), SubResource("Resource_d16jd")])
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(-1690, -906)
-scale = Vector2(3, 3)
+position = Vector2(-331.317, -621.826)
+scale = Vector2(0.590466, 0.590466)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(560, 110)
@@ -51,9 +51,9 @@ shape = SubResource("CapsuleShape2D_5hutp")
 debug_color = Color(0.811904, 0.213027, 0.858705, 0.42)
 
 [node name="Stats" type="Node2D" parent="." node_paths=PackedStringArray("health_display", "armor_display")]
-position = Vector2(-23.3333, -750)
-scale = Vector2(3, 3)
-script = ExtResource("2_yq5hq")
+position = Vector2(-3.93644, -597.027)
+scale = Vector2(0.590466, 0.590466)
+script = ExtResource("4_25euh")
 max_health = 100
 health_display = NodePath("HpDisplay")
 armor_display = NodePath("ArmorDisplay/text")
@@ -66,6 +66,7 @@ offset_bottom = -83.0
 scale = Vector2(0.575032, 0.575032)
 step = 1.0
 script = SubResource("GDScript_7aia8")
+metadata/_edit_use_anchors_ = true
 
 [node name="AttackMessage" type="RichTextLabel" parent="Stats"]
 offset_left = -59.4444
@@ -86,6 +87,6 @@ text = "0"
 metadata/_edit_use_anchors_ = true
 
 [node name="icon" type="Sprite2D" parent="Stats/ArmorDisplay"]
-position = Vector2(729.444, 269.778)
+position = Vector2(730, 268)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_pqipw")
+texture = ExtResource("5_j38n5")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://m7s3xp2xoqfy"]
+[gd_scene load_steps=48 format=3 uid="uid://m7s3xp2xoqfy"]
 
 [ext_resource type="Texture2D" uid="uid://fyjb3wkqwkd0" path="res://resources/sprites/wcaleniestocktlo.jpeg" id="1_7xv4b"]
 [ext_resource type="AudioStream" uid="uid://bjv2joeyhwiht" path="res://resources/sounds/rolling-dice-2-102706.mp3" id="2_ysa8a"]
@@ -16,6 +16,8 @@
 [ext_resource type="Script" path="res://scripts/Stats.gd" id="13_rpiqy"]
 [ext_resource type="Script" path="res://scripts/ItemSlot.gd" id="15_f2b61"]
 [ext_resource type="Script" path="res://scripts/Item.gd" id="15_rrrv6"]
+[ext_resource type="PackedScene" uid="uid://fkmc8tptxgmn" path="res://prefabs/enemies/szlam.tscn" id="17_iku0e"]
+[ext_resource type="PackedScene" uid="uid://doshdnk880cao" path="res://prefabs/enemies/goblin.tscn" id="18_p1fv3"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_gpx1j"]
 device = -1
@@ -110,6 +112,14 @@ events = [SubResource("InputEventKey_iheks")]
 
 [sub_resource type="Shortcut" id="Shortcut_g0snw"]
 
+[sub_resource type="GDScript" id="GDScript_5vr14"]
+script/source = "extends ProgressBar
+func _ready():
+	var sb = StyleBoxFlat.new()
+	add_theme_stylebox_override(\"fill\", sb)
+	sb.bg_color = Color(\"ff0000\")
+"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l0w3n"]
 size = Vector2(60, 60)
 
@@ -124,14 +134,6 @@ width = 60
 height = 60
 color_ramp = SubResource("Gradient_0ex8s")
 noise = SubResource("FastNoiseLite_30jvo")
-
-[sub_resource type="GDScript" id="GDScript_5vr14"]
-script/source = "extends ProgressBar
-func _ready():
-	var sb = StyleBoxFlat.new()
-	add_theme_stylebox_override(\"fill\", sb)
-	sb.bg_color = Color(\"ff0000\")
-"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0w4yj"]
 size = Vector2(43, 35)
@@ -265,6 +267,7 @@ script = ExtResource("6_8abxr")
 position = Vector2(50, 50)
 
 [node name="ActionButtons" type="Node2D" parent="."]
+position = Vector2(0, 75.145)
 
 [node name="Atak" type="Button" parent="ActionButtons"]
 offset_left = -200.0
@@ -389,23 +392,13 @@ offset_bottom = 250.0
 fit_content = true
 metadata/_edit_use_anchors_ = true
 
-[node name="Slot1" type="Area2D" parent="."]
-position = Vector2(-230, 261)
-script = ExtResource("15_f2b61")
-acceptable_items = Array[int]([0])
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Slot1"]
-shape = SubResource("RectangleShape2D_l0w3n")
-
-[node name="Background" type="Sprite2D" parent="Slot1/CollisionShape2D"]
-texture = SubResource("NoiseTexture2D_ugusv")
-
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Player" type="Node" parent="."]
 script = ExtResource("13_neu1h")
 
 [node name="Stats" type="Node2D" parent="Player" node_paths=PackedStringArray("health_display", "armor_display")]
+position = Vector2(0, 68.91)
 script = ExtResource("13_rpiqy")
 max_health = 100
 initial_armor = 100
@@ -416,7 +409,7 @@ armor_display = NodePath("ArmorDisplay/text")
 position = Vector2(-513, -260)
 
 [node name="icon" type="Sprite2D" parent="Player/Stats/ArmorDisplay"]
-position = Vector2(730, 268)
+position = Vector2(723.795, 267.315)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_cwe2b")
 
@@ -439,7 +432,7 @@ script = SubResource("GDScript_5vr14")
 metadata/_edit_use_anchors_ = true
 
 [node name="Backpack" type="Node2D" parent="Player"]
-position = Vector2(-454, 232)
+position = Vector2(-458, 97)
 
 [node name="Slot1" type="Area2D" parent="Player/Backpack"]
 position = Vector2(-62, -34)
@@ -545,6 +538,12 @@ shape = SubResource("RectangleShape2D_l0w3n")
 
 [node name="Background" type="Sprite2D" parent="Player/Backpack/Slot6/CollisionShape2D"]
 texture = SubResource("NoiseTexture2D_ugusv")
+
+[node name="Szlam" parent="." instance=ExtResource("17_iku0e")]
+position = Vector2(-3, 789)
+
+[node name="Goblin" parent="." instance=ExtResource("18_p1fv3")]
+position = Vector2(326.55, 104.75)
 
 [connection signal="pressed" from="Roll" to="Dices" method="RollOrReroll"]
 [connection signal="mouse_entered" from="ActionButtons/Atak" to="ActionButtons/Atak" method="_on_mouse_entered"]
