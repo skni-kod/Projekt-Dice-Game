@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://doshdnk880cao"]
 
+[ext_resource type="Texture2D" uid="uid://blrp4b262c4wb" path="res://resources/sprites/enemies/GoblinNormal.png" id="1_ai3ia"]
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_ar5vr"]
-[ext_resource type="Texture2D" uid="uid://bc6s21cwy146q" path="res://resources/sprites/enemies/goblin.png" id="1_nh24v"]
 [ext_resource type="Script" path="res://scripts/Stats.gd" id="2_yq5hq"]
 [ext_resource type="Script" path="res://scripts/resource_descriptors/AttackDescription.gd" id="3_pchjh"]
 [ext_resource type="Texture2D" uid="uid://0438thmurme3" path="res://resources/sprites/defense.png" id="3_pqipw"]
@@ -23,8 +23,10 @@ message = "Szykuje Mocny atak"
 nextAttack = SubResource("Resource_g7cr7")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5hutp"]
+radius = 32.1111
+height = 81.5556
 
-[sub_resource type="GDScript" id="GDScript_7aia8"]
+[sub_resource type="GDScript" id="GDScript_xsdyc"]
 script/source = "extends ProgressBar
 func _ready():
 	var sb = StyleBoxFlat.new()
@@ -33,49 +35,46 @@ func _ready():
 "
 
 [node name="Goblin" type="Sprite2D"]
-position = Vector2(0, 37)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("1_nh24v")
-offset = Vector2(0, -550)
+texture_filter = 1
+position = Vector2(0, 1)
+scale = Vector2(2, 2)
+texture = ExtResource("1_ai3ia")
 script = ExtResource("1_ar5vr")
 attacks = Array[ExtResource("3_pchjh")]([SubResource("Resource_dh45p"), SubResource("Resource_d16jd")])
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(-1690, -906)
-scale = Vector2(3, 3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(560, 110)
-scale = Vector2(10, 10)
+position = Vector2(-1, -4)
 shape = SubResource("CapsuleShape2D_5hutp")
 debug_color = Color(0.811904, 0.213027, 0.858705, 0.42)
 
 [node name="Stats" type="Node2D" parent="." node_paths=PackedStringArray("health_display", "armor_display")]
-position = Vector2(-23.3333, -750)
-scale = Vector2(3, 3)
+scale = Vector2(0.590466, 0.590466)
 script = ExtResource("2_yq5hq")
 max_health = 100
 health_display = NodePath("HpDisplay")
 armor_display = NodePath("ArmorDisplay/text")
 
 [node name="HpDisplay" type="ProgressBar" parent="Stats"]
-offset_left = -138.0
-offset_top = -150.0
-offset_right = 376.0
-offset_bottom = -83.0
+offset_left = -145.648
+offset_top = -123.631
+offset_right = 368.352
+offset_bottom = -56.6312
 scale = Vector2(0.575032, 0.575032)
 step = 1.0
-script = SubResource("GDScript_7aia8")
+script = SubResource("GDScript_xsdyc")
+metadata/_edit_use_anchors_ = true
 
 [node name="AttackMessage" type="RichTextLabel" parent="Stats"]
-offset_left = -59.4444
-offset_top = -116.667
-offset_right = 191.556
-offset_bottom = -76.6667
+offset_left = -57.5816
+offset_top = -89.7596
+offset_right = 193.419
+offset_bottom = -49.7593
 text = "attack.message"
 
 [node name="ArmorDisplay" type="Node2D" parent="Stats"]
-position = Vector2(-555, -402)
+position = Vector2(-577.51, -389.523)
 
 [node name="text" type="RichTextLabel" parent="Stats/ArmorDisplay"]
 offset_left = 750.0
@@ -86,6 +85,6 @@ text = "0"
 metadata/_edit_use_anchors_ = true
 
 [node name="icon" type="Sprite2D" parent="Stats/ArmorDisplay"]
-position = Vector2(729.444, 269.778)
+position = Vector2(730, 268)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_pqipw")

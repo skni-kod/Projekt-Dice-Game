@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3rhdd7im5wns"
-path="res://.godot/imported/GreenSlime.png-e602a137a2924fe021b90e0e2ca7de9c.ctex"
+uid="uid://bvv6l0ls2xhoc"
+path="res://.godot/imported/CrossedSwordsIcon.png-3c33465db54ab008bdca0fec8c9eb3e9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/sprites/enemies/GreenSlime.png"
-dest_files=["res://.godot/imported/GreenSlime.png-e602a137a2924fe021b90e0e2ca7de9c.ctex"]
+source_file="res://resources/sprites/CrossedSwordsIcon.png"
+dest_files=["res://.godot/imported/CrossedSwordsIcon.png-3c33465db54ab008bdca0fec8c9eb3e9.ctex"]
 
 [params]
 

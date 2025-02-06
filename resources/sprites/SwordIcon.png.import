@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdcex0dr54txm"
-path="res://.godot/imported/szlam.png-ca101bafec007c05cc58f316a88a4f5a.ctex"
+uid="uid://4rwl0w387wy"
+path="res://.godot/imported/SwordIcon.png-02a7cb3aa739429c3afa4724f927fafb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/sprites/enemies/szlam.png"
-dest_files=["res://.godot/imported/szlam.png-ca101bafec007c05cc58f316a88a4f5a.ctex"]
+source_file="res://resources/sprites/SwordIcon.png"
+dest_files=["res://.godot/imported/SwordIcon.png-02a7cb3aa739429c3afa4724f927fafb.ctex"]
 
 [params]
 

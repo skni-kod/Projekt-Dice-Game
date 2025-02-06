@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://m7s3xp2xoqfy"]
+[gd_scene load_steps=49 format=3 uid="uid://dgf160ru2xglf"]
 
 [ext_resource type="Texture2D" uid="uid://fyjb3wkqwkd0" path="res://resources/sprites/wcaleniestocktlo.jpeg" id="1_7xv4b"]
 [ext_resource type="AudioStream" uid="uid://bjv2joeyhwiht" path="res://resources/sounds/rolling-dice-2-102706.mp3" id="2_ysa8a"]
@@ -6,9 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://chomilp4fcoei" path="res://resources/sprites/dice_blank.png" id="4_seqyf"]
 [ext_resource type="Texture2D" uid="uid://cngl825iogtkt" path="res://resources/sprites/dice_blank_selected.png" id="5_covew"]
 [ext_resource type="Script" path="res://scripts/Dice.gd" id="6_8abxr"]
-[ext_resource type="Texture2D" uid="uid://brocaxjf0csnc" path="res://resources/sprites/attack.png" id="7_bocvb"]
+[ext_resource type="Texture2D" uid="uid://4rwl0w387wy" path="res://resources/sprites/SwordIcon.png" id="7_y5nll"]
 [ext_resource type="Script" path="res://scripts/ActionHandler.gd" id="8_2bhmu"]
 [ext_resource type="Texture2D" uid="uid://dcwa3irn113l8" path="res://resources/sprites/attack+.png" id="9_00qxl"]
+[ext_resource type="Texture2D" uid="uid://bvv6l0ls2xhoc" path="res://resources/sprites/CrossedSwordsIcon.png" id="9_0vkd1"]
 [ext_resource type="Texture2D" uid="uid://0438thmurme3" path="res://resources/sprites/defense.png" id="10_cwe2b"]
 [ext_resource type="Texture2D" uid="uid://s86emd55fdhu" path="res://resources/sprites/defense+.png" id="11_wp3wu"]
 [ext_resource type="Texture2D" uid="uid://b6oas1x5edqdw" path="res://resources/sprites/special.png" id="12_0plxn"]
@@ -143,18 +144,18 @@ size = Vector2(43, 35)
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0.701961)
 show_behind_parent = true
-offset_left = -582.0
-offset_top = -328.0
-offset_right = 586.0
-offset_bottom = 327.0
+offset_left = -540.0
+offset_top = -360.0
+offset_right = 540.0
+offset_bottom = 360.0
 texture = ExtResource("1_7xv4b")
 metadata/_edit_use_anchors_ = true
 
 [node name="Roll" type="Button" parent="."]
-offset_left = -561.0
-offset_top = -103.0
-offset_right = -449.96
-offset_bottom = -72.0
+offset_left = -509.0
+offset_top = -124.0
+offset_right = -397.96
+offset_bottom = -93.0
 scale = Vector2(2.675, 2.675)
 shortcut = SubResource("Shortcut_h1jpe")
 text = "Roll"
@@ -166,7 +167,7 @@ scale = Vector2(2.675, 2.675)
 stream = ExtResource("2_ysa8a")
 
 [node name="Dices" type="Node2D" parent="."]
-position = Vector2(-563, -310)
+position = Vector2(-513, -335)
 script = ExtResource("3_d6ogl")
 
 [node name="Dice1" type="TextureButton" parent="Dices"]
@@ -267,15 +268,15 @@ script = ExtResource("6_8abxr")
 position = Vector2(50, 50)
 
 [node name="ActionButtons" type="Node2D" parent="."]
-position = Vector2(0, 75.145)
+position = Vector2(52, 79)
 
 [node name="Atak" type="Button" parent="ActionButtons"]
 offset_left = -200.0
 offset_right = -100.0
 offset_bottom = 100.0
 shortcut = SubResource("Shortcut_rhfiy")
-icon = ExtResource("7_bocvb")
-expand_icon = true
+icon = ExtResource("7_y5nll")
+icon_alignment = 1
 script = ExtResource("8_2bhmu")
 metadata/_edit_use_anchors_ = true
 
@@ -283,8 +284,8 @@ metadata/_edit_use_anchors_ = true
 offset_left = -100.0
 offset_bottom = 100.0
 shortcut = SubResource("Shortcut_g3nbu")
-icon = ExtResource("9_00qxl")
-expand_icon = true
+icon = ExtResource("9_0vkd1")
+icon_alignment = 1
 script = ExtResource("8_2bhmu")
 action = 1
 metadata/_edit_use_anchors_ = true
@@ -398,7 +399,7 @@ metadata/_edit_use_anchors_ = true
 script = ExtResource("13_neu1h")
 
 [node name="Stats" type="Node2D" parent="Player" node_paths=PackedStringArray("health_display", "armor_display")]
-position = Vector2(0, 68.91)
+position = Vector2(46, 92)
 script = ExtResource("13_rpiqy")
 max_health = 100
 initial_armor = 100
@@ -432,7 +433,7 @@ script = SubResource("GDScript_5vr14")
 metadata/_edit_use_anchors_ = true
 
 [node name="Backpack" type="Node2D" parent="Player"]
-position = Vector2(-458, 97)
+position = Vector2(-421, 104)
 
 [node name="Slot1" type="Area2D" parent="Player/Backpack"]
 position = Vector2(-62, -34)
@@ -540,10 +541,9 @@ shape = SubResource("RectangleShape2D_l0w3n")
 texture = SubResource("NoiseTexture2D_ugusv")
 
 [node name="Szlam" parent="." instance=ExtResource("17_iku0e")]
-position = Vector2(-3, 789)
 
 [node name="Goblin" parent="." instance=ExtResource("18_p1fv3")]
-position = Vector2(326.55, 104.75)
+position = Vector2(250, 0)
 
 [connection signal="pressed" from="Roll" to="Dices" method="RollOrReroll"]
 [connection signal="mouse_entered" from="ActionButtons/Atak" to="ActionButtons/Atak" method="_on_mouse_entered"]
