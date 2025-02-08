@@ -22,10 +22,6 @@ damage = 0
 message = "Szykuje Mocny atak"
 nextAttack = SubResource("Resource_g7cr7")
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5hutp"]
-radius = 32.1111
-height = 81.5556
-
 [sub_resource type="GDScript" id="GDScript_xsdyc"]
 script/source = "extends ProgressBar
 func _ready():
@@ -34,6 +30,10 @@ func _ready():
 	sb.bg_color = Color(\"#8B0000\")
 "
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5hutp"]
+radius = 32.1111
+height = 81.5556
+
 [node name="Goblin" type="Sprite2D"]
 texture_filter = 1
 position = Vector2(0, 1)
@@ -41,13 +41,6 @@ scale = Vector2(2, 2)
 texture = ExtResource("1_ai3ia")
 script = ExtResource("1_ar5vr")
 attacks = Array[ExtResource("3_pchjh")]([SubResource("Resource_dh45p"), SubResource("Resource_d16jd")])
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-1, -4)
-shape = SubResource("CapsuleShape2D_5hutp")
-debug_color = Color(0.811904, 0.213027, 0.858705, 0.42)
 
 [node name="Stats" type="Node2D" parent="." node_paths=PackedStringArray("health_display", "armor_display")]
 scale = Vector2(0.590466, 0.590466)
@@ -88,3 +81,10 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(730, 268)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_pqipw")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, -4)
+shape = SubResource("CapsuleShape2D_5hutp")
+debug_color = Color(0.811904, 0.213027, 0.858705, 0.42)

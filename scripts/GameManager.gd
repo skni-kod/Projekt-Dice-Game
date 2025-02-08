@@ -15,7 +15,7 @@ func _ready():
 	enemy_waves.append(Wave.new(["goblin","goblin", "goblin", "goblin"]))
 	#for potwor in enemy_waves[1].enemies:
 		#print(potwor)
-	#SpawnWave(enemy_waves[current_wave])
+	SpawnWave(enemy_waves[current_wave])
 	
 	diceManager = get_node("/root/main_scene/Dices") as DiceManager
 	player = get_node("/root/main_scene/Player") as Player

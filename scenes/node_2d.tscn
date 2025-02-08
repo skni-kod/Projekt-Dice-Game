@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://dgf160ru2xglf"]
+[gd_scene load_steps=47 format=3 uid="uid://dgf160ru2xglf"]
 
 [ext_resource type="Texture2D" uid="uid://fyjb3wkqwkd0" path="res://resources/sprites/wcaleniestocktlo.jpeg" id="1_7xv4b"]
 [ext_resource type="AudioStream" uid="uid://bjv2joeyhwiht" path="res://resources/sounds/rolling-dice-2-102706.mp3" id="2_ysa8a"]
@@ -17,8 +17,6 @@
 [ext_resource type="Script" path="res://scripts/Stats.gd" id="13_rpiqy"]
 [ext_resource type="Script" path="res://scripts/ItemSlot.gd" id="15_f2b61"]
 [ext_resource type="Script" path="res://scripts/Item.gd" id="15_rrrv6"]
-[ext_resource type="PackedScene" uid="uid://fkmc8tptxgmn" path="res://prefabs/enemies/szlam.tscn" id="17_iku0e"]
-[ext_resource type="PackedScene" uid="uid://doshdnk880cao" path="res://prefabs/enemies/goblin.tscn" id="18_p1fv3"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_gpx1j"]
 device = -1
@@ -539,11 +537,6 @@ shape = SubResource("RectangleShape2D_l0w3n")
 
 [node name="Background" type="Sprite2D" parent="Player/Backpack/Slot6/CollisionShape2D"]
 texture = SubResource("NoiseTexture2D_ugusv")
-
-[node name="Szlam" parent="." instance=ExtResource("17_iku0e")]
-
-[node name="Goblin" parent="." instance=ExtResource("18_p1fv3")]
-position = Vector2(250, 0)
 
 [connection signal="pressed" from="Roll" to="Dices" method="RollOrReroll"]
 [connection signal="mouse_entered" from="ActionButtons/Atak" to="ActionButtons/Atak" method="_on_mouse_entered"]
