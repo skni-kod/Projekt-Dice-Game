@@ -9,6 +9,8 @@ var selected_enemy : Enemy = null
 var enemy_waves: Array[Wave]
 var current_wave = 0
 var enemies_turn_counter = 0
+var current_level : Level = null
+var level
 
 func _ready():
 	enemy_waves.append(Wave.new(["goblin", "goblin", "goblin"]))
@@ -92,3 +94,9 @@ func Spawn(enemyName:String, waveSize: int, indexInWave: int):
 
 func _on_enemy_selected(enemy: Enemy):
 	selected_enemy = enemy
+
+func _input(event):
+	if event.is_action_pressed("ui_map"):
+		get_tree().change_scene_to_file("res://scenes/map.tscn")
+	if event.is_action_pressed("close_ui_map"):
+		get_tree().change_scene_to_file("res://scenes/node_2d.tscn")
