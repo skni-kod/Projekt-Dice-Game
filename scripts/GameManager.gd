@@ -66,6 +66,7 @@ func _on_enemy_die(enemy:Enemy):
 		SpawnWave(enemy_waves[current_wave]);
 	else:
 		selected_enemy = enemies[0]
+		selected_enemy.set_as_current_enemy()
 
 func SpawnWave(wave:Wave):
 	enemies.clear()
@@ -74,6 +75,7 @@ func SpawnWave(wave:Wave):
 		Spawn(enemy, wave.enemies.size(), indexInWave)
 		indexInWave += 1
 	selected_enemy = enemies[0]
+	selected_enemy.set_as_current_enemy()
 		
 func Spawn(enemyName:String, waveSize: int, indexInWave: int):
 	var enemy_prefab = load("res://prefabs/enemies/" + enemyName + ".tscn")
@@ -85,7 +87,6 @@ func Spawn(enemyName:String, waveSize: int, indexInWave: int):
 	enemy.stats.onDeath.connect(_on_enemy_die.bind(enemy))
 	enemy.enemy_selected.connect(_on_enemy_selected)
 	enemies.append(enemy)
-	
 	# TO DO: dodanie rozmieszczenia przeciwników
 	# TYMCZASOWE
 	var enemyRange: int = 700 / waveSize
