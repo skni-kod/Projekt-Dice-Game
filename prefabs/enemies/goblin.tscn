@@ -45,7 +45,6 @@ attacks = Array[ExtResource("3_pchjh")]([SubResource("Resource_dh45p"), SubResou
 [node name="Stats" type="Node2D" parent="." node_paths=PackedStringArray("health_display", "armor_display")]
 scale = Vector2(0.590466, 0.590466)
 script = ExtResource("2_yq5hq")
-max_health = 100
 health_display = NodePath("HpDisplay")
 armor_display = NodePath("ArmorDisplay/text")
 

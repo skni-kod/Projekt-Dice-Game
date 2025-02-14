@@ -13,8 +13,8 @@ var current_level : Level = null
 var level
 
 func _ready():
-	enemy_waves.append(Wave.new(["goblin", "goblin", "goblin"]))
-	enemy_waves.append(Wave.new(["goblin","goblin", "goblin", "goblin"]))
+	enemy_waves.append(Wave.new(["goblin"]))
+	enemy_waves.append(Wave.new(["goblin","goblin"]))
 	#for potwor in enemy_waves[1].enemies:
 		#print(potwor)
 	SpawnWave(enemy_waves[current_wave])

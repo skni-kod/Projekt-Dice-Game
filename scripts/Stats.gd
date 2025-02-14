@@ -2,19 +2,32 @@ extends Node
 # Klasa odpowiedzialna za zarządzanie statystykami.
 class_name Stats
 
-@export var max_health: int
-@export var initial_armor: int
+@export var max_health_multiplier = 1.0
+@export var base_max_health: int
+
+@export var damage_multiplier = 1.0
+@export var base_damage: int
+
+@export var health: int
+@export var armor: int
+
 @export var health_display: ProgressBar
 @export var armor_display: RichTextLabel
-var health: int
-var armor: int
+@export var damage_display: RichTextLabel
+
+var max_health: int
+var damage: int
+
 signal onDeath
 
 func _ready():
-	SetHealth(max_health)
-	SetMaxHealth(max_health)
-	SetArmor(initial_armor)
-	
+	SetBaseMaxHealth(base_max_health)
+	SetMaxHealthMult(max_health_multiplier)
+	SetBaseDamage(base_damage)
+	SetDamageMult(damage_multiplier)
+	SetArmor(armor)
+	SetHealth(health)
+
 func DealDamage(value):
 	if armor > value:
 		SetArmor(armor - value)
@@ -39,12 +52,33 @@ func SetArmor(value):
 	armor = value
 	_UpdateDisplays()
 	
-func SetMaxHealth(value):
-	max_health = value
+func SetBaseMaxHealth(value):
+	base_max_health = value
+	max_health = max_health_multiplier * base_max_health
+	health = min(health, max_health)
+	_UpdateDisplays()
+
+func SetMaxHealthMult(value):
+	max_health_multiplier = value
+	max_health = max_health_multiplier * base_max_health
+	health = min(health, max_health)
 	_UpdateDisplays()
 	
+func SetBaseDamage(value):
+	base_damage = value
+	damage = damage_multiplier * base_damage
+	_UpdateDisplays()
+
+func SetDamageMult(value):
+	damage_multiplier = value
+	damage = damage_multiplier * base_damage
+	_UpdateDisplays()
+
 func _UpdateDisplays():
 	if health_display: 
 		health_display.max_value = max_health
 		health_display.value = health
+		if health_display.get_child_count() != 0:
+			(health_display.get_child(0) as RichTextLabel).text = str(health) + " / " + str(max_health)
 	if armor_display: armor_display.text = str(armor)
+	if damage_display: damage_display.text = "attack " + str(damage)

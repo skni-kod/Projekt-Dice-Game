@@ -5,11 +5,15 @@ class_name Item
 # Typ itemu.
 enum Type
 {
-	Potion, Weapon, Armor
+	Potion, Weapon,
+	Armor_Head, Armor_Chest, Armor_Legs, Armor_Arms, Armor_Begin, Armor_End,
+	Any
 }
 
 var current_slot: ItemSlot # Aktualny slot w którym jest item.
 @export var type: Type # Typ itemu.
+@export var data1 : int #   Nie wiem jak to zrobić lepiej,
+@export var data2 : float # żeby interpretacja była w zmiennej.
 
 # Wewnętrzne zmienne używane do przeciagania i ustawiania slotów.
 var _is_mouse_over = false
