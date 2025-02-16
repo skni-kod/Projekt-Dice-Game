@@ -19,6 +19,9 @@ texture = ExtResource("1_4nlqb")
 position = Vector2(517, 612)
 script = ExtResource("2_qenvd")
 
+[node name="Paths" type="Line2D" parent="LevelManager"]
+width = 30.0
+
 [node name="Level0" type="Area2D" parent="LevelManager"]
 script = ExtResource("3_6fh6i")
 
@@ -70,5 +73,16 @@ shape = SubResource("RectangleShape2D_fr5tm")
 one_way_collision_margin = 0.0
 debug_color = Color(0, 0.544705, 0.942617, 0.42)
 
-[node name="Paths" type="Line2D" parent="LevelManager"]
-width = 30.0
+[node name="Label" type="Label" parent="."]
+offset_left = 3.0
+offset_top = 552.0
+offset_right = 286.0
+offset_bottom = 715.0
+text = "Wybrany poziom:"
+
+[node name="Button" type="Button" parent="."]
+offset_left = 819.0
+offset_top = 606.0
+offset_right = 1078.0
+offset_bottom = 714.0
+text = "Zatwierdź wybór"

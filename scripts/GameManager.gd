@@ -1,6 +1,6 @@
 extends Node
-	
-# TO DO: zaznaczanie przeciwników
+
+#TODO trzeba jakoś połączyć mapę z main_scene
 
 var diceManager: DiceManager
 var player: Player
@@ -18,10 +18,10 @@ func _ready():
 	#for potwor in enemy_waves[1].enemies:
 		#print(potwor)
 	SpawnWave(enemy_waves[current_wave])
-	
 	diceManager = get_node("/root/main_scene/Dices") as DiceManager
 	player = get_node("/root/main_scene/Player") as Player
 	player._ready()
+
 
 func EndPlayerTurn():
 	enemies_turn_counter = 0
