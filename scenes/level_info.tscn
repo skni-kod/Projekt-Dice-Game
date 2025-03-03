@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bcdyopjrfkoj2"]
 
-[ext_resource type="Script" path="res://LevelInfo.gd" id="1_rmcor"]
+[ext_resource type="Script" path="res://scripts/LevelInfo.gd" id="1_rmcor"]
 [ext_resource type="Texture2D" uid="uid://chay4qtmir7y8" path="res://resources/sprites/tlodymka.png" id="2_7m36j"]
 
 [node name="Control" type="Control"]
