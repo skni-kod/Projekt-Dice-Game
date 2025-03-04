@@ -5,7 +5,7 @@ class_name Level
 #var level_completed = false
 #var level_started = false
 var levelNumber: int
-var enemiesWave = []
+var enemiesWave : Array[Wave]
 var sprite: Sprite2D
 var parentNode
 var X
@@ -14,7 +14,7 @@ var Y
 
 @onready var levelinfo = preload("res://scenes/level_info.tscn").instantiate()
 
-func _init(n, waves, pNode, x, y):
+func _init(n : int, waves : Array[Wave], pNode, x, y):
 	X = x
 	Y = y
 	levelNumber = n
@@ -57,13 +57,13 @@ func _input_event(viewport, event, shape_idx) -> void:
 			var text = "Wybrany Poziom: " + str(levelNumber) + "\nFale: " + str(len(enemiesWave))
 			for wave in enemiesWave:
 				text += "\n"
-				for enemy in wave:
+				for enemy in wave.enemies:
 					text += " " + str(enemy)
 			var label = find_node("Label")
 			var manager = find_node("LevelManager")
 			if label:
 				label.text = str(text)
-			if manager:
+			if GameManager.enemies.is_empty() and manager:
 				manager.enemiesWave = enemiesWave
 				manager.isLevelSelected = true
 #Tutaj wyświetlamy taki dymek (levelInfo) nad najechanym poziomem
@@ -74,7 +74,7 @@ func _on_mouse_entered() -> void:
 	text += "\n Przeciwnicy:"
 	for wave in enemiesWave:
 		text += "\n"
-		for enemy in wave:
+		for enemy in wave.enemies:
 			text += " " + str(enemy)
 	levelinfo.set_text(text)
 	levelinfo.global_position = mouse_pos + Vector2(20, -25)

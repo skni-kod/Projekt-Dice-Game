@@ -62,8 +62,9 @@ func _on_enemy_die(enemy:Enemy):
 	enemy.queue_free()
 	enemies.erase(enemy)
 	if enemies.size() == 0:
-		current_wave = (current_wave + 1) % enemy_waves.size()
-		SpawnWave(enemy_waves[current_wave]);
+		current_wave += 1
+		if current_wave < enemy_waves.size():
+			SpawnWave(enemy_waves[current_wave]);
 	else:
 		selected_enemy = enemies[0]
 		selected_enemy.set_as_current_enemy()
@@ -80,7 +81,7 @@ func SpawnWave(wave:Wave):
 func Spawn(enemyName:String, waveSize: int, indexInWave: int):
 	var enemy_prefab = load("res://prefabs/enemies/" + enemyName + ".tscn")
 	var enemy_instance = enemy_prefab.instantiate()
-	get_node("/root/main_scene").add_child(enemy_instance)
+	get_tree().root.get_child(1).add_child(enemy_instance)
 	
 	var enemy = enemy_instance as Enemy
 	enemy._ready()
@@ -98,6 +99,14 @@ func _on_enemy_selected(enemy: Enemy):
 
 func _input(event):
 	if event.is_action_pressed("ui_map"):
-		get_tree().change_scene_to_file("res://scenes/map.tscn")
+		if get_tree().root.get_node("Map"):
+			return
+			
+		get_tree().root.add_child(preload("res://scenes/map.tscn").instantiate())
+		(get_tree().root.get_child(get_tree().root.get_child_count() - 1) as Node2D).position = Vector2(-get_window().get_viewport().get_camera_2d().get_window().get_visible_rect().size.x/2 ,-get_window().get_viewport().get_camera_2d().get_window().get_visible_rect().size.y/2 )
+	
 	if event.is_action_pressed("close_ui_map"):
-		get_tree().change_scene_to_file("res://scenes/node_2d.tscn")
+		if not get_tree().root.get_node("Map"):
+			return
+			
+		get_tree().root.get_child(2).queue_free()

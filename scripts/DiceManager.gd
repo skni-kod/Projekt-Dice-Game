@@ -28,6 +28,9 @@ func RollOrReroll() ->void:
 	
 # Rzuć wszystkimi kośćmi.
 func Roll() -> void:
+	if GameManager.enemies.is_empty():
+		return
+	
 	var sound = $/root/main_scene/sound
 	sound.play()
 	for dice in dices:
@@ -41,6 +44,9 @@ func Roll() -> void:
 		
 # Przerzuć aktualnie zaznaczone kości.
 func Reroll() -> void:
+	if GameManager.enemies.is_empty():
+		return
+	
 	var sound = $/root/main_scene/sound
 	sound.play()
 	current_max_selected_dices = current_max_selected_dices - SelectedDiceCount()
