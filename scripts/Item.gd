@@ -54,8 +54,7 @@ func _input(event):
 	
 	# Item jest przesówany.
 	if _is_dragged and event is InputEventMouseMotion:
-		position += event.relative
-			
+		position += event.relative/0.356
 			
 func _on_area_entered(area):
 	if area is not ItemSlot:

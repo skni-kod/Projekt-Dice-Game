@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://fkmc8tptxgmn"]
+[gd_scene load_steps=12 format=3 uid="uid://fkmc8tptxgmn"]
 
+[ext_resource type="Material" uid="uid://8k8p3gj8sa65" path="res://shaders/outline.tres" id="1_3wyo7"]
 [ext_resource type="Texture2D" uid="uid://b3rhdd7im5wns" path="res://resources/sprites/enemies/GreenSlime.png" id="1_8whgg"]
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="2_bee8b"]
 [ext_resource type="Script" path="res://scripts/resource_descriptors/AttackDescription.gd" id="3_nlf8j"]
@@ -36,6 +37,7 @@ height = 10.8389
 
 [node name="Szlam" type="Sprite2D"]
 texture_filter = 1
+material = ExtResource("1_3wyo7")
 scale = Vector2(2, 2)
 texture = ExtResource("1_8whgg")
 script = ExtResource("2_bee8b")

@@ -1,6 +1,7 @@
-[gd_scene load_steps=49 format=3 uid="uid://dgf160ru2xglf"]
+[gd_scene load_steps=52 format=3 uid="uid://dgf160ru2xglf"]
 
 [ext_resource type="Texture2D" uid="uid://fyjb3wkqwkd0" path="res://resources/sprites/wcaleniestocktlo.jpeg" id="1_7xv4b"]
+[ext_resource type="Texture2D" uid="uid://chub8cvaq13w5" path="res://resources/sprites/gui/TitleBox_64x16.png" id="2_5pjmg"]
 [ext_resource type="AudioStream" uid="uid://bjv2joeyhwiht" path="res://resources/sounds/rolling-dice-2-102706.mp3" id="2_ysa8a"]
 [ext_resource type="Script" path="res://scripts/DiceManager.gd" id="3_d6ogl"]
 [ext_resource type="Texture2D" uid="uid://chomilp4fcoei" path="res://resources/sprites/dice_blank.png" id="4_seqyf"]
@@ -15,9 +16,11 @@
 [ext_resource type="Script" path="res://scripts/Player.gd" id="13_neu1h"]
 [ext_resource type="Script" path="res://scripts/Stats.gd" id="13_rpiqy"]
 [ext_resource type="Script" path="res://scripts/ItemSlot.gd" id="15_f2b61"]
+[ext_resource type="Texture2D" uid="uid://caa7vncbyk383" path="res://resources/sprites/gui/HealthBarPanel_320x41.png" id="15_gl8en"]
 [ext_resource type="Script" path="res://scripts/Item.gd" id="15_rrrv6"]
 [ext_resource type="Texture2D" uid="uid://dcwa3irn113l8" path="res://resources/sprites/attack+.png" id="17_q7msi"]
 [ext_resource type="Texture2D" uid="uid://brocaxjf0csnc" path="res://resources/sprites/attack.png" id="18_84or3"]
+[ext_resource type="Texture2D" uid="uid://d4jn21hgjckd7" path="res://resources/sprites/gui/ItemBox_24x24.png" id="18_uqslk"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_gpx1j"]
 device = -1
@@ -125,6 +128,9 @@ func _ready():
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l0w3n"]
 size = Vector2(60, 60)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0w4yj"]
+size = Vector2(43, 35)
+
 [sub_resource type="Gradient" id="Gradient_0ex8s"]
 colors = PackedColorArray(0, 0, 0, 0.14902, 1, 1, 1, 0.580392)
 
@@ -137,10 +143,8 @@ height = 60
 color_ramp = SubResource("Gradient_0ex8s")
 noise = SubResource("FastNoiseLite_30jvo")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0w4yj"]
-size = Vector2(43, 35)
-
 [node name="main_scene" type="Node2D"]
+scale = Vector2(0.356, 0.357099)
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0.701961)
@@ -153,6 +157,7 @@ texture = ExtResource("1_7xv4b")
 metadata/_edit_use_anchors_ = true
 
 [node name="Roll" type="Button" parent="."]
+texture_filter = 1
 offset_left = -509.0
 offset_top = -124.0
 offset_right = -397.96
@@ -160,6 +165,10 @@ offset_bottom = -93.0
 scale = Vector2(2.675, 2.675)
 shortcut = SubResource("Shortcut_h1jpe")
 text = "Roll"
+icon = ExtResource("2_5pjmg")
+flat = true
+icon_alignment = 1
+expand_icon = true
 metadata/_edit_use_anchors_ = true
 
 [node name="sound" type="AudioStreamPlayer2D" parent="."]
@@ -269,7 +278,8 @@ script = ExtResource("6_8abxr")
 position = Vector2(50, 50)
 
 [node name="ActionButtons" type="Node2D" parent="."]
-position = Vector2(52, 79)
+position = Vector2(53.3708, 134.417)
+scale = Vector2(0.729292, 0.729292)
 
 [node name="Atak" type="Button" parent="ActionButtons"]
 offset_left = -200.0
@@ -387,10 +397,10 @@ action = 7
 metadata/_edit_use_anchors_ = true
 
 [node name="ActionDescription" type="RichTextLabel" parent="ActionButtons"]
-offset_left = -215.0
-offset_top = 210.0
-offset_right = -140.0
-offset_bottom = 250.0
+offset_left = -215.693
+offset_top = 199.67
+offset_right = -140.693
+offset_bottom = 239.67
 fit_content = true
 metadata/_edit_use_anchors_ = true
 
@@ -402,7 +412,8 @@ armor_slots = [NodePath("Armor"), NodePath("Armor2"), NodePath("Armor3"), NodePa
 weapon_slots = [NodePath("Weapon")]
 
 [node name="Stats" type="Node2D" parent="Player" node_paths=PackedStringArray("health_display", "armor_display", "damage_display")]
-position = Vector2(46, 92)
+position = Vector2(19, 28)
+scale = Vector2(0.371607, 0.371607)
 script = ExtResource("13_rpiqy")
 base_max_health = 100
 base_damage = 100
@@ -416,23 +427,22 @@ damage_display = NodePath("AttackDisplay")
 position = Vector2(-513, -260)
 
 [node name="icon" type="Sprite2D" parent="Player/Stats/ArmorDisplay"]
-position = Vector2(723.795, 267.315)
+position = Vector2(644.86, 308.438)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_cwe2b")
 
 [node name="text" type="RichTextLabel" parent="Player/Stats/ArmorDisplay"]
-offset_left = 750.0
-offset_top = 255.0
-offset_right = 790.0
-offset_bottom = 295.0
+offset_left = 655.624
+offset_top = 303.056
+offset_right = 695.624
+offset_bottom = 343.056
 text = "0"
-metadata/_edit_use_anchors_ = true
 
 [node name="HpDisplay" type="ProgressBar" parent="Player/Stats"]
-offset_left = -138.0
-offset_top = 210.0
-offset_right = 376.0
-offset_bottom = 277.0
+offset_left = -148.006
+offset_top = 217.972
+offset_right = 365.994
+offset_bottom = 284.972
 scale = Vector2(0.575032, 0.575032)
 step = 1.0
 rounded = true
@@ -441,22 +451,36 @@ script = SubResource("GDScript_5vr14")
 metadata/_edit_use_anchors_ = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Player/Stats/HpDisplay"]
+texture_filter = 1
 layout_mode = 0
-offset_right = 257.0
-offset_bottom = 34.0
+offset_left = 8.69517
+offset_top = 8.69519
+offset_right = 265.695
+offset_bottom = 34.6952
 scale = Vector2(2, 2)
 text = "10 / 100"
 fit_content = true
+metadata/_edit_use_anchors_ = true
+
+[node name="HealthBarBorder" type="TextureRect" parent="Player/Stats/HpDisplay"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -14.0
+offset_top = -2.0
+offset_right = 529.0
+offset_bottom = 68.0
+texture = ExtResource("15_gl8en")
 
 [node name="AttackDisplay" type="RichTextLabel" parent="Player/Stats"]
-offset_left = 207.0
-offset_top = 28.0
-offset_right = 397.0
-offset_bottom = 70.0
+offset_left = 148.006
+offset_top = 69.9664
+offset_right = 338.006
+offset_bottom = 111.966
 text = "Attack 10"
 
 [node name="Backpack" type="Node2D" parent="Player"]
-position = Vector2(-421, 104)
+position = Vector2(-150, 75)
+scale = Vector2(0.369895, 0.369895)
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Player/Backpack"]
 clip_contents = false
@@ -486,6 +510,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_l0w3n")
 
 [node name="Background" type="TextureRect" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot2/CollisionShape2D"]
+texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -497,7 +522,7 @@ offset_right = 30.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("NoiseTexture2D_ugusv")
+texture = ExtResource("18_uqslk")
 
 [node name="Slot3" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer"]
 position = Vector2(150, 30)
@@ -509,6 +534,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_l0w3n")
 
 [node name="Background" type="TextureRect" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot3/CollisionShape2D"]
+texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -520,7 +546,7 @@ offset_right = 30.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("NoiseTexture2D_ugusv")
+texture = ExtResource("18_uqslk")
 
 [node name="Slot" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer"]
 position = Vector2(30, 30)
@@ -532,6 +558,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_l0w3n")
 
 [node name="Background" type="TextureRect" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot/CollisionShape2D"]
+texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -543,7 +570,7 @@ offset_right = 30.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("NoiseTexture2D_ugusv")
+texture = ExtResource("18_uqslk")
 
 [node name="Item" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot"]
 script = ExtResource("15_rrrv6")
@@ -581,6 +608,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_l0w3n")
 
 [node name="Background" type="TextureRect" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot4/CollisionShape2D"]
+texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -592,7 +620,7 @@ offset_right = 30.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("NoiseTexture2D_ugusv")
+texture = ExtResource("18_uqslk")
 
 [node name="Item" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot4"]
 script = ExtResource("15_rrrv6")
@@ -632,6 +660,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_l0w3n")
 
 [node name="Background" type="TextureRect" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot5/CollisionShape2D"]
+texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -643,7 +672,7 @@ offset_right = 30.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("NoiseTexture2D_ugusv")
+texture = ExtResource("18_uqslk")
 
 [node name="Item" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot5"]
 script = ExtResource("15_rrrv6")
@@ -684,6 +713,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_l0w3n")
 
 [node name="Background" type="TextureRect" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot6/CollisionShape2D"]
+texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -695,7 +725,7 @@ offset_right = 30.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("NoiseTexture2D_ugusv")
+texture = ExtResource("18_uqslk")
 
 [node name="Item" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot6"]
 script = ExtResource("15_rrrv6")
@@ -736,6 +766,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_l0w3n")
 
 [node name="Background" type="TextureRect" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot7/CollisionShape2D"]
+texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -747,7 +778,7 @@ offset_right = 30.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("NoiseTexture2D_ugusv")
+texture = ExtResource("18_uqslk")
 
 [node name="Slot8" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer"]
 position = Vector2(150, 150)
@@ -759,6 +790,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_l0w3n")
 
 [node name="Background" type="TextureRect" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot8/CollisionShape2D"]
+texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -770,7 +802,7 @@ offset_right = 30.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("NoiseTexture2D_ugusv")
+texture = ExtResource("18_uqslk")
 
 [node name="Item" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot8"]
 script = ExtResource("15_rrrv6")
@@ -811,6 +843,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_l0w3n")
 
 [node name="Background" type="TextureRect" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot9/CollisionShape2D"]
+texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -822,7 +855,7 @@ offset_right = 30.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("NoiseTexture2D_ugusv")
+texture = ExtResource("18_uqslk")
 
 [node name="Item" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot9"]
 script = ExtResource("15_rrrv6")
@@ -862,6 +895,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_l0w3n")
 
 [node name="Background" type="TextureRect" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot10/CollisionShape2D"]
+texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -873,7 +907,7 @@ offset_right = 30.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("NoiseTexture2D_ugusv")
+texture = ExtResource("18_uqslk")
 
 [node name="Slot11" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer"]
 position = Vector2(150, 210)
@@ -885,6 +919,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_l0w3n")
 
 [node name="Background" type="TextureRect" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot11/CollisionShape2D"]
+texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -896,7 +931,7 @@ offset_right = 30.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("NoiseTexture2D_ugusv")
+texture = ExtResource("18_uqslk")
 
 [node name="Slot12" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer"]
 position = Vector2(30, 210)
@@ -908,6 +943,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_l0w3n")
 
 [node name="Background" type="TextureRect" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot12/CollisionShape2D"]
+texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -919,10 +955,11 @@ offset_right = 30.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("NoiseTexture2D_ugusv")
+texture = ExtResource("18_uqslk")
 
 [node name="Armor" type="Area2D" parent="Player"]
-position = Vector2(-205, 25)
+position = Vector2(-74, 51)
+scale = Vector2(0.355, 0.355)
 script = ExtResource("15_f2b61")
 acceptable_items = Array[int]([2])
 metadata/_edit_group_ = true
@@ -945,7 +982,8 @@ grow_vertical = 2
 texture = SubResource("NoiseTexture2D_ugusv")
 
 [node name="Armor2" type="Area2D" parent="Player"]
-position = Vector2(-205, 85)
+position = Vector2(-74, 73)
+scale = Vector2(0.355, 0.355)
 script = ExtResource("15_f2b61")
 acceptable_items = Array[int]([3])
 metadata/_edit_group_ = true
@@ -968,7 +1006,8 @@ grow_vertical = 2
 texture = SubResource("NoiseTexture2D_ugusv")
 
 [node name="Armor3" type="Area2D" parent="Player"]
-position = Vector2(-265, 85)
+position = Vector2(-96, 73)
+scale = Vector2(0.355, 0.355)
 script = ExtResource("15_f2b61")
 acceptable_items = Array[int]([5])
 metadata/_edit_group_ = true
@@ -991,7 +1030,8 @@ grow_vertical = 2
 texture = SubResource("NoiseTexture2D_ugusv")
 
 [node name="Armor4" type="Area2D" parent="Player"]
-position = Vector2(-205, 145)
+position = Vector2(-74, 95)
+scale = Vector2(0.355, 0.355)
 script = ExtResource("15_f2b61")
 acceptable_items = Array[int]([4])
 metadata/_edit_group_ = true
@@ -1014,7 +1054,8 @@ grow_vertical = 2
 texture = SubResource("NoiseTexture2D_ugusv")
 
 [node name="Weapon" type="Area2D" parent="Player"]
-position = Vector2(-145, 85)
+position = Vector2(-52, 73)
+scale = Vector2(0.355, 0.355)
 script = ExtResource("15_f2b61")
 acceptable_items = Array[int]([1])
 metadata/_edit_group_ = true

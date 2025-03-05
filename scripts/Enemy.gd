@@ -48,8 +48,8 @@ func set_as_current_enemy():
 	enemy_selected.emit(self)
 	# Zmień grubość linii tylko dla wybranego przeciwnika
 	if self.material and self.material is ShaderMaterial:
-		self.material.set_shader_parameter("line_thickness", 2.0)  # Pogrubienie
+		self.material.set_shader_parameter("thickness", 1.0)  # Pogrubienie
 		
 func reset_shader():
 	if self.material and self.material is ShaderMaterial:
-		self.material.set_shader_parameter("line_thickness", 0.0)  # Reset do domyślnej wartości
+		self.material.set_shader_parameter("thickness", 0.0)  # Reset do domyślnej wartości
