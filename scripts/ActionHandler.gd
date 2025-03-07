@@ -15,18 +15,22 @@ func HandleAction(act):
 	match act:
 		Action.Attack:
 			if GameManager.diceManager.ConsumeN(Dice.FaceType.Attack,2):
-				GameManager.selected_enemy.stats.DealDamage(50)
+				if GameManager.selected_enemy:
+					GameManager.selected_enemy.stats.DealDamage(50)
 		
 		Action.AttackPlus:
 			if GameManager.diceManager.ConsumeN(Dice.FaceType.Attack,3):
-				GameManager.selected_enemy.stats.DealDamage(20)
+				if GameManager.selected_enemy:
+					GameManager.selected_enemy.stats.DealDamage(20)
 			
 		Action.Defence:
 			if GameManager.diceManager.ConsumeN(Dice.FaceType.Defense,2):
-				GameManager.player.stats.AddArmor(7)
+				if GameManager.selected_enemy:
+					GameManager.player.stats.AddArmor(7)
 		Action.DefencePlus:
 			if GameManager.diceManager.ConsumeN(Dice.FaceType.Defense,3):
-				GameManager.player.stats.AddArmor(15)
+				if GameManager.selected_enemy:
+					GameManager.player.stats.AddArmor(15)
 			
 		Action.Special1:
 			if GameManager.diceManager.ConsumeN(Dice.FaceType.Special,3):

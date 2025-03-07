@@ -4,7 +4,7 @@ class_name LevelManager
 # Called when the node enters the scene tree for the first time.
 
 var levels: Array = [] 
-var enemiesWave = []
+var enemiesWave: Array[Wave]
 var usableEnemies = ["goblin", "szlam"]
 var isLevelSelected : bool = false
 var nextLevelIndex = 2
@@ -45,17 +45,21 @@ func _process(delta: float) -> void:
 		button.visible = isLevelSelected
 
 func _on_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/node_2d.tscn")
+	get_tree().root.get_node("Map").queue_free()
+	GameManager.enemy_waves = enemiesWave
+	GameManager.current_wave = 0
+	GameManager.SpawnWave(GameManager.enemy_waves[0])
+	GameManager.diceManager.Reroll()
 
 #funkcja do generowania fal potworow na podstawie dostepnych przeciwnikow
-func generate_waves() -> Array:
+func generate_waves() -> Array[Wave]:
 	var amount_of_waves = randi_range(2, 4) # 2 do 4 fal
-	var waves = []
+	var waves: Array[Wave]
 	for i in range (amount_of_waves):
-		var wave = []
+		var wave = Wave.new()
 		for j in range(randi_range(1,3)):
 			var n = randi_range(0, len(usableEnemies) - 1)
-			wave.append(usableEnemies[n])
+			wave.enemies.append(usableEnemies[n])
 		waves.append(wave)
 	return waves
 
