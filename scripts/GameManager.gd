@@ -11,6 +11,7 @@ var current_wave = 0
 var enemies_turn_counter = 0
 var current_level : Level = null
 var level
+var rng = RandomNumberGenerator.new()
 
 func _ready():
 	enemy_waves.append(Wave.new(["goblin"]))

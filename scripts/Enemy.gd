@@ -6,7 +6,6 @@ var stats:Stats
 @export var attacks : Array[AttackDescription]
 var lastAttack : AttackDescription
 var temporaryEffects : Array[TemporaryEffect]
-var rng = RandomNumberGenerator.new()
 
 signal enemy_selected(enemy)
 
@@ -23,10 +22,10 @@ func _ready() -> void:
 # Funkcja dająca możliwość przeciwnikowi wykonania odpowiednich akcji.
 func DoActions():
 	var attack:AttackDescription
-	if lastAttack and lastAttack.nextAttack:
-		attack = lastAttack.nextAttack
+	if lastAttack and lastAttack.nextAttackSet:
+		attack = AttackDescription.PickRandomAttack(lastAttack.nextAttackSet)
 	else:
-		attack = attacks[rng.randi_range(0,attacks.size()-1)]
+		attack = AttackDescription.PickRandomAttack(attacks)
 	lastAttack = attack
 	
 	# TO DO: Dodać wyświetlanie wiadomości
