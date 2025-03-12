@@ -1,20 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3hhoflsxt2xd"]
+[gd_scene load_steps=3 format=3 uid="uid://d3hhoflsxt2xd"]
 
+[ext_resource type="Texture2D" uid="uid://ba5wtaog7bky7" path="res://resources/sprites/Map.png" id="1_318ao"]
 [ext_resource type="Script" path="res://scripts/LevelManager.gd" id="2_qenvd"]
-
-[sub_resource type="Gradient" id="Gradient_s4fcc"]
-offsets = PackedFloat32Array(0.501312)
-colors = PackedColorArray(0.717647, 0.533333, 0.211765, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_rfq5d"]
-gradient = SubResource("Gradient_s4fcc")
 
 [node name="Map" type="Node2D"]
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 1080.0
 offset_bottom = 720.0
-texture = SubResource("GradientTexture1D_rfq5d")
+texture = ExtResource("1_318ao")
 
 [node name="LevelManager" type="Node2D" parent="."]
 position = Vector2(517, 612)
