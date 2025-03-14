@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://caa7vncbyk383"
-path="res://.godot/imported/HealthBarPanel_320x41.png-67ecdd18bc44a73c305515506fcc0d2c.ctex"
+uid="uid://xgjwmqq5dbnu"
+path="res://.godot/imported/dice_blank_discarded.png-f2f081f5625c312785f8e8f5d4fd7248.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/sprites/gui/HealthBarPanel_320x41.png"
-dest_files=["res://.godot/imported/HealthBarPanel_320x41.png-67ecdd18bc44a73c305515506fcc0d2c.ctex"]
+source_file="res://resources/sprites/dice_blank_discarded.png"
+dest_files=["res://.godot/imported/dice_blank_discarded.png-f2f081f5625c312785f8e8f5d4fd7248.ctex"]
 
 [params]
 

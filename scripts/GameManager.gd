@@ -59,7 +59,6 @@ func EndEnemyTurn(enemy : Enemy):
 func _on_enemy_die(enemy:Enemy):
 	if enemy == selected_enemy:
 		selected_enemy = null
-		
 	enemy.queue_free()
 	enemies.erase(enemy)
 	if enemies.size() == 0:
@@ -91,8 +90,9 @@ func Spawn(enemyName:String, waveSize: int, indexInWave: int):
 	enemies.append(enemy)
 	# TO DO: dodanie rozmieszczenia przeciwników
 	# TYMCZASOWE
-	var enemyRange: int = 700 / waveSize
-	enemy_instance.position = Vector2(randf_range(-200 + enemyRange * indexInWave + 20, -200 + enemyRange + enemyRange * indexInWave - 40) ,randf_range(-20, 20))
+	var enemyRange: int = 240 / waveSize
+	enemy_instance.position = Vector2(randf_range(-100 + enemyRange * indexInWave + 20, -100 + enemyRange + enemyRange * indexInWave - 40), randf_range(0, 40))
+
 	#Dodałem spawnowanie przeciwników na przedziale wysokości (-20, 20), żeby można było odróżnić paski życia, bo jest za ciasno dla kolegów golemów
 
 func _on_enemy_selected(enemy: Enemy):

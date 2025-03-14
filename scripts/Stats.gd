@@ -11,7 +11,7 @@ class_name Stats
 @export var health: int
 @export var armor: int
 
-@export var health_display: ProgressBar
+@export var health_display: TextureProgressBar
 @export var armor_display: RichTextLabel
 @export var damage_display: RichTextLabel
 
@@ -27,8 +27,9 @@ func _ready():
 	SetDamageMult(damage_multiplier)
 	SetArmor(armor)
 	SetHealth(health)
-
+	
 func DealDamage(value):
+	print(str(value) + " zadany dmg - " + self.name)
 	if armor > value:
 		SetArmor(armor - value)
 	else:
@@ -79,6 +80,6 @@ func _UpdateDisplays():
 		health_display.max_value = max_health
 		health_display.value = health
 		if health_display.get_child_count() != 0:
-			(health_display.get_child(0) as RichTextLabel).text = str(health) + " / " + str(max_health)
+			(health_display.get_child(0) as RichTextLabel).text = "[center] [b] " + str(health) + " / " + str(max_health)
 	if armor_display: armor_display.text = str(armor)
 	if damage_display: damage_display.text = "attack " + str(damage)

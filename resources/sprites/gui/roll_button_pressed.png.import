@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvv6l0ls2xhoc"
-path="res://.godot/imported/attack+.png-b8e1cb9bc723c73257b16608e77044b2.ctex"
+uid="uid://bu0c8wqbo3pja"
+path="res://.godot/imported/roll_button_pressed.png-49f8ca9523a4fdea38404882389ba7ab.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/sprites/attack+.png"
-dest_files=["res://.godot/imported/attack+.png-b8e1cb9bc723c73257b16608e77044b2.ctex"]
+source_file="res://resources/sprites/gui/roll_button_pressed.png"
+dest_files=["res://.godot/imported/roll_button_pressed.png-49f8ca9523a4fdea38404882389ba7ab.ctex"]
 
 [params]
 

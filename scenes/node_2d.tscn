@@ -1,26 +1,28 @@
-[gd_scene load_steps=52 format=3 uid="uid://dgf160ru2xglf"]
+[gd_scene load_steps=58 format=3 uid="uid://dgf160ru2xglf"]
 
-[ext_resource type="Texture2D" uid="uid://fyjb3wkqwkd0" path="res://resources/sprites/wcaleniestocktlo.jpeg" id="1_7xv4b"]
-[ext_resource type="Texture2D" uid="uid://chub8cvaq13w5" path="res://resources/sprites/gui/TitleBox_64x16.png" id="2_5pjmg"]
+[ext_resource type="Texture2D" uid="uid://chaw4tgfu2v36" path="res://resources/sprites/background_placeholder_384x256.png" id="1_it8q8"]
+[ext_resource type="Texture2D" uid="uid://0idhbjjmixj2" path="res://resources/sprites/gui/roll_button_normal.png" id="2_ap1x7"]
 [ext_resource type="AudioStream" uid="uid://bjv2joeyhwiht" path="res://resources/sounds/rolling-dice-2-102706.mp3" id="2_ysa8a"]
+[ext_resource type="Texture2D" uid="uid://bu0c8wqbo3pja" path="res://resources/sprites/gui/roll_button_pressed.png" id="3_5qpka"]
 [ext_resource type="Script" path="res://scripts/DiceManager.gd" id="3_d6ogl"]
-[ext_resource type="Texture2D" uid="uid://chomilp4fcoei" path="res://resources/sprites/dice_blank.png" id="4_seqyf"]
-[ext_resource type="Texture2D" uid="uid://cngl825iogtkt" path="res://resources/sprites/dice_blank_selected.png" id="5_covew"]
+[ext_resource type="Texture2D" uid="uid://by4imk32esbhj" path="res://resources/sprites/gui/roll_button_hover.png" id="4_7sywy"]
+[ext_resource type="Texture2D" uid="uid://xgjwmqq5dbnu" path="res://resources/sprites/dice_blank_discarded.png" id="4_be6h3"]
 [ext_resource type="Script" path="res://scripts/Dice.gd" id="6_8abxr"]
-[ext_resource type="Texture2D" uid="uid://4rwl0w387wy" path="res://resources/sprites/SwordIcon.png" id="7_y5nll"]
-[ext_resource type="Script" path="res://scripts/ActionHandler.gd" id="8_2bhmu"]
-[ext_resource type="Texture2D" uid="uid://bvv6l0ls2xhoc" path="res://resources/sprites/CrossedSwordsIcon.png" id="9_0vkd1"]
-[ext_resource type="Texture2D" uid="uid://0438thmurme3" path="res://resources/sprites/defense.png" id="10_cwe2b"]
-[ext_resource type="Texture2D" uid="uid://s86emd55fdhu" path="res://resources/sprites/defense+.png" id="11_wp3wu"]
+[ext_resource type="Texture2D" uid="uid://4rwl0w387wy" path="res://resources/sprites/attack.png" id="7_y5nll"]
+[ext_resource type="Script" path="res://prefabs/enemies/ActionHandler.gd" id="8_2bhmu"]
+[ext_resource type="Texture2D" uid="uid://bvv6l0ls2xhoc" path="res://resources/sprites/attack+.png" id="9_0vkd1"]
+[ext_resource type="Texture2D" uid="uid://ba5wtaog7bky7" path="res://resources/sprites/Map.png" id="9_7p63c"]
+[ext_resource type="Texture2D" uid="uid://gk4b4ism4m7q" path="res://resources/sprites/defense.png" id="10_cwe2b"]
+[ext_resource type="Texture2D" uid="uid://de0lk4tqfb25o" path="res://resources/sprites/defense+.png" id="11_wp3wu"]
 [ext_resource type="Texture2D" uid="uid://b6oas1x5edqdw" path="res://resources/sprites/special.png" id="12_0plxn"]
 [ext_resource type="Script" path="res://scripts/Player.gd" id="13_neu1h"]
 [ext_resource type="Script" path="res://scripts/Stats.gd" id="13_rpiqy"]
 [ext_resource type="Script" path="res://scripts/ItemSlot.gd" id="15_f2b61"]
-[ext_resource type="Texture2D" uid="uid://caa7vncbyk383" path="res://resources/sprites/gui/HealthBarPanel_320x41.png" id="15_gl8en"]
 [ext_resource type="Script" path="res://scripts/Item.gd" id="15_rrrv6"]
-[ext_resource type="Texture2D" uid="uid://dcwa3irn113l8" path="res://resources/sprites/attack+.png" id="17_q7msi"]
-[ext_resource type="Texture2D" uid="uid://brocaxjf0csnc" path="res://resources/sprites/attack.png" id="18_84or3"]
-[ext_resource type="Texture2D" uid="uid://d4jn21hgjckd7" path="res://resources/sprites/gui/ItemBox_24x24.png" id="18_uqslk"]
+[ext_resource type="Texture2D" uid="uid://o1xs4nq7r15s" path="res://resources/sprites/gui/enemy_health_bar_under.png" id="16_nju1e"]
+[ext_resource type="Texture2D" uid="uid://b6pi7ck3cw287" path="res://resources/sprites/gui/enemy_health_bar_over.png" id="17_mrjxt"]
+[ext_resource type="Texture2D" uid="uid://g6nv5acd131v" path="res://resources/sprites/gui/enemy_health_bar_progress.png" id="18_rhdlf"]
+[ext_resource type="Texture2D" uid="uid://bupkiv3mmobua" path="res://resources/sprites/dice_blank.png" id="20_mjiuu"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_gpx1j"]
 device = -1
@@ -32,6 +34,8 @@ unicode = 32
 [sub_resource type="Shortcut" id="Shortcut_h1jpe"]
 events = [SubResource("InputEventKey_gpx1j")]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ha7qa"]
+
 [sub_resource type="InputEventKey" id="InputEventKey_xc8jq"]
 device = -1
 keycode = 4194442
@@ -39,6 +43,12 @@ unicode = 52
 
 [sub_resource type="Shortcut" id="Shortcut_xpydi"]
 events = [SubResource("InputEventKey_xc8jq")]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1qc8r"]
+load_path = "res://.godot/imported/dice_blank.png-9a7954227667b39a6acc9f6bc6697009.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sjty4"]
+load_path = "res://.godot/imported/dice_blank_selected.png-82a52ef3e46411afb2d8c373f6f61629.ctex"
 
 [sub_resource type="InputEventKey" id="InputEventKey_vwybg"]
 device = -1
@@ -115,21 +125,19 @@ events = [SubResource("InputEventKey_iheks")]
 
 [sub_resource type="Shortcut" id="Shortcut_g0snw"]
 
-[sub_resource type="GDScript" id="GDScript_5vr14"]
-script/source = "extends ProgressBar
-func _ready():
-	var sb = StyleBoxFlat.new()
-	add_theme_stylebox_override(\"fill\", sb)
-	sb.bg_color = Color(\"ff0000\")
-"
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_mvwe7"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s8urw"]
+load_path = "res://.godot/imported/defense.png-00423a0f6810d51d14bc9b0c74390d09.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l0w3n"]
 size = Vector2(60, 60)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0w4yj"]
 size = Vector2(43, 35)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b8hbx"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mptuk"]
+load_path = "res://.godot/imported/defense+.png-bbb16147e31c8f4ba73109956cd3a4b9.ctex"
 
 [sub_resource type="Gradient" id="Gradient_0ex8s"]
 colors = PackedColorArray(0, 0, 0, 0.14902, 1, 1, 1, 0.580392)
@@ -144,32 +152,50 @@ color_ramp = SubResource("Gradient_0ex8s")
 noise = SubResource("FastNoiseLite_30jvo")
 
 [node name="main_scene" type="Node2D"]
-scale = Vector2(0.356, 0.357099)
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0.701961)
 show_behind_parent = true
-offset_left = -540.0
-offset_top = -360.0
-offset_right = 540.0
-offset_bottom = 360.0
-texture = ExtResource("1_7xv4b")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -128.0
+offset_right = 192.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_it8q8")
+
+[node name="Roll" type="TextureButton" parent="."]
+texture_filter = 1
+offset_left = -161.0
+offset_top = -21.0
+offset_right = -97.0
+offset_bottom = 11.0
+shortcut = SubResource("Shortcut_h1jpe")
+texture_normal = ExtResource("2_ap1x7")
+texture_pressed = ExtResource("3_5qpka")
+texture_hover = ExtResource("4_7sywy")
+texture_disabled = SubResource("CompressedTexture2D_ha7qa")
 metadata/_edit_use_anchors_ = true
 
-[node name="Roll" type="Button" parent="."]
-texture_filter = 1
-offset_left = -509.0
-offset_top = -124.0
-offset_right = -397.96
-offset_bottom = -93.0
-scale = Vector2(2.675, 2.675)
-shortcut = SubResource("Shortcut_h1jpe")
-text = "Roll"
-icon = ExtResource("2_5pjmg")
-flat = true
-icon_alignment = 1
-expand_icon = true
-metadata/_edit_use_anchors_ = true
+[node name="RichTextLabel" type="RichTextLabel" parent="Roll"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 5.865
+offset_bottom = 5.865
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "[center] ROLL"
 
 [node name="sound" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(-561, -103)
@@ -177,123 +203,164 @@ scale = Vector2(2.675, 2.675)
 stream = ExtResource("2_ysa8a")
 
 [node name="Dices" type="Node2D" parent="."]
-position = Vector2(-513, -335)
+position = Vector2(-180, -88)
 script = ExtResource("3_d6ogl")
 
 [node name="Dice1" type="TextureButton" parent="Dices"]
-offset_right = 100.0
-offset_bottom = 100.0
+offset_right = 32.0
+offset_bottom = 32.0
 focus_mode = 0
 toggle_mode = true
 action_mode = 0
 button_mask = 0
 shortcut = SubResource("Shortcut_xpydi")
-texture_normal = ExtResource("4_seqyf")
-texture_pressed = ExtResource("5_covew")
+texture_normal = SubResource("CompressedTexture2D_1qc8r")
+texture_pressed = SubResource("CompressedTexture2D_sjty4")
+texture_disabled = ExtResource("4_be6h3")
 script = ExtResource("6_8abxr")
 
 [node name="Icon" type="Sprite2D" parent="Dices/Dice1"]
-position = Vector2(50, 50)
+position = Vector2(16, 16)
+scale = Vector2(0.75, 0.75)
 
 [node name="Dice2" type="TextureButton" parent="Dices"]
-offset_left = 100.0
-offset_right = 200.0
-offset_bottom = 100.0
+offset_left = 34.0
+offset_right = 66.0
+offset_bottom = 32.0
 focus_mode = 0
 toggle_mode = true
 action_mode = 0
 button_mask = 0
 shortcut = SubResource("Shortcut_2hsbf")
-texture_normal = ExtResource("4_seqyf")
-texture_pressed = ExtResource("5_covew")
+texture_normal = SubResource("CompressedTexture2D_1qc8r")
+texture_pressed = SubResource("CompressedTexture2D_sjty4")
+texture_disabled = ExtResource("4_be6h3")
 script = ExtResource("6_8abxr")
 
 [node name="Icon" type="Sprite2D" parent="Dices/Dice2"]
-position = Vector2(50, 50)
+position = Vector2(16, 16)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("7_y5nll")
 
 [node name="Dice3" type="TextureButton" parent="Dices"]
-offset_left = 200.0
-offset_right = 300.0
-offset_bottom = 100.0
+offset_left = 67.0
+offset_right = 99.0
+offset_bottom = 32.0
 focus_mode = 0
 toggle_mode = true
 action_mode = 0
 button_mask = 0
 shortcut = SubResource("Shortcut_2eif3")
-texture_normal = ExtResource("4_seqyf")
-texture_pressed = ExtResource("5_covew")
+texture_normal = SubResource("CompressedTexture2D_1qc8r")
+texture_pressed = SubResource("CompressedTexture2D_sjty4")
+texture_disabled = ExtResource("4_be6h3")
 script = ExtResource("6_8abxr")
 
 [node name="Icon" type="Sprite2D" parent="Dices/Dice3"]
-position = Vector2(50, 50)
+position = Vector2(16, 16)
+scale = Vector2(0.75, 0.75)
 
 [node name="Dice4" type="TextureButton" parent="Dices"]
-offset_top = 100.0
-offset_right = 100.0
-offset_bottom = 200.0
+offset_top = 32.0
+offset_right = 32.0
+offset_bottom = 64.0
 focus_mode = 0
 toggle_mode = true
 action_mode = 0
 button_mask = 0
 shortcut = SubResource("Shortcut_kbdob")
-texture_normal = ExtResource("4_seqyf")
-texture_pressed = ExtResource("5_covew")
+texture_normal = SubResource("CompressedTexture2D_1qc8r")
+texture_pressed = SubResource("CompressedTexture2D_sjty4")
+texture_disabled = ExtResource("4_be6h3")
 script = ExtResource("6_8abxr")
 
 [node name="Icon" type="Sprite2D" parent="Dices/Dice4"]
-position = Vector2(50, 50)
+position = Vector2(16, 16)
+scale = Vector2(0.75, 0.75)
 
 [node name="Dice5" type="TextureButton" parent="Dices"]
-offset_left = 100.0
-offset_top = 100.0
-offset_right = 200.0
-offset_bottom = 200.0
+offset_left = 34.0
+offset_top = 32.0
+offset_right = 66.0
+offset_bottom = 64.0
 focus_mode = 0
 toggle_mode = true
 action_mode = 0
 button_mask = 0
 shortcut = SubResource("Shortcut_3fgaf")
-texture_normal = ExtResource("4_seqyf")
-texture_pressed = ExtResource("5_covew")
+texture_normal = SubResource("CompressedTexture2D_1qc8r")
+texture_pressed = SubResource("CompressedTexture2D_sjty4")
+texture_disabled = ExtResource("4_be6h3")
 script = ExtResource("6_8abxr")
 
 [node name="Icon" type="Sprite2D" parent="Dices/Dice5"]
-position = Vector2(50, 50)
+position = Vector2(16, 16)
+scale = Vector2(0.75, 0.75)
 
 [node name="Dice6" type="TextureButton" parent="Dices"]
-offset_left = 200.0
-offset_top = 100.0
-offset_right = 300.0
-offset_bottom = 200.0
+offset_left = 67.0
+offset_top = 32.0
+offset_right = 99.0
+offset_bottom = 64.0
 focus_mode = 0
 toggle_mode = true
 action_mode = 0
 button_mask = 0
 shortcut = SubResource("Shortcut_evova")
-texture_normal = ExtResource("4_seqyf")
-texture_pressed = ExtResource("5_covew")
+texture_normal = SubResource("CompressedTexture2D_1qc8r")
+texture_pressed = SubResource("CompressedTexture2D_sjty4")
+texture_disabled = ExtResource("4_be6h3")
 script = ExtResource("6_8abxr")
 
 [node name="Icon" type="Sprite2D" parent="Dices/Dice6"]
-position = Vector2(50, 50)
+position = Vector2(16, 16)
+scale = Vector2(0.75, 0.75)
 
 [node name="ActionButtons" type="Node2D" parent="."]
-position = Vector2(53.3708, 134.417)
-scale = Vector2(0.729292, 0.729292)
+z_index = 1
 
-[node name="Atak" type="Button" parent="ActionButtons"]
-offset_left = -200.0
-offset_right = -100.0
-offset_bottom = 100.0
+[node name="TextureRect" type="TextureRect" parent="ActionButtons"]
+offset_left = -92.0
+offset_top = 56.0
+offset_right = 136.0
+offset_bottom = 173.0
+texture = ExtResource("9_7p63c")
+expand_mode = 1
+
+[node name="ActionDescription" type="RichTextLabel" parent="ActionButtons"]
+offset_left = 52.0
+offset_top = -89.0
+offset_right = 136.0
+offset_bottom = -66.0
+fit_content = true
+scroll_active = false
+
+[node name="GridContainer" type="GridContainer" parent="ActionButtons"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = 63.0
+offset_right = 107.0
+offset_bottom = 147.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+size_flags_horizontal = 0
+columns = 4
+
+[node name="Atak" type="Button" parent="ActionButtons/GridContainer"]
+layout_mode = 2
 shortcut = SubResource("Shortcut_rhfiy")
 icon = ExtResource("7_y5nll")
 icon_alignment = 1
 script = ExtResource("8_2bhmu")
 metadata/_edit_use_anchors_ = true
 
-[node name="Atak_Plus" type="Button" parent="ActionButtons"]
-offset_left = -100.0
-offset_bottom = 100.0
+[node name="Atak_Plus" type="Button" parent="ActionButtons/GridContainer"]
+layout_mode = 2
 shortcut = SubResource("Shortcut_g3nbu")
 icon = ExtResource("9_0vkd1")
 icon_alignment = 1
@@ -301,107 +368,62 @@ script = ExtResource("8_2bhmu")
 action = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Obrona" type="Button" parent="ActionButtons"]
-offset_left = -200.0
-offset_top = 100.0
-offset_right = -100.0
-offset_bottom = 200.0
+[node name="Obrona" type="Button" parent="ActionButtons/GridContainer"]
+layout_mode = 2
 shortcut = SubResource("Shortcut_ggk13")
 icon = ExtResource("10_cwe2b")
-expand_icon = true
+icon_alignment = 1
 script = ExtResource("8_2bhmu")
 action = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="Obrona_Plus" type="Button" parent="ActionButtons"]
-offset_left = -100.0
-offset_top = 100.0
-offset_bottom = 200.0
+[node name="Obrona_Plus" type="Button" parent="ActionButtons/GridContainer"]
+layout_mode = 2
 shortcut = SubResource("Shortcut_0pd6j")
 icon = ExtResource("11_wp3wu")
-expand_icon = true
+icon_alignment = 1
 script = ExtResource("8_2bhmu")
 action = 3
 metadata/_edit_use_anchors_ = true
 
-[node name="Special1" type="Button" parent="ActionButtons"]
-anchors_preset = -1
-anchor_left = 1.5
-anchor_top = 2.0
-anchor_right = 1.5
-anchor_bottom = 2.0
-offset_right = 100.0
-offset_bottom = 100.0
+[node name="Special1" type="Button" parent="ActionButtons/GridContainer"]
+layout_mode = 2
 shortcut = SubResource("Shortcut_g0snw")
 icon = ExtResource("12_0plxn")
 icon_alignment = 1
 vertical_icon_alignment = 0
-expand_icon = true
 script = ExtResource("8_2bhmu")
 action = 4
 metadata/_edit_use_anchors_ = true
 
-[node name="Special2" type="Button" parent="ActionButtons"]
-anchors_preset = -1
-anchor_left = 1.5
-anchor_top = 2.0
-anchor_right = 1.5
-anchor_bottom = 2.0
-offset_left = 100.0
-offset_right = 200.0
-offset_bottom = 100.0
+[node name="Special2" type="Button" parent="ActionButtons/GridContainer"]
+layout_mode = 2
 shortcut = SubResource("Shortcut_g0snw")
 icon = ExtResource("12_0plxn")
 icon_alignment = 1
 vertical_icon_alignment = 0
-expand_icon = true
 script = ExtResource("8_2bhmu")
 action = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="Special3" type="Button" parent="ActionButtons"]
-anchors_preset = -1
-anchor_left = 1.5
-anchor_top = 2.0
-anchor_right = 1.5
-anchor_bottom = 2.0
-offset_top = 100.0
-offset_right = 100.0
-offset_bottom = 200.0
+[node name="Special3" type="Button" parent="ActionButtons/GridContainer"]
+layout_mode = 2
 shortcut = SubResource("Shortcut_g0snw")
 icon = ExtResource("12_0plxn")
 icon_alignment = 1
 vertical_icon_alignment = 0
-expand_icon = true
 script = ExtResource("8_2bhmu")
 action = 6
 metadata/_edit_use_anchors_ = true
 
-[node name="Special4" type="Button" parent="ActionButtons"]
-anchors_preset = -1
-anchor_left = 1.5
-anchor_top = 2.0
-anchor_right = 1.5
-anchor_bottom = 2.0
-offset_left = 100.0
-offset_top = 100.0
-offset_right = 200.0
-offset_bottom = 200.0
+[node name="Special4" type="Button" parent="ActionButtons/GridContainer"]
+layout_mode = 2
 shortcut = SubResource("Shortcut_g0snw")
 icon = ExtResource("12_0plxn")
 icon_alignment = 1
 vertical_icon_alignment = 0
-expand_icon = true
 script = ExtResource("8_2bhmu")
 action = 7
-metadata/_edit_use_anchors_ = true
-
-[node name="ActionDescription" type="RichTextLabel" parent="ActionButtons"]
-offset_left = -215.693
-offset_top = 199.67
-offset_right = -140.693
-offset_bottom = 239.67
-fit_content = true
 metadata/_edit_use_anchors_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -412,75 +434,80 @@ armor_slots = [NodePath("Armor"), NodePath("Armor2"), NodePath("Armor3"), NodePa
 weapon_slots = [NodePath("Weapon")]
 
 [node name="Stats" type="Node2D" parent="Player" node_paths=PackedStringArray("health_display", "armor_display", "damage_display")]
+z_index = 1
 position = Vector2(19, 28)
-scale = Vector2(0.371607, 0.371607)
 script = ExtResource("13_rpiqy")
 base_max_health = 100
 base_damage = 100
 health = 100
 armor = 10
-health_display = NodePath("HpDisplay")
+health_display = NodePath("HealthBar")
 armor_display = NodePath("ArmorDisplay/text")
 damage_display = NodePath("AttackDisplay")
 
 [node name="ArmorDisplay" type="Node2D" parent="Player/Stats"]
-position = Vector2(-513, -260)
 
 [node name="icon" type="Sprite2D" parent="Player/Stats/ArmorDisplay"]
-position = Vector2(644.86, 308.438)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("10_cwe2b")
+position = Vector2(60, 51)
+texture = SubResource("CompressedTexture2D_s8urw")
 
 [node name="text" type="RichTextLabel" parent="Player/Stats/ArmorDisplay"]
-offset_left = 655.624
-offset_top = 303.056
-offset_right = 695.624
-offset_bottom = 343.056
+offset_left = 75.0
+offset_top = 40.0
+offset_right = 112.0
+offset_bottom = 64.0
 text = "0"
+scroll_active = false
 
-[node name="HpDisplay" type="ProgressBar" parent="Player/Stats"]
-offset_left = -148.006
-offset_top = 217.972
-offset_right = 365.994
-offset_bottom = 284.972
-scale = Vector2(0.575032, 0.575032)
-step = 1.0
-rounded = true
-show_percentage = false
-script = SubResource("GDScript_5vr14")
-metadata/_edit_use_anchors_ = true
+[node name="HealthBar" type="TextureProgressBar" parent="Player/Stats"]
+offset_left = -51.0
+offset_top = 16.0
+offset_right = 13.0
+offset_bottom = 35.0
+texture_under = ExtResource("16_nju1e")
+texture_over = ExtResource("17_mrjxt")
+texture_progress = ExtResource("18_rhdlf")
+tint_under = Color(0.605274, 0.605274, 0.605274, 1)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Player/Stats/HpDisplay"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Player/Stats/HealthBar"]
 texture_filter = 1
-layout_mode = 0
-offset_left = 8.69517
-offset_top = 8.69519
-offset_right = 265.695
-offset_bottom = 34.6952
-scale = Vector2(2, 2)
-text = "10 / 100"
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 8.0
+offset_right = 174.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.24708, 0.249399)
+bbcode_enabled = true
+text = "[center] [b]  100/100"
 fit_content = true
-metadata/_edit_use_anchors_ = true
-
-[node name="HealthBarBorder" type="TextureRect" parent="Player/Stats/HpDisplay"]
-texture_filter = 1
-layout_mode = 0
-offset_left = -14.0
-offset_top = -2.0
-offset_right = 529.0
-offset_bottom = 68.0
-texture = ExtResource("15_gl8en")
 
 [node name="AttackDisplay" type="RichTextLabel" parent="Player/Stats"]
-offset_left = 148.006
-offset_top = 69.9664
-offset_right = 338.006
-offset_bottom = 111.966
+offset_left = 50.0
+offset_top = 74.0
+offset_right = 138.0
+offset_bottom = 105.0
+scale = Vector2(0.558831, 0.558831)
 text = "Attack 10"
+scroll_active = false
 
 [node name="Backpack" type="Node2D" parent="Player"]
-position = Vector2(-150, 75)
+position = Vector2(-133, 69)
 scale = Vector2(0.369895, 0.369895)
+
+[node name="Background" type="TextureRect" parent="Player/Backpack"]
+offset_left = -127.063
+offset_top = -121.656
+offset_right = 52.9369
+offset_bottom = 58.3439
+scale = Vector2(1.51618, 1.96148)
+size_flags_vertical = 3
+texture = ExtResource("9_7p63c")
+expand_mode = 4
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Player/Backpack"]
 clip_contents = false
@@ -493,12 +520,6 @@ offset_bottom = 132.0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="Background" type="TextureRect" parent="Player/Backpack/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-texture = SubResource("PlaceholderTexture2D_mvwe7")
-expand_mode = 4
 
 [node name="Slot2" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer"]
 position = Vector2(90, 30)
@@ -522,7 +543,7 @@ offset_right = 30.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("18_uqslk")
+texture = ExtResource("20_mjiuu")
 
 [node name="Slot3" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer"]
 position = Vector2(150, 30)
@@ -546,7 +567,7 @@ offset_right = 30.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("18_uqslk")
+texture = ExtResource("20_mjiuu")
 
 [node name="Slot" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer"]
 position = Vector2(30, 30)
@@ -570,7 +591,7 @@ offset_right = 30.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("18_uqslk")
+texture = ExtResource("20_mjiuu")
 
 [node name="Item" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot"]
 script = ExtResource("15_rrrv6")
@@ -620,7 +641,7 @@ offset_right = 30.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("18_uqslk")
+texture = ExtResource("20_mjiuu")
 
 [node name="Item" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot4"]
 script = ExtResource("15_rrrv6")
@@ -647,7 +668,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("17_q7msi")
+texture = SubResource("CompressedTexture2D_b8hbx")
 expand_mode = 2
 
 [node name="Slot5" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer"]
@@ -672,7 +693,7 @@ offset_right = 30.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("18_uqslk")
+texture = ExtResource("20_mjiuu")
 
 [node name="Item" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot5"]
 script = ExtResource("15_rrrv6")
@@ -700,7 +721,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("18_84or3")
+texture = ExtResource("7_y5nll")
 expand_mode = 2
 
 [node name="Slot6" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer"]
@@ -725,7 +746,7 @@ offset_right = 30.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("18_uqslk")
+texture = ExtResource("20_mjiuu")
 
 [node name="Item" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot6"]
 script = ExtResource("15_rrrv6")
@@ -753,7 +774,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("11_wp3wu")
+texture = SubResource("CompressedTexture2D_mptuk")
 expand_mode = 2
 
 [node name="Slot7" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer"]
@@ -778,7 +799,7 @@ offset_right = 30.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("18_uqslk")
+texture = ExtResource("20_mjiuu")
 
 [node name="Slot8" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer"]
 position = Vector2(150, 150)
@@ -802,7 +823,7 @@ offset_right = 30.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("18_uqslk")
+texture = ExtResource("20_mjiuu")
 
 [node name="Item" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot8"]
 script = ExtResource("15_rrrv6")
@@ -830,7 +851,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("10_cwe2b")
+texture = SubResource("CompressedTexture2D_s8urw")
 expand_mode = 2
 
 [node name="Slot9" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer"]
@@ -855,7 +876,7 @@ offset_right = 30.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("18_uqslk")
+texture = ExtResource("20_mjiuu")
 
 [node name="Item" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot9"]
 script = ExtResource("15_rrrv6")
@@ -882,7 +903,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("10_cwe2b")
+texture = SubResource("CompressedTexture2D_s8urw")
 expand_mode = 2
 
 [node name="Slot10" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer"]
@@ -907,7 +928,7 @@ offset_right = 30.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("18_uqslk")
+texture = ExtResource("20_mjiuu")
 
 [node name="Slot11" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer"]
 position = Vector2(150, 210)
@@ -931,7 +952,7 @@ offset_right = 30.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("18_uqslk")
+texture = ExtResource("20_mjiuu")
 
 [node name="Slot12" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer"]
 position = Vector2(30, 210)
@@ -955,10 +976,10 @@ offset_right = 30.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("18_uqslk")
+texture = ExtResource("20_mjiuu")
 
 [node name="Armor" type="Area2D" parent="Player"]
-position = Vector2(-74, 51)
+position = Vector2(154, 64)
 scale = Vector2(0.355, 0.355)
 script = ExtResource("15_f2b61")
 acceptable_items = Array[int]([2])
@@ -982,7 +1003,7 @@ grow_vertical = 2
 texture = SubResource("NoiseTexture2D_ugusv")
 
 [node name="Armor2" type="Area2D" parent="Player"]
-position = Vector2(-74, 73)
+position = Vector2(154, 86)
 scale = Vector2(0.355, 0.355)
 script = ExtResource("15_f2b61")
 acceptable_items = Array[int]([3])
@@ -1006,7 +1027,7 @@ grow_vertical = 2
 texture = SubResource("NoiseTexture2D_ugusv")
 
 [node name="Armor3" type="Area2D" parent="Player"]
-position = Vector2(-96, 73)
+position = Vector2(132, 86)
 scale = Vector2(0.355, 0.355)
 script = ExtResource("15_f2b61")
 acceptable_items = Array[int]([5])
@@ -1030,7 +1051,7 @@ grow_vertical = 2
 texture = SubResource("NoiseTexture2D_ugusv")
 
 [node name="Armor4" type="Area2D" parent="Player"]
-position = Vector2(-74, 95)
+position = Vector2(154, 108)
 scale = Vector2(0.355, 0.355)
 script = ExtResource("15_f2b61")
 acceptable_items = Array[int]([4])
@@ -1054,7 +1075,7 @@ grow_vertical = 2
 texture = SubResource("NoiseTexture2D_ugusv")
 
 [node name="Weapon" type="Area2D" parent="Player"]
-position = Vector2(-52, 73)
+position = Vector2(176, 86)
 scale = Vector2(0.355, 0.355)
 script = ExtResource("15_f2b61")
 acceptable_items = Array[int]([1])
@@ -1078,27 +1099,27 @@ grow_vertical = 2
 texture = SubResource("NoiseTexture2D_ugusv")
 
 [connection signal="pressed" from="Roll" to="Dices" method="RollOrReroll"]
-[connection signal="mouse_entered" from="ActionButtons/Atak" to="ActionButtons/Atak" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="ActionButtons/Atak" to="ActionButtons/Atak" method="_on_mouse_exited"]
-[connection signal="pressed" from="ActionButtons/Atak" to="ActionButtons/Atak" method="_on_button_press"]
-[connection signal="mouse_entered" from="ActionButtons/Atak_Plus" to="ActionButtons/Atak_Plus" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="ActionButtons/Atak_Plus" to="ActionButtons/Atak_Plus" method="_on_mouse_exited"]
-[connection signal="pressed" from="ActionButtons/Atak_Plus" to="ActionButtons/Atak_Plus" method="_on_button_press"]
-[connection signal="mouse_entered" from="ActionButtons/Obrona" to="ActionButtons/Obrona" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="ActionButtons/Obrona" to="ActionButtons/Obrona" method="_on_mouse_exited"]
-[connection signal="pressed" from="ActionButtons/Obrona" to="ActionButtons/Obrona" method="_on_button_press"]
-[connection signal="mouse_entered" from="ActionButtons/Obrona_Plus" to="ActionButtons/Obrona_Plus" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="ActionButtons/Obrona_Plus" to="ActionButtons/Obrona_Plus" method="_on_mouse_exited"]
-[connection signal="pressed" from="ActionButtons/Obrona_Plus" to="ActionButtons/Obrona_Plus" method="_on_button_press"]
-[connection signal="mouse_entered" from="ActionButtons/Special1" to="ActionButtons/Special1" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="ActionButtons/Special1" to="ActionButtons/Special1" method="_on_mouse_exited"]
-[connection signal="pressed" from="ActionButtons/Special1" to="ActionButtons/Special1" method="_on_button_press"]
-[connection signal="mouse_entered" from="ActionButtons/Special2" to="ActionButtons/Special2" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="ActionButtons/Special2" to="ActionButtons/Special2" method="_on_mouse_exited"]
-[connection signal="pressed" from="ActionButtons/Special2" to="ActionButtons/Special2" method="_on_button_press"]
-[connection signal="mouse_entered" from="ActionButtons/Special3" to="ActionButtons/Special3" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="ActionButtons/Special3" to="ActionButtons/Special3" method="_on_mouse_exited"]
-[connection signal="pressed" from="ActionButtons/Special3" to="ActionButtons/Special3" method="_on_button_press"]
-[connection signal="mouse_entered" from="ActionButtons/Special4" to="ActionButtons/Special4" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="ActionButtons/Special4" to="ActionButtons/Special4" method="_on_mouse_exited"]
-[connection signal="pressed" from="ActionButtons/Special4" to="ActionButtons/Special4" method="_on_button_press"]
+[connection signal="mouse_entered" from="ActionButtons/GridContainer/Atak" to="ActionButtons/GridContainer/Atak" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="ActionButtons/GridContainer/Atak" to="ActionButtons/GridContainer/Atak" method="_on_mouse_exited"]
+[connection signal="pressed" from="ActionButtons/GridContainer/Atak" to="ActionButtons/GridContainer/Atak" method="_on_button_press"]
+[connection signal="mouse_entered" from="ActionButtons/GridContainer/Atak_Plus" to="ActionButtons/GridContainer/Atak_Plus" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="ActionButtons/GridContainer/Atak_Plus" to="ActionButtons/GridContainer/Atak_Plus" method="_on_mouse_exited"]
+[connection signal="pressed" from="ActionButtons/GridContainer/Atak_Plus" to="ActionButtons/GridContainer/Atak_Plus" method="_on_button_press"]
+[connection signal="mouse_entered" from="ActionButtons/GridContainer/Obrona" to="ActionButtons/GridContainer/Obrona" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="ActionButtons/GridContainer/Obrona" to="ActionButtons/GridContainer/Obrona" method="_on_mouse_exited"]
+[connection signal="pressed" from="ActionButtons/GridContainer/Obrona" to="ActionButtons/GridContainer/Obrona" method="_on_button_press"]
+[connection signal="mouse_entered" from="ActionButtons/GridContainer/Obrona_Plus" to="ActionButtons/GridContainer/Obrona_Plus" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="ActionButtons/GridContainer/Obrona_Plus" to="ActionButtons/GridContainer/Obrona_Plus" method="_on_mouse_exited"]
+[connection signal="pressed" from="ActionButtons/GridContainer/Obrona_Plus" to="ActionButtons/GridContainer/Obrona_Plus" method="_on_button_press"]
+[connection signal="mouse_entered" from="ActionButtons/GridContainer/Special1" to="ActionButtons/GridContainer/Special1" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="ActionButtons/GridContainer/Special1" to="ActionButtons/GridContainer/Special1" method="_on_mouse_exited"]
+[connection signal="pressed" from="ActionButtons/GridContainer/Special1" to="ActionButtons/GridContainer/Special1" method="_on_button_press"]
+[connection signal="mouse_entered" from="ActionButtons/GridContainer/Special2" to="ActionButtons/GridContainer/Special2" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="ActionButtons/GridContainer/Special2" to="ActionButtons/GridContainer/Special2" method="_on_mouse_exited"]
+[connection signal="pressed" from="ActionButtons/GridContainer/Special2" to="ActionButtons/GridContainer/Special2" method="_on_button_press"]
+[connection signal="mouse_entered" from="ActionButtons/GridContainer/Special3" to="ActionButtons/GridContainer/Special3" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="ActionButtons/GridContainer/Special3" to="ActionButtons/GridContainer/Special3" method="_on_mouse_exited"]
+[connection signal="pressed" from="ActionButtons/GridContainer/Special3" to="ActionButtons/GridContainer/Special3" method="_on_button_press"]
+[connection signal="mouse_entered" from="ActionButtons/GridContainer/Special4" to="ActionButtons/GridContainer/Special4" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="ActionButtons/GridContainer/Special4" to="ActionButtons/GridContainer/Special4" method="_on_mouse_exited"]
+[connection signal="pressed" from="ActionButtons/GridContainer/Special4" to="ActionButtons/GridContainer/Special4" method="_on_button_press"]

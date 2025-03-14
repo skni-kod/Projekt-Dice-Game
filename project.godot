@@ -25,6 +25,10 @@ window/size/viewport_width=384
 window/size/viewport_height=256
 window/stretch/mode="canvas_items"
 
+[gui]
+
+theme/custom_font="res://munro.ttf"
+
 [input]
 
 ui_map={

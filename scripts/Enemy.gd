@@ -9,6 +9,8 @@ var temporaryEffects : Array[TemporaryEffect]
 
 signal enemy_selected(enemy)
 
+@export var sprite: Sprite2D
+
 func _ready() -> void:
 	stats = get_child(0) as Stats
 	var area = $Area2D
@@ -16,9 +18,10 @@ func _ready() -> void:
 	area.input_event.connect(_on_area_2d_input_event)
 
 	# Jeśli przeciwnik ma współdzielony materiał, sklonuj go
-	if self.material:
-		self.material = self.material.duplicate()
-		
+	if sprite.material:
+		sprite.material = sprite.material.duplicate()
+	# Wyczyszczenie wiadomości	
+	$Stats/AttackMessage.text = ""	
 # Funkcja dająca możliwość przeciwnikowi wykonania odpowiednich akcji.
 func DoActions():
 	var attack:AttackDescription
@@ -46,9 +49,9 @@ func set_as_current_enemy():
 	# Zaznacz aktualnego przeciwnika
 	enemy_selected.emit(self)
 	# Zmień grubość linii tylko dla wybranego przeciwnika
-	if self.material and self.material is ShaderMaterial:
-		self.material.set_shader_parameter("thickness", 1.0)  # Pogrubienie
+	if sprite.material and sprite.material is ShaderMaterial:
+		sprite.material.set_shader_parameter("thickness", 1.0)  # Pogrubienie
 		
 func reset_shader():
-	if self.material and self.material is ShaderMaterial:
-		self.material.set_shader_parameter("thickness", 0.0)  # Reset do domyślnej wartości
+	if sprite.material and sprite.material is ShaderMaterial:
+		sprite.material.set_shader_parameter("thickness", 0.0)  # Reset do domyślnej wartości

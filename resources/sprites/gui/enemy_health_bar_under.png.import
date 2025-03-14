@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvv6l0ls2xhoc"
-path="res://.godot/imported/CrossedSwordsIcon.png-3c33465db54ab008bdca0fec8c9eb3e9.ctex"
+uid="uid://o1xs4nq7r15s"
+path="res://.godot/imported/enemy_health_bar_under.png-aa5b09b2152df0865d467511ec59f177.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/sprites/CrossedSwordsIcon.png"
-dest_files=["res://.godot/imported/CrossedSwordsIcon.png-3c33465db54ab008bdca0fec8c9eb3e9.ctex"]
+source_file="res://resources/sprites/gui/enemy_health_bar_under.png"
+dest_files=["res://.godot/imported/enemy_health_bar_under.png-aa5b09b2152df0865d467511ec59f177.ctex"]
 
 [params]
 

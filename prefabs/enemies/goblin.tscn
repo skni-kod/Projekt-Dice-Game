@@ -1,85 +1,163 @@
-[gd_scene load_steps=11 format=3 uid="uid://doshdnk880cao"]
+[gd_scene load_steps=16 format=3 uid="uid://doshdnk880cao"]
 
 [ext_resource type="Material" uid="uid://8k8p3gj8sa65" path="res://shaders/outline.tres" id="1_67upv"]
 [ext_resource type="Texture2D" uid="uid://blrp4b262c4wb" path="res://resources/sprites/enemies/GoblinNormal.png" id="1_ai3ia"]
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_ar5vr"]
 [ext_resource type="Script" path="res://scripts/Stats.gd" id="2_yq5hq"]
 [ext_resource type="Script" path="res://scripts/resource_descriptors/AttackDescription.gd" id="3_pchjh"]
-[ext_resource type="Texture2D" uid="uid://0438thmurme3" path="res://resources/sprites/defense.png" id="3_pqipw"]
+[ext_resource type="Texture2D" uid="uid://o1xs4nq7r15s" path="res://resources/sprites/gui/enemy_health_bar_under.png" id="6_1tq8e"]
+[ext_resource type="Texture2D" uid="uid://b6pi7ck3cw287" path="res://resources/sprites/gui/enemy_health_bar_over.png" id="7_q5pdd"]
+[ext_resource type="Texture2D" uid="uid://g6nv5acd131v" path="res://resources/sprites/gui/enemy_health_bar_progress.png" id="8_tvioi"]
 
 [sub_resource type="Resource" id="Resource_dh45p"]
 script = ExtResource("3_pchjh")
-damage = 0
+damage = 5
 message = "Potyka się o nogi"
 weight = 1
 nextAttackSet = Array[ExtResource("3_pchjh")]([])
 
 [sub_resource type="Resource" id="Resource_d16jd"]
 script = ExtResource("3_pchjh")
-damage = 1
+damage = 5
 message = "Szykuje Mocny atak"
 weight = 1
 nextAttackSet = Array[ExtResource("3_pchjh")]([])
 
-[sub_resource type="GDScript" id="GDScript_xsdyc"]
-script/source = "extends ProgressBar
-func _ready():
-	var sb = StyleBoxFlat.new()
-	add_theme_stylebox_override(\"fill\", sb)
-	sb.bg_color = Color(\"#8B0000\")
-"
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s8urw"]
+load_path = "res://.godot/imported/defense.png-00423a0f6810d51d14bc9b0c74390d09.ctex"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5hutp"]
 radius = 32.1111
 height = 81.5556
 
-[node name="Goblin" type="Sprite2D"]
+[sub_resource type="Animation" id="Animation_4cxvw"]
+resource_name = "Idle"
+length = 2.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0261799, 0.0, -0.0261799, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -1), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_y7hi7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hpwic"]
+_data = {
+"Idle": SubResource("Animation_4cxvw"),
+"RESET": SubResource("Animation_y7hi7")
+}
+
+[node name="Goblin" type="Node2D" node_paths=PackedStringArray("sprite")]
 texture_filter = 1
 material = ExtResource("1_67upv")
 position = Vector2(0, 1)
-scale = Vector2(2, 2)
-texture = ExtResource("1_ai3ia")
 script = ExtResource("1_ar5vr")
 attacks = Array[ExtResource("3_pchjh")]([SubResource("Resource_dh45p"), SubResource("Resource_d16jd")])
+sprite = NodePath("Sprite2D")
 
 [node name="Stats" type="Node2D" parent="." node_paths=PackedStringArray("health_display", "armor_display")]
-scale = Vector2(0.590466, 0.590466)
 script = ExtResource("2_yq5hq")
-health_display = NodePath("HpDisplay")
+base_max_health = 100
+base_damage = 50
+health = 100
+health_display = NodePath("HealthBar")
 armor_display = NodePath("ArmorDisplay/text")
 
-[node name="HpDisplay" type="ProgressBar" parent="Stats"]
-offset_left = -85.5257
-offset_top = -109.236
-offset_right = 428.474
-offset_bottom = -42.236
-scale = Vector2(0.335359, 0.335359)
-step = 1.0
-script = SubResource("GDScript_xsdyc")
-metadata/_edit_use_anchors_ = true
+[node name="HealthBar" type="TextureProgressBar" parent="Stats"]
+offset_left = -32.0
+offset_top = -54.0
+offset_right = 32.0
+offset_bottom = -35.0
+texture_under = ExtResource("6_1tq8e")
+texture_over = ExtResource("7_q5pdd")
+texture_progress = ExtResource("8_tvioi")
+tint_under = Color(0.605274, 0.605274, 0.605274, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Stats/HealthBar"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 8.0
+offset_right = 174.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.24708, 0.249399)
+bbcode_enabled = true
+text = "[center] [b]  100/100"
+fit_content = true
 
 [node name="AttackMessage" type="RichTextLabel" parent="Stats"]
-offset_left = -57.5816
-offset_top = -85.5257
-offset_right = 193.419
-offset_bottom = -45.5254
+offset_left = -37.0
+offset_top = -66.0
+offset_right = 183.0
+offset_bottom = -37.0
+scale = Vector2(0.543378, 0.543378)
 text = "attack.message"
 
 [node name="ArmorDisplay" type="Node2D" parent="Stats"]
-position = Vector2(-577.51, -389.523)
+position = Vector2(32, -43)
 
 [node name="text" type="RichTextLabel" parent="Stats/ArmorDisplay"]
-offset_left = 665.576
-offset_top = 270.126
-offset_right = 705.576
-offset_bottom = 310.126
+offset_left = 7.0
+offset_top = -12.0
+offset_right = 47.0
+offset_bottom = 28.0
 text = "0"
 metadata/_edit_use_anchors_ = true
 
 [node name="icon" type="Sprite2D" parent="Stats/ArmorDisplay"]
-position = Vector2(656.856, 276.648)
-scale = Vector2(0.316736, 0.316736)
-texture = ExtResource("3_pqipw")
+scale = Vector2(0.5, 0.5)
+texture = SubResource("CompressedTexture2D_s8urw")
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -87,3 +165,13 @@ texture = ExtResource("3_pqipw")
 position = Vector2(-1, -4)
 shape = SubResource("CapsuleShape2D_5hutp")
 debug_color = Color(0.811904, 0.213027, 0.858705, 0.42)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hpwic")
+}
+autoplay = "Idle"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = ExtResource("1_67upv")
+texture = ExtResource("1_ai3ia")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4rwl0w387wy"
-path="res://.godot/imported/SwordIcon.png-02a7cb3aa739429c3afa4724f927fafb.ctex"
+uid="uid://b6pi7ck3cw287"
+path="res://.godot/imported/enemy_health_bar_over.png-152cfdec77fd7c5bb2c014c5e0642a0b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/sprites/SwordIcon.png"
-dest_files=["res://.godot/imported/SwordIcon.png-02a7cb3aa739429c3afa4724f927fafb.ctex"]
+source_file="res://resources/sprites/gui/enemy_health_bar_over.png"
+dest_files=["res://.godot/imported/enemy_health_bar_over.png-152cfdec77fd7c5bb2c014c5e0642a0b.ctex"]
 
 [params]
 

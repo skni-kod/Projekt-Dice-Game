@@ -9,7 +9,6 @@ enum Action
 }
 
 @export var action:Action
-
 # Funkcja, przypisująca akcji pewne działanie.
 func HandleAction(act):
 	match act:
@@ -53,7 +52,7 @@ func _on_button_press():
 	HandleAction(action)
 
 func _on_mouse_entered():
-	$"../ActionDescription".text = Action.keys()[action].replace("Plus","+")
+	$"../../ActionDescription".text = Action.keys()[action].replace("Plus","+")
 	
 func _on_mouse_exited():
-	$"../ActionDescription".text = ""
+	$"../../ActionDescription".text = ""

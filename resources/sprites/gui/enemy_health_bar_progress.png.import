@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chub8cvaq13w5"
-path="res://.godot/imported/TitleBox_64x16.png-f132c74e972f35c857b9e4443602bd32.ctex"
+uid="uid://g6nv5acd131v"
+path="res://.godot/imported/enemy_health_bar_progress.png-6dc790b63de55a4fa767ae8ebbe9ff49.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/sprites/gui/TitleBox_64x16.png"
-dest_files=["res://.godot/imported/TitleBox_64x16.png-f132c74e972f35c857b9e4443602bd32.ctex"]
+source_file="res://resources/sprites/gui/enemy_health_bar_progress.png"
+dest_files=["res://.godot/imported/enemy_health_bar_progress.png-6dc790b63de55a4fa767ae8ebbe9ff49.ctex"]
 
 [params]
 
