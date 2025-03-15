@@ -23,7 +23,7 @@ func _init(n : int, waves : Array[Wave], pNode, x, y):
 	visible = true
 	position = Vector2(X, Y)
 	sprite = Sprite2D.new() #sprite z tekstutrą
-	sprite.texture = load("res://resources/sprites/levelicon.png")
+	sprite.texture = load("res://resources/sprites/MapFightIcon.png")
 	add_child(sprite)
 	var collision_shape = CollisionShape2D.new()
 	var shape = RectangleShape2D.new()
@@ -69,7 +69,6 @@ func _input_event(viewport, event, shape_idx) -> void:
 #Tutaj wyświetlamy taki dymek (levelInfo) nad najechanym poziomem
 func _on_mouse_entered() -> void:
 	var mouse_pos = get_viewport().get_mouse_position()
-	#var poziom = int(str(name)[-1]) + 1
 	var text = "Poziom: " + str(levelNumber) + "\nFale: " + str(len(enemiesWave))
 	text += "\n Przeciwnicy:"
 	for wave in enemiesWave:
@@ -77,7 +76,8 @@ func _on_mouse_entered() -> void:
 		for enemy in wave.enemies:
 			text += " " + str(enemy)
 	levelinfo.set_text(text)
-	levelinfo.global_position = mouse_pos + Vector2(20, -25)
+	levelinfo.global_position = mouse_pos + Vector2(-180, -150)
+	levelinfo.z_index = 101
 	levelinfo.show()
 
 func _on_mouse_exited() -> void:

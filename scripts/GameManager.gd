@@ -1,7 +1,5 @@
 extends Node
 
-#TODO trzeba jakoś połączyć mapę z main_scene
-
 var diceManager: DiceManager
 var player: Player
 var enemies: Array[Enemy]
@@ -102,10 +100,10 @@ func _input(event):
 	if event.is_action_pressed("ui_map"):
 		if get_tree().root.get_node("Map"):
 			return
-			
-		get_tree().root.add_child(preload("res://scenes/map.tscn").instantiate())
+		var map = preload("res://scenes/map.tscn").instantiate()
+		get_tree().root.add_child(map)
 		(get_tree().root.get_child(get_tree().root.get_child_count() - 1) as Node2D).position = Vector2(-get_window().get_viewport().get_camera_2d().get_window().get_visible_rect().size.x/2 ,-get_window().get_viewport().get_camera_2d().get_window().get_visible_rect().size.y/2 )
-	
+		map.z_index = 100
 	if event.is_action_pressed("close_ui_map"):
 		if not get_tree().root.get_node("Map"):
 			return

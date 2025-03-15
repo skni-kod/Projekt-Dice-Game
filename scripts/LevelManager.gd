@@ -32,7 +32,7 @@ func _ready() -> void:
 func draw_paths(lvl):
 	var parent = lvl.parentNode
 	var line = Line2D.new()
-	line.width = 4
+	line.width = 2
 	line.default_color = Color(0, 0, 0)
 	line.add_point(Vector2(parent.X, parent.Y))
 	line.add_point(Vector2(lvl.X, lvl.Y))
@@ -79,7 +79,7 @@ func create_levels_layer(previous_layer, current_layer) -> Array:
 		var parentIndex = randi_range(0, len(levels[previous_layer])-1)
 		k = max(k, parentIndex) #zapewnienie, ze scieski nie beda sie ze soba krzyzowac
 		var parentLevel = levels[previous_layer][k]
-		var currentLevel = Level.new(nextLevelIndex, waves, parentLevel, calculate_x_pos(i, n), 0 - 180 * current_layer)
+		var currentLevel = Level.new(nextLevelIndex, waves, parentLevel, calculate_x_pos(i, n), 0 - 50 * current_layer)
 		nextLevelIndex += 1
 		levelsArr.append(currentLevel)
 	return levelsArr
@@ -89,8 +89,8 @@ func calculate_x_pos(i, n):
 	if n == 1:
 		return 0
 	if n == 2:
-		return -200 + 400 * i
+		return -100 + 200 * i
 	if n == 3:
-		return -300 + 300 * i
+		return -100 + 100 * i
 	if n == 4:
-		return -450 + 300 * i 
+		return -140 + 90 * i 
