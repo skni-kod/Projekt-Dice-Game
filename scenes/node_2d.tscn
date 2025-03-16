@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://dgf160ru2xglf"]
+[gd_scene load_steps=59 format=3 uid="uid://dgf160ru2xglf"]
 
 [ext_resource type="Texture2D" uid="uid://chaw4tgfu2v36" path="res://resources/sprites/background_placeholder_384x256.png" id="1_it8q8"]
 [ext_resource type="Texture2D" uid="uid://0idhbjjmixj2" path="res://resources/sprites/gui/roll_button_normal.png" id="2_ap1x7"]
@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://b6pi7ck3cw287" path="res://resources/sprites/gui/enemy_health_bar_over.png" id="17_mrjxt"]
 [ext_resource type="Texture2D" uid="uid://g6nv5acd131v" path="res://resources/sprites/gui/enemy_health_bar_progress.png" id="18_rhdlf"]
 [ext_resource type="Texture2D" uid="uid://bupkiv3mmobua" path="res://resources/sprites/dice_blank.png" id="20_mjiuu"]
+[ext_resource type="Script" path="res://scripts/EffectArray.gd" id="21_1p1i5"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_gpx1j"]
 device = -1
@@ -433,17 +434,15 @@ script = ExtResource("13_neu1h")
 armor_slots = [NodePath("Armor"), NodePath("Armor2"), NodePath("Armor3"), NodePath("Armor4")]
 weapon_slots = [NodePath("Weapon")]
 
-[node name="Stats" type="Node2D" parent="Player" node_paths=PackedStringArray("health_display", "armor_display", "damage_display")]
+[node name="Stats" type="Node2D" parent="Player" node_paths=PackedStringArray("health_display", "armor_display")]
 z_index = 1
 position = Vector2(19, 28)
 script = ExtResource("13_rpiqy")
 base_max_health = 100
-base_damage = 100
 health = 100
 armor = 10
 health_display = NodePath("HealthBar")
 armor_display = NodePath("ArmorDisplay/text")
-damage_display = NodePath("AttackDisplay")
 
 [node name="ArmorDisplay" type="Node2D" parent="Player/Stats"]
 
@@ -494,6 +493,9 @@ offset_bottom = 105.0
 scale = Vector2(0.558831, 0.558831)
 text = "Attack 10"
 scroll_active = false
+
+[node name="EffectArray" type="Node" parent="Player"]
+script = ExtResource("21_1p1i5")
 
 [node name="Backpack" type="Node2D" parent="Player"]
 position = Vector2(-133, 69)

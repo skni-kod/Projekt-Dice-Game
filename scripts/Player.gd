@@ -2,13 +2,18 @@ extends Node
 # Klasa odpowiedzialna za zarządzanie graczem.
 class_name Player
 
-var stats:Stats
-var temporaryEffects : Array[TemporaryEffect]
 @export var armor_slots : Array[ItemSlot]
 @export var weapon_slots : Array[ItemSlot]
+var stats:Stats
+var effects : EffectArray
 
 func _ready() -> void:
-	stats = get_child(0) as Stats
+	for child in get_children():
+		if child is Stats:
+			stats = child as Stats
+		elif child is EffectArray:
+			effects = child as EffectArray
+			
 	for i in armor_slots:
 		i.item_inserted.connect(func (): _on_armor_inserted(i))
 		i.item_removed.connect(func ():_on_armor_removed(i))
@@ -18,7 +23,8 @@ func _ready() -> void:
 		i.item_removed.connect(func ():_on_weapon_removed(i))
 
 func DoActions():
-	pass
+	if stats.should_skip_turn:
+		GameManager.EndPlayerTurn()
 	
 func EndTurn():
 	GameManager.EndPlayerTurn()

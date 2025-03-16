@@ -5,31 +5,34 @@ class_name Stats
 @export var max_health_multiplier = 1.0
 @export var base_max_health: int
 
-@export var damage_multiplier = 1.0
-@export var base_damage: int
+@export var attack_multiplier = 1.0
+@export var base_attack: int
 
 @export var health: int
 @export var armor: int
 
 @export var health_display: TextureProgressBar
 @export var armor_display: RichTextLabel
-@export var damage_display: RichTextLabel
 
 var max_health: int
-var damage: int
+var attack: int
+var should_run_away: bool = false
+var should_skip_turn: bool = false
+var useful_attack_chance_mult: float = 1.0
+var aggresive_attack_chance_mult: float = 1.0
+var special_attack_chance_mult: float = 1.0
 
 signal onDeath
 
 func _ready():
 	SetBaseMaxHealth(base_max_health)
 	SetMaxHealthMult(max_health_multiplier)
-	SetBaseDamage(base_damage)
-	SetDamageMult(damage_multiplier)
+	SetBaseAttack(base_attack)
+	SetAttackMult(attack_multiplier)
 	SetArmor(armor)
 	SetHealth(health)
 	
 func DealDamage(value):
-	print(str(value) + " zadany dmg - " + self.name)
 	if armor > value:
 		SetArmor(armor - value)
 	else:
@@ -65,14 +68,14 @@ func SetMaxHealthMult(value):
 	health = min(health, max_health)
 	_UpdateDisplays()
 	
-func SetBaseDamage(value):
-	base_damage = value
-	damage = damage_multiplier * base_damage
+func SetBaseAttack(value):
+	base_attack = value
+	attack = attack_multiplier * base_attack
 	_UpdateDisplays()
 
-func SetDamageMult(value):
-	damage_multiplier = value
-	damage = damage_multiplier * base_damage
+func SetAttackMult(value):
+	attack_multiplier = value
+	attack = attack_multiplier * base_attack
 	_UpdateDisplays()
 
 func _UpdateDisplays():
@@ -82,4 +85,3 @@ func _UpdateDisplays():
 		if health_display.get_child_count() != 0:
 			(health_display.get_child(0) as RichTextLabel).text = "[center] [b] " + str(health) + " / " + str(max_health)
 	if armor_display: armor_display.text = str(armor)
-	if damage_display: damage_display.text = "attack " + str(damage)

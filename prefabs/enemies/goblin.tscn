@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://doshdnk880cao"]
+[gd_scene load_steps=17 format=3 uid="uid://doshdnk880cao"]
 
 [ext_resource type="Material" uid="uid://8k8p3gj8sa65" path="res://shaders/outline.tres" id="1_67upv"]
 [ext_resource type="Texture2D" uid="uid://blrp4b262c4wb" path="res://resources/sprites/enemies/GoblinNormal.png" id="1_ai3ia"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/resource_descriptors/AttackDescription.gd" id="3_pchjh"]
 [ext_resource type="Texture2D" uid="uid://o1xs4nq7r15s" path="res://resources/sprites/gui/enemy_health_bar_under.png" id="6_1tq8e"]
 [ext_resource type="Texture2D" uid="uid://b6pi7ck3cw287" path="res://resources/sprites/gui/enemy_health_bar_over.png" id="7_q5pdd"]
+[ext_resource type="Script" path="res://scripts/EffectArray.gd" id="8_3m8mw"]
 [ext_resource type="Texture2D" uid="uid://g6nv5acd131v" path="res://resources/sprites/gui/enemy_health_bar_progress.png" id="8_tvioi"]
 
 [sub_resource type="Resource" id="Resource_dh45p"]
@@ -15,6 +16,9 @@ damage = 5
 message = "Potyka się o nogi"
 weight = 1
 nextAttackSet = Array[ExtResource("3_pchjh")]([])
+isUseful = false
+isAggressive = false
+isSpecial = false
 
 [sub_resource type="Resource" id="Resource_d16jd"]
 script = ExtResource("3_pchjh")
@@ -22,6 +26,9 @@ damage = 5
 message = "Szykuje Mocny atak"
 weight = 1
 nextAttackSet = Array[ExtResource("3_pchjh")]([])
+isUseful = false
+isAggressive = false
+isSpecial = false
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s8urw"]
 load_path = "res://.godot/imported/defense.png-00423a0f6810d51d14bc9b0c74390d09.ctex"
@@ -104,7 +111,6 @@ sprite = NodePath("Sprite2D")
 [node name="Stats" type="Node2D" parent="." node_paths=PackedStringArray("health_display", "armor_display")]
 script = ExtResource("2_yq5hq")
 base_max_health = 100
-base_damage = 50
 health = 100
 health_display = NodePath("HealthBar")
 armor_display = NodePath("ArmorDisplay/text")
@@ -158,6 +164,9 @@ metadata/_edit_use_anchors_ = true
 [node name="icon" type="Sprite2D" parent="Stats/ArmorDisplay"]
 scale = Vector2(0.5, 0.5)
 texture = SubResource("CompressedTexture2D_s8urw")
+
+[node name="EffectArray" type="Node" parent="."]
+script = ExtResource("8_3m8mw")
 
 [node name="Area2D" type="Area2D" parent="."]
 

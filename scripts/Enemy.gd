@@ -2,17 +2,21 @@ extends Node
 # Klasa odpowiedzialna za zarządzanie przeciwnikiem.
 class_name Enemy
 	
-var stats:Stats
 @export var attacks : Array[AttackDescription]
+@export var sprite: Sprite2D
 var lastAttack : AttackDescription
-var temporaryEffects : Array[TemporaryEffect]
+var stats:Stats
+var effects : EffectArray
 
 signal enemy_selected(enemy)
 
-@export var sprite: Sprite2D
-
 func _ready() -> void:
-	stats = get_child(0) as Stats
+	for child in get_children():
+		if child is Stats:
+			stats = child as Stats
+		elif child is EffectArray:
+			effects = child as EffectArray
+	
 	var area = $Area2D
 	area.input_pickable = true
 	area.input_event.connect(_on_area_2d_input_event)
@@ -24,17 +28,37 @@ func _ready() -> void:
 	$Stats/AttackMessage.text = ""	
 # Funkcja dająca możliwość przeciwnikowi wykonania odpowiednich akcji.
 func DoActions():
+	if stats.should_run_away:
+		stats.SetHealth(0)
+		GameManager.EndEnemyTurn(self)
+		return
+	
+	if stats.should_skip_turn:
+		GameManager.EndEnemyTurn(self)
+		return
+	
 	var attack:AttackDescription
-	if lastAttack and lastAttack.nextAttackSet:
-		attack = AttackDescription.PickRandomAttack(lastAttack.nextAttackSet)
-	else:
-		attack = AttackDescription.PickRandomAttack(attacks)
+	var attackSet:Array[AttackDescription] = attacks
+	if lastAttack and lastAttack.nextAttackSet: attackSet = lastAttack.nextAttackSet
+	
+	for i in attackSet:
+		if i.isAggressive: i.weight *= stats.aggresive_attack_chance_mult
+		if i.isUseful: i.weight *= stats.useful_attack_chance_mult
+		if i.isSpecial: i.weight *= stats.special_attack_chance_mult
+		
+	attack = AttackDescription.PickRandomAttack(attackSet)
+	
+	for i in attackSet:
+		if i.isAggressive: i.weight /= stats.aggresive_attack_chance_mult
+		if i.isUseful: i.weight /= stats.useful_attack_chance_mult
+		if i.isSpecial: i.weight /= stats.special_attack_chance_mult
 	lastAttack = attack
 	
 	# TO DO: Dodać wyświetlanie wiadomości
 	$Stats/AttackMessage.text = str(attack.message)
 	GameManager.player.stats.DealDamage(attack.damage)
 	GameManager.EndEnemyTurn(self)
+	
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event.is_action_pressed("left_click"):

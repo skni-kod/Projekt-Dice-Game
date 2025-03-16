@@ -12,7 +12,6 @@ var level
 var rng = RandomNumberGenerator.new()
 
 func _ready():
-	enemy_waves.append(Wave.new(["goblin"]))
 	enemy_waves.append(Wave.new(["goblin","goblin"]))
 	#for potwor in enemy_waves[1].enemies:
 		#print(potwor)
@@ -21,19 +20,10 @@ func _ready():
 	player = get_node("/root/main_scene/Player") as Player
 	player._ready()
 
-
 func EndPlayerTurn():
 	enemies_turn_counter = 0
 	for enemy in enemies:
-		for effect in enemy.temporaryEffects:
-			effect.Apply(enemy.stats)
-		
-		enemy.temporaryEffects.reverse()
-		for effect in enemy.temporaryEffects:
-			if effect.HasExpired():
-				effect.Expire(enemy.stats)
-				enemy.temporaryEffects.erase(effect)
-		enemy.temporaryEffects.reverse()
+		enemy.effects.UpdateEffects(enemy.stats)
 	
 		enemy.DoActions()
 
@@ -42,16 +32,7 @@ func EndEnemyTurn(enemy : Enemy):
 	if enemies_turn_counter < enemies.size():
 		return
 	
-	for effect in player.temporaryEffects:
-		effect.Apply(player.stats)
-		
-	player.temporaryEffects.reverse()
-	for effect in player.temporaryEffects:
-		if effect.HasExpired():
-			effect.Expire(player.stats)
-			player.temporaryEffects.erase(effect)
-	player.temporaryEffects.reverse()
-	
+	player.effects.UpdateEffects(player.stats)
 	player.DoActions()
 
 func _on_enemy_die(enemy:Enemy):
