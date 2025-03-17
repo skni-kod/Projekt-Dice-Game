@@ -7,21 +7,18 @@ class_name Level
 var levelNumber: int
 var enemiesWave : Array[Wave]
 var sprite: Sprite2D
-var parentNode
-var X
-var Y
+var parentNodes : Array
+var X: float
+var Y: float
 @onready var label = get_node("Label")
 
 @onready var levelinfo = preload("res://scenes/level_info.tscn").instantiate()
 
-func _init(n : int, waves : Array[Wave], pNode, x, y):
-	X = x
-	Y = y
+func _init(n : int, waves : Array[Wave], pNodes : Array):
 	levelNumber = n
 	enemiesWave = waves
-	parentNode = pNode
+	parentNodes = pNodes
 	visible = true
-	position = Vector2(X, Y)
 	sprite = Sprite2D.new() #sprite z tekstutrą
 	sprite.texture = load("res://resources/sprites/MapFightIcon.png")
 	add_child(sprite)
@@ -63,6 +60,7 @@ func _input_event(viewport, event, shape_idx) -> void:
 			var manager = find_node("LevelManager")
 			if label:
 				label.text = str(text)
+				label.visible = true
 			if GameManager.enemies.is_empty() and manager:
 				manager.enemiesWave = enemiesWave
 				manager.isLevelSelected = true

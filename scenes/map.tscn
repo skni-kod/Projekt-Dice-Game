@@ -18,6 +18,7 @@ script = ExtResource("2_qenvd")
 width = 2.0
 
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_left = 41.0
 offset_top = 141.0
 offset_right = 178.0

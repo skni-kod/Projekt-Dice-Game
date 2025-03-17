@@ -8,35 +8,40 @@ var enemiesWave: Array[Wave]
 var usableEnemies = ["goblin", "szlam"]
 var isLevelSelected : bool = false
 var nextLevelIndex = 2
-var Paths
+var Paths : Line2D
 
 func _ready() -> void:
 	Paths = get_child(0)
 	var newLevel = create_first_level()
 	levels.append(newLevel)
 	add_child(newLevel[0])
-	for i in range(3):
+	for i in range(2):
 		var levelLayer = create_levels_layer(i, i + 1)
 		levels.append(levelLayer)
 		for lvl in levelLayer:
 			add_child(lvl)
+	newLevel = create_boss_level()
+	levels.append(newLevel)
+	add_child(newLevel[0])
+	calculatePosition(levels)
 	for layer in levels:
 		for lvl in layer:
-			if lvl.parentNode:
-				draw_paths(lvl)
+			draw_paths(lvl)
 	var button = get_node_or_null("../Button")
 	if button:
 		button.connect("pressed", Callable(self, "_on_button_pressed"))
 
 #Rysujemy połączenie poziomów
 func draw_paths(lvl):
-	var parent = lvl.parentNode
-	var line = Line2D.new()
-	line.width = 2
-	line.default_color = Color(0, 0, 0)
-	line.add_point(Vector2(parent.X, parent.Y))
-	line.add_point(Vector2(lvl.X, lvl.Y))
-	Paths.add_child(line)
+	for parent in lvl.parentNodes:
+		#var parent = lvl.parentNode
+		if parent != null:
+			var line = Line2D.new()
+			line.width = 2
+			line.default_color = Color(0, 0, 0)
+			line.add_point(Vector2(parent.X, parent.Y))
+			line.add_point(Vector2(lvl.X, lvl.Y))
+			Paths.add_child(line)
 
 #Sprawdzamy czy został wybrany poziom, jeżeli tak to aktywujemy buttona
 func _process(delta: float) -> void:
@@ -66,7 +71,14 @@ func generate_waves() -> Array[Wave]:
 #pierwszy poziom
 func create_first_level() -> Array:
 	var waves = generate_waves()
-	var level = Level.new(1, waves, null, 0, 0)
+	var level = Level.new(1, waves, [null])
+	return [level]
+
+#Ostatni poziom - goblin jest do zmiany na bossa jak bedzie gotowy
+func create_boss_level() -> Array:
+	var wave = Wave.new()
+	wave.enemies.append("goblin")
+	var level = Level.new(levels[len(levels)-1][len(levels[len(levels) - 1]) - 1].levelNumber + 1, [wave], levels[len(levels) - 1])
 	return [level]
 
 #generuje piętro poziomow
@@ -74,17 +86,82 @@ func create_levels_layer(previous_layer, current_layer) -> Array:
 	var n = randi_range(1, 4)
 	var levelsArr = []
 	var k = 0
+	var parentsIndexes = create_levels_parents(n, len(levels[previous_layer]))
+	var parents = []
+	for index in parentsIndexes:
+		var parentsArray : Array[Level]
+		for parent in index:
+			parentsArray.push_back(levels[previous_layer][parent])
+		parents.push_back(parentsArray)
 	for i in range(n):
 		var waves = generate_waves()
-		var parentIndex = randi_range(0, len(levels[previous_layer])-1)
-		k = max(k, parentIndex) #zapewnienie, ze scieski nie beda sie ze soba krzyzowac
-		var parentLevel = levels[previous_layer][k]
-		var currentLevel = Level.new(nextLevelIndex, waves, parentLevel, calculate_x_pos(i, n), 0 - 50 * current_layer)
+		var currentLevel = Level.new(nextLevelIndex, waves, parents[i])
 		nextLevelIndex += 1
 		levelsArr.append(currentLevel)
 	return levelsArr
 
-#Funkcja do obliczania wspolzednej x okna poziomu
+
+func create_levels_parents(curr : int, prev : int ) -> Array:
+	var parents = []
+	if prev == 1:
+		for i in range (curr):
+			parents.push_back([0])
+		return parents
+	if curr == 1:
+		var par = []
+		for i in range (prev):
+			par.push_back(i)
+			parents.push_back(par)
+		return parents
+	if curr == 2:
+		if prev == 2:
+			var options = [[[0], [1]], [[0,1], [1]], [[0], [0,1]]]
+			var n = randi_range(0, len(options)-1)
+			return options[n]
+		if prev == 3:
+			var options = [[[0], [1, 2]],[[0, 1], [2]], [[0, 1], [1, 2]]]
+			var n = randi_range(0, len(options)-1)
+			return options[n]
+		if prev == 4:
+			var options = [[[0, 1], [2,3]],[[0], [1,2,3]], [[0,1,2], [3]]]
+			var n = randi_range(0, len(options)-1)
+			return options[n]
+	if curr == 3:
+		if prev == 2:
+			var options = [[[0], [0,1], [1]], [[0], [1], [1]], [[0],[0],[1]]]
+			var n = randi_range(0, len(options)-1)
+			return options[n]
+		if prev == 3:
+			var options = [[[0], [1], [2]], [[0,1], [1], [2]], [[0],[1,2],[2]], [[0,1],[1,2],[2]], [[0], [0,1], [2]], 
+			[[0], [1], [1,2]], [[0], [0,1], [1,2]], [[0,1], [1], [1,2]], [[0], [0,1,2], [2]]]
+			var n = randi_range(0, len(options)-1)
+			return options[n]
+		if prev == 4:
+			var options = [[[0], [1,2], [3]], [[0,1], [1,2], [3]], [[0,1], [1,2], [2,3]], [[0], [1], [2,3]],
+			[[0,1], [2], [3]], [[0,1], [1], [2,3]], [[0,1], [2], [2,3]]]
+			var n = randi_range(0, len(options)-1)
+			return options[n]
+	if curr == 4:
+		if prev == 2:
+			var options = [[[0], [0], [1], [1]], [[0], [1], [1], [1]], [[0], [0], [0], [1]], [[0], [0,1], [1], [1]], [[0], [0], [0,1], [1]]]
+			var n = randi_range(0, len(options)-1)
+			return options[n]
+		if prev == 3:
+			var options = [[[0], [1], [1], [2]], [[0],[0,1],[1,2],[2]], [[0], [0,1], [2], [2]], [[0],[1],[1,2],[2]],
+			[[0],[0,1],[1],[2]]]
+			var n = randi_range(0, len(options)-1)
+			return options[n]
+		if prev == 4:
+			var options = [[[0], [1], [2], [3]], [[0],[0],[1],[2,3]], [[0,1],[2],[3],[2,3]], [[0,1],[1,2],[2,3],[3]],[[0],[0,1],[1,2],[2,3]],
+			[[0,1],[1],[2],[3]], [[0],[1,2],[2],[3]], [[0],[1],[2,3],[3]], [[0],[0,1],[2],[3]], [[0],[1],[1,2],[3]], [[0],[1],[2],[2,3]],
+			[[0], [0,1], [1,2], [3]], [[0], [1], [1,2], [2,3]], [[0], [0,1], [2], [2,3]], [[0,1], [1,2], [2], [3]], [[0], [1,2], [2,3], [3]], 
+			[[0,1], [1], [2,3], [3]], [[0], [1,2], [2,3], [3]], [[0], [1], [1,2,3], [3]], [[0,1], [1], [1,2,3], [3]], [[0], [0,1], [1,2,3], [3]],
+			[[0], [0,1,2], [2], [3]], [[0], [0,1,2], [2,3], [3]], [[0], [0,1,2], [2], [2,3]], [[0], [0,1], [2,3], [3]], [[0,1], [1], [2], [2,3]]]
+			var n = randi_range(0, len(options)-1)
+			return options[n]
+	return  []
+
+#Funkcja do obliczania wspolrzednej x ikonki poziomu
 func calculate_x_pos(i, n):
 	if n == 1:
 		return 0
@@ -94,3 +171,11 @@ func calculate_x_pos(i, n):
 		return -100 + 100 * i
 	if n == 4:
 		return -140 + 90 * i 
+
+#Funkcja do obliczania wspolrzednej x i y ikonki poziomu
+func calculatePosition(arr : Array) -> void:
+	for i in range(4):
+		for j in range (len(arr[i])):
+			arr[i][j].position = Vector2(calculate_x_pos(j, len(arr[i])), 0 - 50 * i)
+			arr[i][j].X = calculate_x_pos(j, len(arr[i]))
+			arr[i][j].Y = 0 - 50 * i
