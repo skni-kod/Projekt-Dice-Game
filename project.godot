@@ -25,6 +25,10 @@ window/size/viewport_width=384
 window/size/viewport_height=256
 window/stretch/mode="canvas_items"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot-sqlite/demo/addons/godot-sqlite/plugin.cfg", "res://addons/godot-sqlite/godot-sqlite-master/demo/addons/godot-sqlite/plugin.cfg")
+
 [gui]
 
 theme/custom_font="res://munro.ttf"

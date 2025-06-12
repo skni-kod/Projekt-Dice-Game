@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://dgf160ru2xglf"]
+[gd_scene load_steps=62 format=3 uid="uid://dgf160ru2xglf"]
 
 [ext_resource type="Texture2D" uid="uid://chaw4tgfu2v36" path="res://resources/sprites/background_placeholder_384x256.png" id="1_it8q8"]
 [ext_resource type="Texture2D" uid="uid://0idhbjjmixj2" path="res://resources/sprites/gui/roll_button_normal.png" id="2_ap1x7"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://g6nv5acd131v" path="res://resources/sprites/gui/enemy_health_bar_progress.png" id="18_rhdlf"]
 [ext_resource type="Texture2D" uid="uid://bupkiv3mmobua" path="res://resources/sprites/dice_blank.png" id="20_mjiuu"]
 [ext_resource type="Script" path="res://scripts/EffectArray.gd" id="21_1p1i5"]
+[ext_resource type="Script" path="res://scripts/Highscores.gd" id="25_cf5v5"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_gpx1j"]
 device = -1
@@ -151,6 +152,13 @@ width = 60
 height = 60
 color_ramp = SubResource("Gradient_0ex8s")
 noise = SubResource("FastNoiseLite_30jvo")
+
+[sub_resource type="Gradient" id="Gradient_633i0"]
+colors = PackedColorArray(0.247059, 0.247059, 0.247059, 0.65098, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_cn8bo"]
+gradient = SubResource("Gradient_633i0")
+width = 1
 
 [node name="main_scene" type="Node2D"]
 
@@ -1099,6 +1107,33 @@ offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("NoiseTexture2D_ugusv")
+
+[node name="HighScores" type="RichTextLabel" parent="."]
+z_index = 12
+z_as_relative = false
+offset_left = -119.0
+offset_top = -121.0
+offset_right = 122.0
+offset_bottom = 126.0
+bbcode_enabled = true
+text = "HighScores"
+script = ExtResource("25_cf5v5")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = 4
+offset_left = -192.0
+offset_top = -128.0
+offset_right = 193.0
+offset_bottom = 158.0
+texture = SubResource("GradientTexture1D_cn8bo")
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect"]
+z_index = 4
+offset_left = 63.0
+offset_top = 1.0
+offset_right = 325.0
+offset_bottom = 255.0
+texture = SubResource("GradientTexture1D_cn8bo")
 
 [connection signal="pressed" from="Roll" to="Dices" method="RollOrReroll"]
 [connection signal="mouse_entered" from="ActionButtons/GridContainer/Atak" to="ActionButtons/GridContainer/Atak" method="_on_mouse_entered"]
