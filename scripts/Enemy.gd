@@ -40,11 +40,13 @@ func _ready() -> void:
 # Funkcja wywoływana przy zmianie życia w Stats
 func OnHealthChanged(current_health: int, max_health: int) -> void:
 	if current_health <= max_health / 2:
-		# Poniżej lub równo 50% - zastąp teksturę
-		sprite.texture = lowhp_texture
+		# Poniżej lub równo 50% – zmień teksturę, jeśli istnieje
+		if lowhp_texture != null:
+			sprite.texture = lowhp_texture
 	else:
-		# Powyżej 50% - przywróć oryginalną teksturę
+		# Powyżej 50% – przywróć oryginalną teksturę
 		sprite.texture = _normal_texture
+
 
 # Funkcja dająca możliwość przeciwnikowi wykonania odpowiednich akcji.
 func DoActions():
@@ -81,7 +83,7 @@ func DoActions():
 	lastAttack = attack
 
 	# Wyświetlanie wiadomości o ataku
-	$Stats/AttackMessage.text = str(attack.message)
+	$Stats/AttackMessage.text = str("[center]"+attack.message)
 	GameManager.player.stats.DealDamage(attack.damage)
 	GameManager.EndEnemyTurn(self)
 

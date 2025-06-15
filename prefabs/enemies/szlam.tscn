@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://fkmc8tptxgmn"]
+[gd_scene load_steps=11 format=3 uid="uid://fkmc8tptxgmn"]
 
 [ext_resource type="Material" uid="uid://8k8p3gj8sa65" path="res://shaders/outline.tres" id="1_3wyo7"]
 [ext_resource type="Texture2D" uid="uid://b3rhdd7im5wns" path="res://resources/sprites/enemies/GreenSlime.png" id="1_8whgg"]
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="2_bee8b"]
 [ext_resource type="Script" path="res://scripts/resource_descriptors/AttackDescription.gd" id="3_nlf8j"]
 [ext_resource type="Script" path="res://scripts/Stats.gd" id="4_25euh"]
-[ext_resource type="Texture2D" uid="uid://gk4b4ism4m7q" path="res://resources/sprites/defense.png" id="5_j38n5"]
 [ext_resource type="Script" path="res://scripts/EffectArray.gd" id="7_lqnct"]
 
 [sub_resource type="Resource" id="Resource_dh45p"]
@@ -40,13 +39,14 @@ func _ready():
 radius = 5.33333
 height = 10.8389
 
-[node name="Szlam" type="Sprite2D"]
+[node name="Szlam" type="Sprite2D" node_paths=PackedStringArray("sprite")]
 texture_filter = 1
 material = ExtResource("1_3wyo7")
 scale = Vector2(2, 2)
 texture = ExtResource("1_8whgg")
 script = ExtResource("2_bee8b")
 attacks = Array[ExtResource("3_nlf8j")]([SubResource("Resource_dh45p"), SubResource("Resource_d16jd")])
+sprite = NodePath(".")
 
 [node name="Stats" type="Node2D" parent="." node_paths=PackedStringArray("health_display", "armor_display")]
 scale = Vector2(0.590466, 0.590466)
@@ -85,7 +85,6 @@ metadata/_edit_use_anchors_ = true
 [node name="icon" type="Sprite2D" parent="Stats/ArmorDisplay"]
 position = Vector2(730, 268)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("5_j38n5")
 
 [node name="EffectArray" type="Node" parent="."]
 script = ExtResource("7_lqnct")

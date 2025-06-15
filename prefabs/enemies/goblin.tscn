@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://scripts/resource_descriptors/AttackDescription.gd" id="3_pchjh"]
 [ext_resource type="Texture2D" uid="uid://dehaxau5o1yvi" path="res://resources/sprites/enemies/GoblinLowHp.png" id="4_6s6dw"]
 [ext_resource type="Texture2D" uid="uid://o1xs4nq7r15s" path="res://resources/sprites/gui/enemy_health_bar_under.png" id="6_1tq8e"]
-[ext_resource type="Texture2D" uid="uid://b6pi7ck3cw287" path="res://resources/sprites/gui/enemy_health_bar_over.png" id="7_q5pdd"]
+[ext_resource type="Texture2D" uid="uid://cdniqnk8im6ew" path="res://resources/sprites/gui/enemy_health_bar_over_temp.png" id="7_t7n7k"]
 [ext_resource type="Script" path="res://scripts/EffectArray.gd" id="8_3m8mw"]
 [ext_resource type="Texture2D" uid="uid://g6nv5acd131v" path="res://resources/sprites/gui/enemy_health_bar_progress.png" id="8_tvioi"]
 
@@ -123,9 +123,10 @@ offset_top = -54.0
 offset_right = 32.0
 offset_bottom = -35.0
 texture_under = ExtResource("6_1tq8e")
-texture_over = ExtResource("7_q5pdd")
+texture_over = ExtResource("7_t7n7k")
 texture_progress = ExtResource("8_tvioi")
 tint_under = Color(0.605274, 0.605274, 0.605274, 1)
+tint_over = Color(0.771601, 0.776004, 0.777891, 1)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Stats/HealthBar"]
 texture_filter = 1
@@ -145,21 +146,33 @@ text = "[center] [b]  100/100"
 fit_content = true
 
 [node name="AttackMessage" type="RichTextLabel" parent="Stats"]
-offset_left = -37.0
-offset_top = -66.0
-offset_right = 183.0
-offset_bottom = -37.0
-scale = Vector2(0.543378, 0.543378)
-text = "attack.message"
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -58.0
+offset_right = 172.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.441442, 0.441442)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+bbcode_enabled = true
+text = "[center]---__---"
 
 [node name="ArmorDisplay" type="Node2D" parent="Stats"]
 position = Vector2(32, -43)
 
 [node name="text" type="RichTextLabel" parent="Stats/ArmorDisplay"]
-offset_left = 7.0
-offset_top = -12.0
-offset_right = 47.0
-offset_bottom = 28.0
+z_index = 1
+offset_left = 6.0
+offset_top = -7.0
+offset_right = 30.0
+offset_bottom = 17.0
+scale = Vector2(0.617411, 0.652924)
 text = "0"
 metadata/_edit_use_anchors_ = true
 

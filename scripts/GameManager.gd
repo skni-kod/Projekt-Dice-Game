@@ -61,28 +61,25 @@ func Spawn(enemyName: String, waveSize: int, indexInWave: int):
 	var enemy_prefab = load("res://prefabs/enemies/" + enemyName + ".tscn")
 	var enemy_instance = enemy_prefab.instantiate()
 	get_tree().root.get_child(1).add_child(enemy_instance)
-	
+
 	var enemy = enemy_instance as Enemy
 	enemy._ready()
 	enemy.stats.onDeath.connect(_on_enemy_die.bind(enemy))
 	enemy.enemy_selected.connect(_on_enemy_selected)
 	enemies.append(enemy)
-	
-	# TYMCZASOWE – obliczamy rozstaw w poziomie
-	var enemyRange: int = 240 / waveSize
-	
-	# Nowe granice X: podnisione o +50 względem starych -100…(–100+…)
-	var min_x = -30 + enemyRange * indexInWave
-	var max_x = -100 + enemyRange + enemyRange * indexInWave
-	
-	# Nowe granice Y: zamiast 0…40 dajemy np. 50…90
-	var min_y = -10
-	var max_y = 20
-	
+
+	# Rozstaw przeciwników co ~80 jednostek, centrowany względem środka
+	var spacing := 80
+	var total_width := (waveSize - 1) * spacing
+	var base_x := -total_width / 2 + indexInWave * spacing + 50
+	var x_offset := randf_range(-5, 5)  # mały random dla różnorodności
+	var y_offset := randf_range(-5, 5)
+
 	enemy_instance.position = Vector2(
-		randf_range(min_x, max_x),
-		randf_range(min_y, max_y)
+		base_x + x_offset,
+		y_offset
 	)
+
 
 
 func _on_enemy_selected(enemy: Enemy):

@@ -1,6 +1,6 @@
 [gd_scene load_steps=63 format=3 uid="uid://dgf160ru2xglf"]
 
-[ext_resource type="Texture2D" uid="uid://chaw4tgfu2v36" path="res://resources/sprites/background_placeholder_384x256.png" id="1_it8q8"]
+[ext_resource type="Texture2D" uid="uid://cp4ggjsfcefyp" path="res://resources/sprites/background_placeholder_384x256_2.png" id="1_fn00y"]
 [ext_resource type="Texture2D" uid="uid://0idhbjjmixj2" path="res://resources/sprites/gui/roll_button_normal.png" id="2_ap1x7"]
 [ext_resource type="AudioStream" uid="uid://bjv2joeyhwiht" path="res://resources/sounds/rolling-dice-2-102706.mp3" id="2_ysa8a"]
 [ext_resource type="Texture2D" uid="uid://bu0c8wqbo3pja" path="res://resources/sprites/gui/roll_button_pressed.png" id="3_5qpka"]
@@ -180,7 +180,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("1_it8q8")
+texture = ExtResource("1_fn00y")
 
 [node name="Roll" type="TextureButton" parent="."]
 texture_filter = 1
@@ -1115,8 +1115,8 @@ scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_x3q1t")
 
 [node name="Character" type="Area2D" parent="Player"]
-visible = false
-position = Vector2(-127, 65)
+position = Vector2(-131.475, 65)
+scale = Vector2(1.7, 1.7)
 
 [node name="Paladin" type="Sprite2D" parent="Player/Character"]
 texture = ExtResource("23_hgxa4")
