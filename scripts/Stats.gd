@@ -43,14 +43,20 @@ func DealDamage(value):
 		onDeath.emit()
 
 func Heal(value):
-	SetHealth(min(health+value,max_health))
+	SetHealth(min(health + value, max_health))
 	
 func AddArmor(value):
 	SetArmor(armor + value)
 	
 func SetHealth(value):
+	# Aktualizacja wartości zdrowia
 	health = min(value, max_health)
 	_UpdateDisplays()
+
+	# Wywołanie funkcji w skrypcie nadrzędnym (Enemy.gd), jeśli istnieje
+	var parent = get_parent()
+	if parent and parent.has_method("OnHealthChanged"):
+		parent.call("OnHealthChanged", health, max_health)
 	
 func SetArmor(value):
 	armor = value
@@ -84,4 +90,5 @@ func _UpdateDisplays():
 		health_display.value = health
 		if health_display.get_child_count() != 0:
 			(health_display.get_child(0) as RichTextLabel).text = "[center] [b] " + str(health) + " / " + str(max_health)
-	if armor_display: armor_display.text = str(armor)
+	if armor_display:
+		armor_display.text = str(armor)

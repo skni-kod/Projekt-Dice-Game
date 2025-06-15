@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://doshdnk880cao"]
+[gd_scene load_steps=18 format=3 uid="uid://doshdnk880cao"]
 
 [ext_resource type="Material" uid="uid://8k8p3gj8sa65" path="res://shaders/outline.tres" id="1_67upv"]
 [ext_resource type="Texture2D" uid="uid://blrp4b262c4wb" path="res://resources/sprites/enemies/GoblinNormal.png" id="1_ai3ia"]
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_ar5vr"]
 [ext_resource type="Script" path="res://scripts/Stats.gd" id="2_yq5hq"]
 [ext_resource type="Script" path="res://scripts/resource_descriptors/AttackDescription.gd" id="3_pchjh"]
+[ext_resource type="Texture2D" uid="uid://dehaxau5o1yvi" path="res://resources/sprites/enemies/GoblinLowHp.png" id="4_6s6dw"]
 [ext_resource type="Texture2D" uid="uid://o1xs4nq7r15s" path="res://resources/sprites/gui/enemy_health_bar_under.png" id="6_1tq8e"]
 [ext_resource type="Texture2D" uid="uid://b6pi7ck3cw287" path="res://resources/sprites/gui/enemy_health_bar_over.png" id="7_q5pdd"]
 [ext_resource type="Script" path="res://scripts/EffectArray.gd" id="8_3m8mw"]
@@ -107,6 +108,7 @@ position = Vector2(0, 1)
 script = ExtResource("1_ar5vr")
 attacks = Array[ExtResource("3_pchjh")]([SubResource("Resource_dh45p"), SubResource("Resource_d16jd")])
 sprite = NodePath("Sprite2D")
+lowhp_texture = ExtResource("4_6s6dw")
 
 [node name="Stats" type="Node2D" parent="." node_paths=PackedStringArray("health_display", "armor_display")]
 script = ExtResource("2_yq5hq")

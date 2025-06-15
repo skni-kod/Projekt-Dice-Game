@@ -48,7 +48,7 @@ func _UpdateDisplay() -> void:
 	if currentFace == FaceType.Blank:
 		get_child(0).texture = null
 	else:
-		get_child(0).texture = load("res://resources/sprites/" + FaceType.keys()[currentFace].to_lower() +".png")
+		get_child(0).texture = load("res://resources/sprites/gui/" + FaceType.keys()[currentFace].to_lower() +".png")
 
 # Funkcja zajmująca się zaznaczaniem przez przeciaganie kursorem.
 func _on_mouse_exit():

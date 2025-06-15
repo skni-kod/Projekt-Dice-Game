@@ -57,7 +57,7 @@ func SpawnWave(wave:Wave):
 	selected_enemy = enemies[0]
 	selected_enemy.set_as_current_enemy()
 		
-func Spawn(enemyName:String, waveSize: int, indexInWave: int):
+func Spawn(enemyName: String, waveSize: int, indexInWave: int):
 	var enemy_prefab = load("res://prefabs/enemies/" + enemyName + ".tscn")
 	var enemy_instance = enemy_prefab.instantiate()
 	get_tree().root.get_child(1).add_child(enemy_instance)
@@ -67,12 +67,23 @@ func Spawn(enemyName:String, waveSize: int, indexInWave: int):
 	enemy.stats.onDeath.connect(_on_enemy_die.bind(enemy))
 	enemy.enemy_selected.connect(_on_enemy_selected)
 	enemies.append(enemy)
-	# TO DO: dodanie rozmieszczenia przeciwników
-	# TYMCZASOWE
+	
+	# TYMCZASOWE – obliczamy rozstaw w poziomie
 	var enemyRange: int = 240 / waveSize
-	enemy_instance.position = Vector2(randf_range(-100 + enemyRange * indexInWave + 20, -100 + enemyRange + enemyRange * indexInWave - 40), randf_range(0, 40))
+	
+	# Nowe granice X: podnisione o +50 względem starych -100…(–100+…)
+	var min_x = -30 + enemyRange * indexInWave
+	var max_x = -100 + enemyRange + enemyRange * indexInWave
+	
+	# Nowe granice Y: zamiast 0…40 dajemy np. 50…90
+	var min_y = -10
+	var max_y = 20
+	
+	enemy_instance.position = Vector2(
+		randf_range(min_x, max_x),
+		randf_range(min_y, max_y)
+	)
 
-	#Dodałem spawnowanie przeciwników na przedziale wysokości (-20, 20), żeby można było odróżnić paski życia, bo jest za ciasno dla kolegów golemów
 
 func _on_enemy_selected(enemy: Enemy):
 	selected_enemy = enemy
