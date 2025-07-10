@@ -12,8 +12,7 @@ enum Type
 
 var current_slot: ItemSlot # Aktualny slot w którym jest item.
 @export var type: Type # Typ itemu.
-@export var data1 : int #   Nie wiem jak to zrobić lepiej,
-@export var data2 : float # żeby interpretacja była w zmiennej.
+@export var effects: Array[Effect]
 
 # Wewnętrzne zmienne używane do przeciagania i ustawiania slotów.
 var _is_mouse_over = false
@@ -23,6 +22,8 @@ var _is_dragged = false
 func _ready():
 	area_entered.connect(_on_area_entered)
 	area_exited.connect(_on_area_exit)
+	if get_parent() and get_parent() is ItemSlot:
+		current_slot = get_parent() as ItemSlot
 	
 func _mouse_enter():
 	_is_mouse_over = true	

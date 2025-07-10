@@ -31,12 +31,12 @@ func _ready() -> void:
 
 	# Podłączenie sygnałów slotów
 	for i in armor_slots:
-		i.item_inserted.connect(func (): _on_armor_inserted(i))
-		i.item_removed.connect(func (): _on_armor_removed(i))
+		i.item_inserted.connect(_on_armor_inserted.bind(i))
+		i.item_removed.connect(_on_armor_removed.bind(i))
 
 	for i in weapon_slots:
-		i.item_inserted.connect(func (): _on_weapon_inserted(i))
-		i.item_removed.connect(func (): _on_weapon_removed(i))
+		i.item_inserted.connect(_on_weapon_inserted.bind(i))
+		i.item_removed.connect(_on_weapon_removed.bind(i))
 
 func DoActions():
 	if stats.should_skip_turn:
@@ -61,28 +61,23 @@ func _on_close_input_event(viewport, event, shape_idx):
 
 func _on_armor_inserted(slot: ItemSlot):
 	var item = slot.item_inside
-	if item.data1 == 0:
-		stats.SetBaseMaxHealth(stats.base_max_health + item.data2)
-	elif item.data1 == 1:
-		stats.SetMaxHealthMult(stats.max_health_multiplier * item.data2)
+	for effect in item.effects:
+		effect._ApplyEffect(stats)
+
 
 func _on_armor_removed(slot: ItemSlot):
 	var item = slot.item_inside
-	if item.data1 == 0:
-		stats.SetBaseMaxHealth(stats.base_max_health - item.data2)
-	elif item.data1 == 1:
-		stats.SetMaxHealthMult(stats.max_health_multiplier / item.data2)
+	for effect in item.effects:
+		effect._RevertEffect(stats)
+
 
 func _on_weapon_inserted(slot: ItemSlot):
 	var item = slot.item_inside
-	if item.data1 == 0:
-		stats.SetBaseDamage(stats.base_damage + item.data2)
-	elif item.data1 == 1:
-		stats.SetDamageMult(stats.damage_multiplier * item.data2)
+	for effect in item.effects:
+		effect._ApplyEffect(stats)
+
 
 func _on_weapon_removed(slot: ItemSlot):
 	var item = slot.item_inside
-	if item.data1 == 0:
-		stats.SetBaseDamage(stats.base_damage - item.data2)
-	elif item.data1 == 1:
-		stats.SetDamageMult(stats.damage_multiplier / item.data2)
+	for effect in item.effects:
+		effect._RevertEffect(stats)

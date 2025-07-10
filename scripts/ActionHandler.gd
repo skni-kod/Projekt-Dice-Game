@@ -10,46 +10,46 @@ enum Action
 
 @export var action:Action
 # Funkcja, przypisująca akcji pewne działanie.
-func HandleAction(act):
+func HandleAction(act, stats:Stats):
 	match act:
 		Action.Attack:
-			if GameManager.diceManager.ConsumeN(Dice.FaceType.Attack,2):
+			if GameManager.diceManager.Consume(stats.action_cost[act]):
 				if GameManager.selected_enemy:
-					GameManager.selected_enemy.stats.DealDamage(50)
+					GameManager.selected_enemy.stats.DealDamage(stats.damage)
 		
 		Action.AttackPlus:
-			if GameManager.diceManager.ConsumeN(Dice.FaceType.Attack,3):
+			if GameManager.diceManager.Consume(stats.action_cost[act]):
 				if GameManager.selected_enemy:
-					GameManager.selected_enemy.stats.DealDamage(20)
+					GameManager.selected_enemy.stats.DealDamage(stats.damage_plus)
 			
 		Action.Defence:
-			if GameManager.diceManager.ConsumeN(Dice.FaceType.Defense,2):
+			if GameManager.diceManager.Consume(stats.action_cost[act]):
 				if GameManager.selected_enemy:
-					GameManager.player.stats.AddArmor(7)
+					GameManager.player.stats.AddArmor(stats.defence)
 		Action.DefencePlus:
-			if GameManager.diceManager.ConsumeN(Dice.FaceType.Defense,3):
+			if GameManager.diceManager.Consume(stats.action_cost[act]):
 				if GameManager.selected_enemy:
-					GameManager.player.stats.AddArmor(15)
+					GameManager.player.stats.AddArmor(stats.defence_plus)
 			
 		Action.Special1:
-			if GameManager.diceManager.ConsumeN(Dice.FaceType.Special,3):
+			if GameManager.diceManager.Consume(stats.action_cost[act]):
 				pass 
 			
 		Action.Special2:
-			if GameManager.diceManager.ConsumeN(Dice.FaceType.Special,4):
+			if GameManager.diceManager.Consume(stats.action_cost[act]):
 				pass 
 			
 		Action.Special3:
-			if GameManager.diceManager.ConsumeN(Dice.FaceType.Special,5):
+			if GameManager.diceManager.Consume(stats.action_cost[act]):
 				pass 
 			
 		Action.Special4:
-			if GameManager.diceManager.ConsumeN(Dice.FaceType.Defense,6):
+			if GameManager.diceManager.Consume(stats.action_cost[act]):
 				pass 
 
 # Wywołanie akcji poprzez naciśnięcie odopowiedniego guzika.
 func _on_button_press():
-	HandleAction(action)
+	HandleAction(action, GameManager.player.stats)
 
 func _on_mouse_entered():
 	$"../../ActionDescription".text = Action.keys()[action].replace("Plus","+")

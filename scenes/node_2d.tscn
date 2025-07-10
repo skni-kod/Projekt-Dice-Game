@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://dgf160ru2xglf"]
+[gd_scene load_steps=64 format=3 uid="uid://dgf160ru2xglf"]
 
 [ext_resource type="Texture2D" uid="uid://cp4ggjsfcefyp" path="res://resources/sprites/background_placeholder_384x256_2.png" id="1_fn00y"]
 [ext_resource type="Texture2D" uid="uid://0idhbjjmixj2" path="res://resources/sprites/gui/roll_button_normal.png" id="2_ap1x7"]
@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://xgjwmqq5dbnu" path="res://resources/sprites/dice_blank_discarded.png" id="4_be6h3"]
 [ext_resource type="Script" path="res://scripts/Dice.gd" id="6_8abxr"]
 [ext_resource type="Texture2D" uid="uid://4rwl0w387wy" path="res://resources/sprites/gui/attack.png" id="7_y5nll"]
-[ext_resource type="Script" path="res://prefabs/enemies/ActionHandler.gd" id="8_2bhmu"]
+[ext_resource type="Script" path="res://scripts/ActionHandler.gd" id="8_2bhmu"]
 [ext_resource type="Texture2D" uid="uid://bvv6l0ls2xhoc" path="res://resources/sprites/gui/attack+.png" id="9_0vkd1"]
 [ext_resource type="Texture2D" uid="uid://ba5wtaog7bky7" path="res://resources/sprites/Map.png" id="9_7p63c"]
 [ext_resource type="Texture2D" uid="uid://b6oas1x5edqdw" path="res://resources/sprites/gui/special.png" id="12_0plxn"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://g6nv5acd131v" path="res://resources/sprites/gui/enemy_health_bar_progress.png" id="18_rhdlf"]
 [ext_resource type="Texture2D" uid="uid://bupkiv3mmobua" path="res://resources/sprites/dice_blank.png" id="20_mjiuu"]
 [ext_resource type="Script" path="res://scripts/EffectArray.gd" id="21_1p1i5"]
+[ext_resource type="PackedScene" uid="uid://bttbmhyamibyk" path="res://prefabs/items/barbarian_hatchet.tscn" id="22_wnelb"]
 [ext_resource type="Texture2D" uid="uid://do66pywa0n3kr" path="res://resources/sprites/Paladin.png" id="23_hgxa4"]
 [ext_resource type="Texture2D" uid="uid://dm5s60tro80og" path="res://resources/sprites/gui/close_icon.png" id="23_ieds3"]
 
@@ -441,6 +442,9 @@ z_index = 1
 position = Vector2(19, 28)
 script = ExtResource("13_rpiqy")
 base_max_health = 100
+base_defence = 1
+base_plus_defence = 2
+base_damage = 1
 health = 100
 armor = 10
 health_display = NodePath("HealthBar")
@@ -487,15 +491,6 @@ bbcode_enabled = true
 text = "[center] [b]  100/100"
 fit_content = true
 
-[node name="AttackDisplay" type="RichTextLabel" parent="Player/Stats"]
-offset_left = 50.0
-offset_top = 74.0
-offset_right = 138.0
-offset_bottom = 105.0
-scale = Vector2(0.558831, 0.558831)
-text = "Attack 10"
-scroll_active = false
-
 [node name="EffectArray" type="Node" parent="Player"]
 script = ExtResource("21_1p1i5")
 
@@ -525,54 +520,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Slot2" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer"]
-position = Vector2(90, 30)
-script = ExtResource("15_f2b61")
-acceptable_items = Array[int]([8])
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot2"]
-shape = SubResource("RectangleShape2D_l0w3n")
-
-[node name="Background" type="TextureRect" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot2/CollisionShape2D"]
-texture_filter = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -30.0
-offset_top = -30.0
-offset_right = 30.0
-offset_bottom = 30.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("20_mjiuu")
-
-[node name="Slot3" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer"]
-position = Vector2(150, 30)
-script = ExtResource("15_f2b61")
-acceptable_items = Array[int]([8])
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot3"]
-shape = SubResource("RectangleShape2D_l0w3n")
-
-[node name="Background" type="TextureRect" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot3/CollisionShape2D"]
-texture_filter = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -31.0473
-offset_top = -29.1388
-offset_right = 28.9527
-offset_bottom = 30.8612
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("20_mjiuu")
-
 [node name="Slot" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer"]
 position = Vector2(30, 30)
 script = ExtResource("15_f2b61")
@@ -597,31 +544,55 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("20_mjiuu")
 
-[node name="Item" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot"]
-script = ExtResource("15_rrrv6")
+[node name="Slot2" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer"]
+position = Vector2(90, 30)
+script = ExtResource("15_f2b61")
+acceptable_items = Array[int]([8])
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot/Item"]
-position = Vector2(0.5, -0.5)
-shape = SubResource("RectangleShape2D_0w4yj")
-metadata/_edit_group_ = true
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot2"]
+shape = SubResource("RectangleShape2D_l0w3n")
 
-[node name="Sprite" type="TextureRect" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot/Item/CollisionShape2D"]
+[node name="Background" type="TextureRect" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot2/CollisionShape2D"]
+texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -30.0
+offset_top = -30.0
+offset_right = 30.0
+offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture = ExtResource("12_0plxn")
-expand_mode = 2
+texture = ExtResource("20_mjiuu")
+
+[node name="BarbarianHatchet" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot2" instance=ExtResource("22_wnelb")]
+
+[node name="Slot3" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer"]
+position = Vector2(150, 30)
+script = ExtResource("15_f2b61")
+acceptable_items = Array[int]([8])
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot3"]
+shape = SubResource("RectangleShape2D_l0w3n")
+
+[node name="Background" type="TextureRect" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot3/CollisionShape2D"]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.0473
+offset_top = -29.1388
+offset_right = 28.9527
+offset_bottom = 30.8612
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("20_mjiuu")
 
 [node name="Slot4" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer"]
 position = Vector2(90, 90)
@@ -649,8 +620,6 @@ texture = ExtResource("20_mjiuu")
 
 [node name="Item" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot4"]
 script = ExtResource("15_rrrv6")
-type = 1
-data2 = 15.0
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot4/Item"]
@@ -701,9 +670,6 @@ texture = ExtResource("20_mjiuu")
 
 [node name="Item" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot5"]
 script = ExtResource("15_rrrv6")
-type = 1
-data1 = 1
-data2 = 15.0
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot5/Item"]
@@ -754,9 +720,6 @@ texture = ExtResource("20_mjiuu")
 
 [node name="Item" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot6"]
 script = ExtResource("15_rrrv6")
-type = 2
-data1 = 1
-data2 = 15.0
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot6/Item"]
@@ -831,9 +794,6 @@ texture = ExtResource("20_mjiuu")
 
 [node name="Item" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot8"]
 script = ExtResource("15_rrrv6")
-type = 3
-data1 = 1
-data2 = 10.0
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot8/Item"]
@@ -884,8 +844,6 @@ texture = ExtResource("20_mjiuu")
 
 [node name="Item" type="Area2D" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot9"]
 script = ExtResource("15_rrrv6")
-type = 2
-data2 = 10.0
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Backpack/ScrollContainer/VBoxContainer/Slot9/Item"]

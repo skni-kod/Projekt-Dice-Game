@@ -1,0 +1,76 @@
+[gd_scene load_steps=9 format=3 uid="uid://bttbmhyamibyk"]
+
+[ext_resource type="Script" path="res://scripts/Item.gd" id="1_jdlel"]
+[ext_resource type="Script" path="res://scripts/resource_descriptors/Effect.gd" id="2_dpmt5"]
+[ext_resource type="Texture2D" uid="uid://dwgneyw4prgic" path="res://resources/sprites/BarbarianHatchet.png" id="2_ibyl6"]
+
+[sub_resource type="Resource" id="Resource_4o3yy"]
+script = ExtResource("2_dpmt5")
+affected_stat = 3
+operation = 0
+value = 10.0
+cost = Array[int]([])
+apply_frequency = 1
+max_round_duration = 0
+is_positive = true
+
+[sub_resource type="Resource" id="Resource_drk1d"]
+script = ExtResource("2_dpmt5")
+affected_stat = 5
+operation = 0
+value = 20.0
+cost = Array[int]([])
+apply_frequency = 1
+max_round_duration = 0
+is_positive = true
+
+[sub_resource type="Resource" id="Resource_kh36c"]
+script = ExtResource("2_dpmt5")
+affected_stat = 16
+operation = 2
+value = 0.0
+cost = Array[int]([1, 1])
+apply_frequency = 1
+max_round_duration = 0
+is_positive = true
+
+[sub_resource type="Resource" id="Resource_sxgoo"]
+script = ExtResource("2_dpmt5")
+affected_stat = 17
+operation = 2
+value = 0.0
+cost = Array[int]([1, 1, 1])
+apply_frequency = 1
+max_round_duration = 0
+is_positive = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qoso4"]
+size = Vector2(43, 35)
+
+[node name="BarbarianHatchet" type="Area2D"]
+z_index = 10
+script = ExtResource("1_jdlel")
+type = 1
+effects = Array[ExtResource("2_dpmt5")]([SubResource("Resource_4o3yy"), SubResource("Resource_drk1d"), SubResource("Resource_kh36c"), SubResource("Resource_sxgoo")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_qoso4")
+metadata/_edit_group_ = true
+
+[node name="Sprite" type="TextureRect" parent="CollisionShape2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("2_ibyl6")
+expand_mode = 2

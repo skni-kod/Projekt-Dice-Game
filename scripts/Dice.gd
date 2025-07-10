@@ -65,7 +65,7 @@ func Select():
 	if currentFace != FaceType.Blank and manager.SelectedDiceCount() < manager.current_max_selected_dices:
 		button_pressed = true
 	else:
-		texture_normal = load("res://resources/sprites/dice_blank_selection_discarded.png")
+		texture_normal = load("res://resources/sprites/dice_blank_discarded.png")
 
 # Funkcja odznaczajaca kość.
 func Deselect():
