@@ -10,12 +10,14 @@ var isLevelSelected : bool = false
 var nextLevelIndex = 2
 var Paths : Line2D
 var currentLevel: Level
+var selectedLevel: Level
 var button
 
 func _ready() -> void:
 	Paths = get_child(0)
 	var newLevel = create_first_level()
 	levels.append(newLevel)
+	currentLevel = newLevel[0]
 	add_child(newLevel[0])
 	for i in range(2):
 		var levelLayer = create_levels_layer(i, i + 1)
@@ -57,8 +59,15 @@ func _on_button_pressed() -> void:
 	GameManager.SpawnWave(GameManager.enemy_waves[0])
 	GameManager.diceManager.Reroll()
 	if currentLevel:
-		currentLevel.level_started = true
-		currentLevel.update_visual_state_active()
+		currentLevel.level_completed = true
+		currentLevel.update_visual_state_completed()
+	currentLevel = selectedLevel
+	for lvl in levels[currentLevel.levelLayer]:
+		lvl.level_accessible = false
+		lvl.update_visual_state_deactivated()
+	currentLevel.level_started = true
+	currentLevel.update_visual_state_active()
+	selectedLevel = null
 	isLevelSelected = false
 	button.visible = false
 
@@ -82,6 +91,9 @@ func create_first_level() -> Array:
 	first_wave.enemies.append("goblin")
 	waves.append(first_wave)
 	var level = Level.new(1, waves, [null])
+	level.level_started = true
+	level.update_visual_state_active()
+	level.levelLayer = 0
 	return [level]
 
 #Ostatni poziom - goblin jest do zmiany na bossa jak bedzie gotowy
@@ -105,9 +117,10 @@ func create_levels_layer(previous_layer, current_layer) -> Array:
 		parents.push_back(parentsArray)
 	for i in range(n):
 		var waves = generate_waves()
-		var currentLevel = Level.new(nextLevelIndex, waves, parents[i])
+		var currentlyGeneratedLevel = Level.new(nextLevelIndex, waves, parents[i])
+		currentlyGeneratedLevel.levelLayer = current_layer
 		nextLevelIndex += 1
-		levelsArr.append(currentLevel)
+		levelsArr.append(currentlyGeneratedLevel)
 	return levelsArr
 
 

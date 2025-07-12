@@ -4,7 +4,9 @@ class_name Level
 
 var level_completed = false
 var level_started = false
+var level_accessible = true
 var levelNumber: int
+var levelLayer: int
 var enemiesWave : Array[Wave]
 var sprite: Sprite2D
 var parentNodes : Array
@@ -50,6 +52,12 @@ func find_node(nodeName : String):
 func _input_event(viewport, event, shape_idx) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			if level_started:
+				return
+			if not check_parent_nodes():
+				return
+			if not level_accessible:
+				return
 			#var poziom = int(str(name)[-1]) + 1
 			var text = "Wybrany Poziom: " + str(levelNumber) + "\nFale: " + str(len(enemiesWave))
 			for wave in enemiesWave:
@@ -64,7 +72,8 @@ func _input_event(viewport, event, shape_idx) -> void:
 			if GameManager.enemies.is_empty() and manager:
 				manager.enemiesWave = enemiesWave
 				manager.isLevelSelected = true
-				manager.currentLevel = self
+				manager.selectedLevel = self
+
 #Tutaj wyświetlamy taki dymek (levelInfo) nad najechanym poziomem
 func _on_mouse_entered() -> void:
 	var mouse_pos = get_viewport().get_mouse_position()
@@ -85,3 +94,18 @@ func _on_mouse_exited() -> void:
 func update_visual_state_active() -> void:
 	if sprite:
 		sprite.texture = load("res://resources/sprites/MapActiveFightIcon.png")
+
+func update_visual_state_completed() -> void:
+	if sprite:
+		sprite.texture = load("res://resources/sprites/MapCompletedFightIcon.png")
+
+func update_visual_state_deactivated() -> void:
+	if sprite:
+		if not level_accessible and not level_started:
+			sprite.texture = load("res://resources/sprites/MapDeactiveFightIcon.png")
+		
+func check_parent_nodes() -> bool:
+	for parentNode in parentNodes:
+		if parentNode.level_started:
+			return true
+	return false
