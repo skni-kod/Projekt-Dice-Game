@@ -2,8 +2,8 @@ extends Area2D
 
 class_name Level
 
-#var level_completed = false
-#var level_started = false
+var level_completed = false
+var level_started = false
 var levelNumber: int
 var enemiesWave : Array[Wave]
 var sprite: Sprite2D
@@ -64,6 +64,7 @@ func _input_event(viewport, event, shape_idx) -> void:
 			if GameManager.enemies.is_empty() and manager:
 				manager.enemiesWave = enemiesWave
 				manager.isLevelSelected = true
+				manager.currentLevel = self
 #Tutaj wyświetlamy taki dymek (levelInfo) nad najechanym poziomem
 func _on_mouse_entered() -> void:
 	var mouse_pos = get_viewport().get_mouse_position()
@@ -80,3 +81,7 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	levelinfo.hide()
+
+func update_visual_state_active() -> void:
+	if sprite:
+		sprite.texture = load("res://resources/sprites/MapActiveFightIcon.png")

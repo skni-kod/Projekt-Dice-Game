@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3hhoflsxt2xd"]
+
+[ext_resource type="Texture2D" uid="uid://ba5wtaog7bky7" path="res://resources/sprites/Map.png" id="1_318ao"]
+[ext_resource type="Script" path="res://scripts/LevelManager.gd" id="2_qenvd"]
+
+[node name="Map" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 384.0
+offset_bottom = 256.0
+texture = ExtResource("1_318ao")
+
+[node name="LevelManager" type="Node2D" parent="."]
+position = Vector2(195, 174)
+script = ExtResource("2_qenvd")
+
+[node name="Paths" type="Line2D" parent="LevelManager"]
+width = 2.0
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = 41.0
+offset_top = 141.0
+offset_right = 178.0
+offset_bottom = 209.0
+theme_override_font_sizes/font_size = 6
+text = "Wybrany Poziom:"
+
+[node name="Button" type="Button" parent="."]
+offset_left = 265.0
+offset_top = 164.0
+offset_right = 350.0
+offset_bottom = 189.0
+theme_override_font_sizes/font_size = 9
+text = "Zatwierdź wybór"

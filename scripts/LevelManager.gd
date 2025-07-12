@@ -9,6 +9,8 @@ var usableEnemies = ["goblin", "szlam"]
 var isLevelSelected : bool = false
 var nextLevelIndex = 2
 var Paths : Line2D
+var currentLevel: Level
+var button
 
 func _ready() -> void:
 	Paths = get_child(0)
@@ -27,7 +29,7 @@ func _ready() -> void:
 	for layer in levels:
 		for lvl in layer:
 			draw_paths(lvl)
-	var button = get_node_or_null("../Button")
+	button = get_node_or_null("../Button")
 	if button:
 		button.connect("pressed", Callable(self, "_on_button_pressed"))
 
@@ -45,16 +47,20 @@ func draw_paths(lvl):
 
 #Sprawdzamy czy został wybrany poziom, jeżeli tak to aktywujemy buttona
 func _process(delta: float) -> void:
-	var button = get_node_or_null("../Button")
 	if button:
 		button.visible = isLevelSelected
 
 func _on_button_pressed() -> void:
-	get_tree().root.get_node("Map").queue_free()
+	get_tree().root.get_node("Map").visible = false
 	GameManager.enemy_waves = enemiesWave
 	GameManager.current_wave = 0
 	GameManager.SpawnWave(GameManager.enemy_waves[0])
 	GameManager.diceManager.Reroll()
+	if currentLevel:
+		currentLevel.level_started = true
+		currentLevel.update_visual_state_active()
+	isLevelSelected = false
+	button.visible = false
 
 #funkcja do generowania fal potworow na podstawie dostepnych przeciwnikow
 func generate_waves() -> Array[Wave]:
@@ -70,7 +76,11 @@ func generate_waves() -> Array[Wave]:
 
 #pierwszy poziom
 func create_first_level() -> Array:
-	var waves = generate_waves()
+	var waves: Array[Wave]
+	var first_wave = Wave.new()
+	first_wave.enemies.append("goblin")
+	first_wave.enemies.append("goblin")
+	waves.append(first_wave)
 	var level = Level.new(1, waves, [null])
 	return [level]
 

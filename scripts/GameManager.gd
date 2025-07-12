@@ -1,6 +1,8 @@
 extends Node
 
 var diceManager: DiceManager
+var map_scene := preload("res://scenes/map.tscn")
+var map_instance: Node2D = null
 var player: Player
 var enemies: Array[Enemy]
 var selected_enemy : Enemy = null
@@ -87,14 +89,15 @@ func _on_enemy_selected(enemy: Enemy):
 
 func _input(event):
 	if event.is_action_pressed("ui_map"):
-		if get_tree().root.get_node("Map"):
-			return
-		var map = preload("res://scenes/map.tscn").instantiate()
-		get_tree().root.add_child(map)
-		(get_tree().root.get_child(get_tree().root.get_child_count() - 1) as Node2D).position = Vector2(-get_window().get_viewport().get_camera_2d().get_window().get_visible_rect().size.x/2 ,-get_window().get_viewport().get_camera_2d().get_window().get_visible_rect().size.y/2 )
-		map.z_index = 100
+		if map_instance == null:
+			map_instance = map_scene.instantiate()
+			map_instance.name = "Map"
+			map_instance.z_index = 100
+			map_instance.position = -get_window().get_viewport().get_camera_2d().get_window().get_visible_rect().size / 2
+			get_tree().root.add_child(map_instance)
+		else:
+			map_instance.visible = true
+
 	if event.is_action_pressed("close_ui_map"):
-		if not get_tree().root.get_node("Map"):
-			return
-			
-		get_tree().root.get_child(2).queue_free()
+		if map_instance != null:
+			map_instance.visible = false
