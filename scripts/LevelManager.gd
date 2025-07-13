@@ -11,6 +11,7 @@ var nextLevelIndex = 2
 var Paths : Line2D
 var currentLevel: Level
 var selectedLevel: Level
+var numberOfLayers: int = 8
 var button
 
 func _ready() -> void:
@@ -19,7 +20,7 @@ func _ready() -> void:
 	levels.append(newLevel)
 	currentLevel = newLevel[0]
 	add_child(newLevel[0])
-	for i in range(2):
+	for i in range(numberOfLayers - 2):
 		var levelLayer = create_levels_layer(i, i + 1)
 		levels.append(levelLayer)
 		for lvl in levelLayer:
@@ -51,6 +52,20 @@ func draw_paths(lvl):
 func _process(delta: float) -> void:
 	if button:
 		button.visible = isLevelSelected
+	var speed: int
+	if numberOfLayers < 10:
+		speed = 150
+	else:
+		speed = 200
+	if Input.is_action_pressed("ui_up"):
+		position.y += speed * delta
+	elif Input.is_action_pressed("ui_down"):
+		position.y -= speed * delta
+	var upper_limit := 165
+	var lower_limit := 180 + (numberOfLayers - 4) * 50
+	#oś Y jest odwrócona
+	#                  wartosc     min           max
+	position.y = clamp(position.y, upper_limit, lower_limit)
 
 func _on_button_pressed() -> void:
 	get_tree().root.get_node("Map").visible = false
@@ -197,7 +212,7 @@ func calculate_x_pos(i, n):
 
 #Funkcja do obliczania wspolrzednej x i y ikonki poziomu
 func calculatePosition(arr : Array) -> void:
-	for i in range(4):
+	for i in range(numberOfLayers):
 		for j in range (len(arr[i])):
 			arr[i][j].position = Vector2(calculate_x_pos(j, len(arr[i])), 0 - 50 * i)
 			arr[i][j].X = calculate_x_pos(j, len(arr[i]))
