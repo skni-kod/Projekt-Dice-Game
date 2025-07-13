@@ -4,18 +4,22 @@ class_name EffectArray
 
 @export var temporary_effects : Array[Effect] # Lista aktywnych efektów.
 var effect_turn_duration : Array[int] # Lista liczb, gdzie na i-tej pozycji jest jak długo działa i-ty efekt.
+var stats : Stats
 
 func _ready() -> void:
 	for e in temporary_effects:
 		effect_turn_duration.append(0)
 
-# Funkcja dodająca nowy tymczacowy efekt.
+# Funkcja dodająca nowy tymczasowy efekt.
 func AddTemporaryEffect(effect :Effect):
+	if effect.ApplyFrequency.OnceAtBeggining:
+		effect._ApplyEffect(stats)
+		return
 	temporary_effects.append(effect)
 	effect_turn_duration.append(0)
 
 # Funkcja, która powinna być wywoływana co turę, by zaktualizować działanie efektów.
-func UpdateEffects(stats: Stats):
+func UpdateEffects():
 	# Nałóż wszystkie efekty, które tego potrzebują i postarz je o jedną turę.
 	for i in range(len(temporary_effects)):
 		var effect = temporary_effects[i]

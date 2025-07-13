@@ -4,9 +4,11 @@ class_name Player
 
 @export var armor_slots : Array[ItemSlot]
 @export var weapon_slots : Array[ItemSlot]
+@export var default_actions : Array[Action]
 
 var stats: Stats
 var effects: EffectArray
+var actions : Array[Action]
 
 # Referencje do Area2D
 @onready var character_area := $Character
@@ -23,11 +25,13 @@ func _ready() -> void:
 	close_area.connect("input_event", Callable(self, "_on_close_input_event"))
 
 	# Inicjalizacja Stats i EffectArray
+	actions = default_actions
 	for child in get_children():
 		if child is Stats:
 			stats = child as Stats
 		elif child is EffectArray:
 			effects = child as EffectArray
+	effects.stats = stats
 
 	# Podłączenie sygnałów slotów
 	for i in armor_slots:
@@ -72,12 +76,17 @@ func _on_armor_removed(slot: ItemSlot):
 
 
 func _on_weapon_inserted(slot: ItemSlot):
-	var item = slot.item_inside
+	var item = slot.item_inside as Weapon
+	
+	for i in range(len(item.actions)):
+		actions[i] = item.actions[i]
+
 	for effect in item.effects:
 		effect._ApplyEffect(stats)
 
 
 func _on_weapon_removed(slot: ItemSlot):
 	var item = slot.item_inside
+	actions = default_actions
 	for effect in item.effects:
 		effect._RevertEffect(stats)

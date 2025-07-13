@@ -1,57 +1,81 @@
-[gd_scene load_steps=9 format=3 uid="uid://bttbmhyamibyk"]
+[gd_scene load_steps=14 format=3 uid="uid://bttbmhyamibyk"]
 
-[ext_resource type="Script" path="res://scripts/Item.gd" id="1_jdlel"]
+[ext_resource type="Script" path="res://scripts/Weapon.gd" id="1_kokrw"]
+[ext_resource type="Script" path="res://scripts/resource_descriptors/Action.gd" id="2_7dejo"]
 [ext_resource type="Script" path="res://scripts/resource_descriptors/Effect.gd" id="2_dpmt5"]
 [ext_resource type="Texture2D" uid="uid://dwgneyw4prgic" path="res://resources/sprites/BarbarianHatchet.png" id="2_ibyl6"]
 
-[sub_resource type="Resource" id="Resource_4o3yy"]
+[sub_resource type="Resource" id="Resource_db28i"]
 script = ExtResource("2_dpmt5")
-affected_stat = 3
+affected_stat = 1
 operation = 0
 value = 10.0
-cost = Array[int]([])
 apply_frequency = 1
 max_round_duration = 0
-is_positive = true
+is_positive = false
 
-[sub_resource type="Resource" id="Resource_drk1d"]
-script = ExtResource("2_dpmt5")
-affected_stat = 5
-operation = 0
-value = 20.0
-cost = Array[int]([])
-apply_frequency = 1
-max_round_duration = 0
-is_positive = true
-
-[sub_resource type="Resource" id="Resource_kh36c"]
-script = ExtResource("2_dpmt5")
-affected_stat = 16
-operation = 2
-value = 0.0
+[sub_resource type="Resource" id="Resource_i3fo6"]
+script = ExtResource("2_7dejo")
+name = "Attack1"
 cost = Array[int]([1, 1])
-apply_frequency = 1
-max_round_duration = 0
-is_positive = true
+effects = Array[ExtResource("2_dpmt5")]([SubResource("Resource_db28i")])
+isArea = false
 
-[sub_resource type="Resource" id="Resource_sxgoo"]
+[sub_resource type="Resource" id="Resource_mlxwf"]
 script = ExtResource("2_dpmt5")
-affected_stat = 17
-operation = 2
-value = 0.0
-cost = Array[int]([1, 1, 1])
+affected_stat = 1
+operation = 0
+value = 25.0
 apply_frequency = 1
 max_round_duration = 0
-is_positive = true
+is_positive = false
+
+[sub_resource type="Resource" id="Resource_orx4d"]
+script = ExtResource("2_7dejo")
+name = "Attack2"
+cost = Array[int]([1, 1, 1])
+effects = Array[ExtResource("2_dpmt5")]([SubResource("Resource_mlxwf")])
+isArea = false
+
+[sub_resource type="Resource" id="Resource_go60l"]
+script = ExtResource("2_dpmt5")
+affected_stat = 1
+operation = 0
+value = 35.0
+apply_frequency = 1
+max_round_duration = 0
+is_positive = false
+
+[sub_resource type="Resource" id="Resource_evuh7"]
+script = ExtResource("2_7dejo")
+name = "Attack3"
+cost = Array[int]([1, 1, 1, 1])
+effects = Array[ExtResource("2_dpmt5")]([SubResource("Resource_go60l")])
+isArea = false
+
+[sub_resource type="Resource" id="Resource_3h585"]
+script = ExtResource("2_dpmt5")
+affected_stat = 1
+operation = 0
+value = 50.0
+apply_frequency = 1
+max_round_duration = 0
+is_positive = false
+
+[sub_resource type="Resource" id="Resource_agyem"]
+script = ExtResource("2_7dejo")
+name = "Attack4"
+cost = Array[int]([1, 1, 1, 1, 1])
+effects = Array[ExtResource("2_dpmt5")]([SubResource("Resource_3h585")])
+isArea = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qoso4"]
 size = Vector2(43, 35)
 
 [node name="BarbarianHatchet" type="Area2D"]
-z_index = 10
-script = ExtResource("1_jdlel")
+script = ExtResource("1_kokrw")
+actions = Array[ExtResource("2_7dejo")]([SubResource("Resource_i3fo6"), SubResource("Resource_orx4d"), SubResource("Resource_evuh7"), SubResource("Resource_agyem")])
 type = 1
-effects = Array[ExtResource("2_dpmt5")]([SubResource("Resource_4o3yy"), SubResource("Resource_drk1d"), SubResource("Resource_kh36c"), SubResource("Resource_sxgoo")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, -0.5)

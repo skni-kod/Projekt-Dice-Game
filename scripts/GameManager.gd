@@ -25,7 +25,7 @@ func _ready():
 func EndPlayerTurn():
 	enemies_turn_counter = 0
 	for enemy in enemies:
-		enemy.effects.UpdateEffects(enemy.stats)
+		enemy.effects.UpdateEffects()
 	
 		enemy.DoActions()
 
@@ -34,7 +34,7 @@ func EndEnemyTurn(enemy : Enemy):
 	if enemies_turn_counter < enemies.size():
 		return
 	
-	player.effects.UpdateEffects(player.stats)
+	player.effects.UpdateEffects()
 	player.DoActions()
 
 func _on_enemy_die(enemy:Enemy):

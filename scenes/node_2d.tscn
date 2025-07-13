@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://dgf160ru2xglf"]
+[gd_scene load_steps=74 format=3 uid="uid://dgf160ru2xglf"]
 
 [ext_resource type="Texture2D" uid="uid://cp4ggjsfcefyp" path="res://resources/sprites/background_placeholder_384x256_2.png" id="1_fn00y"]
 [ext_resource type="Texture2D" uid="uid://0idhbjjmixj2" path="res://resources/sprites/gui/roll_button_normal.png" id="2_ap1x7"]
@@ -15,6 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://b6oas1x5edqdw" path="res://resources/sprites/gui/special.png" id="12_0plxn"]
 [ext_resource type="Script" path="res://scripts/Player.gd" id="13_neu1h"]
 [ext_resource type="Script" path="res://scripts/Stats.gd" id="13_rpiqy"]
+[ext_resource type="Script" path="res://scripts/resource_descriptors/Action.gd" id="14_oj6ej"]
+[ext_resource type="Script" path="res://scripts/resource_descriptors/Effect.gd" id="15_2v4kn"]
 [ext_resource type="Script" path="res://scripts/ItemSlot.gd" id="15_f2b61"]
 [ext_resource type="Script" path="res://scripts/Item.gd" id="15_rrrv6"]
 [ext_resource type="Texture2D" uid="uid://o1xs4nq7r15s" path="res://resources/sprites/gui/enemy_health_bar_under.png" id="16_nju1e"]
@@ -132,6 +134,70 @@ events = [SubResource("InputEventKey_iheks")]
 load_path = "res://.godot/imported/defense+.png-bbb16147e31c8f4ba73109956cd3a4b9.ctex"
 
 [sub_resource type="Shortcut" id="Shortcut_g0snw"]
+
+[sub_resource type="Resource" id="Resource_spykw"]
+script = ExtResource("15_2v4kn")
+affected_stat = 1
+operation = 0
+value = 5.0
+apply_frequency = 1
+max_round_duration = 0
+is_positive = false
+
+[sub_resource type="Resource" id="Resource_jfe0x"]
+script = ExtResource("14_oj6ej")
+name = "Attack1"
+cost = Array[int]([1])
+effects = Array[ExtResource("15_2v4kn")]([SubResource("Resource_spykw")])
+isArea = false
+
+[sub_resource type="Resource" id="Resource_t25hi"]
+script = ExtResource("15_2v4kn")
+affected_stat = 1
+operation = 0
+value = 7.0
+apply_frequency = 1
+max_round_duration = 0
+is_positive = false
+
+[sub_resource type="Resource" id="Resource_ykcs8"]
+script = ExtResource("14_oj6ej")
+name = "Attack2"
+cost = Array[int]([1, 1])
+effects = Array[ExtResource("15_2v4kn")]([SubResource("Resource_t25hi")])
+isArea = false
+
+[sub_resource type="Resource" id="Resource_hqr6g"]
+script = ExtResource("15_2v4kn")
+affected_stat = 4
+operation = 0
+value = 5.0
+apply_frequency = 1
+max_round_duration = 0
+is_positive = true
+
+[sub_resource type="Resource" id="Resource_a1h6u"]
+script = ExtResource("14_oj6ej")
+name = "Defence1"
+cost = Array[int]([2])
+effects = Array[ExtResource("15_2v4kn")]([SubResource("Resource_hqr6g")])
+isArea = false
+
+[sub_resource type="Resource" id="Resource_exgpo"]
+script = ExtResource("15_2v4kn")
+affected_stat = 4
+operation = 0
+value = 10.0
+apply_frequency = 1
+max_round_duration = 0
+is_positive = true
+
+[sub_resource type="Resource" id="Resource_t7p8n"]
+script = ExtResource("14_oj6ej")
+name = "Defence2"
+cost = Array[int]([2, 2])
+effects = Array[ExtResource("15_2v4kn")]([SubResource("Resource_exgpo")])
+isArea = false
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s8urw"]
 load_path = "res://.godot/imported/defense.png-00423a0f6810d51d14bc9b0c74390d09.ctex"
@@ -369,7 +435,6 @@ shortcut = SubResource("Shortcut_g3nbu")
 icon = ExtResource("9_0vkd1")
 icon_alignment = 1
 script = ExtResource("8_2bhmu")
-action = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Obrona" type="Button" parent="ActionButtons/GridContainer"]
@@ -378,7 +443,6 @@ shortcut = SubResource("Shortcut_ggk13")
 icon = SubResource("CompressedTexture2D_8ga28")
 icon_alignment = 1
 script = ExtResource("8_2bhmu")
-action = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Obrona_Plus" type="Button" parent="ActionButtons/GridContainer"]
@@ -387,7 +451,6 @@ shortcut = SubResource("Shortcut_0pd6j")
 icon = SubResource("CompressedTexture2D_1rper")
 icon_alignment = 1
 script = ExtResource("8_2bhmu")
-action = 3
 metadata/_edit_use_anchors_ = true
 
 [node name="Special1" type="Button" parent="ActionButtons/GridContainer"]
@@ -397,7 +460,6 @@ icon = ExtResource("12_0plxn")
 icon_alignment = 1
 vertical_icon_alignment = 0
 script = ExtResource("8_2bhmu")
-action = 4
 metadata/_edit_use_anchors_ = true
 
 [node name="Special2" type="Button" parent="ActionButtons/GridContainer"]
@@ -407,7 +469,6 @@ icon = ExtResource("12_0plxn")
 icon_alignment = 1
 vertical_icon_alignment = 0
 script = ExtResource("8_2bhmu")
-action = 5
 metadata/_edit_use_anchors_ = true
 
 [node name="Special3" type="Button" parent="ActionButtons/GridContainer"]
@@ -417,7 +478,6 @@ icon = ExtResource("12_0plxn")
 icon_alignment = 1
 vertical_icon_alignment = 0
 script = ExtResource("8_2bhmu")
-action = 6
 metadata/_edit_use_anchors_ = true
 
 [node name="Special4" type="Button" parent="ActionButtons/GridContainer"]
@@ -427,7 +487,6 @@ icon = ExtResource("12_0plxn")
 icon_alignment = 1
 vertical_icon_alignment = 0
 script = ExtResource("8_2bhmu")
-action = 7
 metadata/_edit_use_anchors_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -436,15 +495,13 @@ metadata/_edit_use_anchors_ = true
 script = ExtResource("13_neu1h")
 armor_slots = [NodePath("Backpack/Armor"), NodePath("Backpack/Armor2"), NodePath("Backpack/Armor3"), NodePath("Backpack/Armor4")]
 weapon_slots = [NodePath("Backpack/Weapon")]
+default_actions = Array[ExtResource("14_oj6ej")]([SubResource("Resource_jfe0x"), SubResource("Resource_ykcs8"), SubResource("Resource_a1h6u"), SubResource("Resource_t7p8n")])
 
 [node name="Stats" type="Node2D" parent="Player" node_paths=PackedStringArray("health_display", "armor_display")]
 z_index = 1
 position = Vector2(19, 28)
 script = ExtResource("13_rpiqy")
 base_max_health = 100
-base_defence = 1
-base_plus_defence = 2
-base_damage = 1
 health = 100
 armor = 10
 health_display = NodePath("HealthBar")

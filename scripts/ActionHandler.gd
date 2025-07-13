@@ -2,57 +2,31 @@ extends Node
 # Klasa zajmująca się przetwarzaniem akcji, które gracz może wykonać.
 class_name ActionHandler
 
-# Zbiór akcji dostępnych dla gracza.
-enum Action
-{
-	Attack, AttackPlus, Defence, DefencePlus, Special1, Special2, Special3, Special4	
-}
-
-@export var action:Action
-# Funkcja, przypisująca akcji pewne działanie.
-func HandleAction(act, stats:Stats):
-	match act:
-		Action.Attack:
-			if GameManager.diceManager.Consume(stats.action_cost[act]):
-				if GameManager.selected_enemy:
-					GameManager.selected_enemy.stats.DealDamage(stats.damage)
-		
-		Action.AttackPlus:
-			if GameManager.diceManager.Consume(stats.action_cost[act]):
-				if GameManager.selected_enemy:
-					GameManager.selected_enemy.stats.DealDamage(stats.damage_plus)
+func HandleAction(act:Action):
+	if !GameManager.diceManager.Consume(act.cost):
+		return
+	
+	for e in act.effects:
+		if e.is_positive:
+			GameManager.player.effects.AddTemporaryEffect(e)
 			
-		Action.Defence:
-			if GameManager.diceManager.Consume(stats.action_cost[act]):
-				if GameManager.selected_enemy:
-					GameManager.player.stats.AddArmor(stats.defence)
-		Action.DefencePlus:
-			if GameManager.diceManager.Consume(stats.action_cost[act]):
-				if GameManager.selected_enemy:
-					GameManager.player.stats.AddArmor(stats.defence_plus)
-			
-		Action.Special1:
-			if GameManager.diceManager.Consume(stats.action_cost[act]):
-				pass 
-			
-		Action.Special2:
-			if GameManager.diceManager.Consume(stats.action_cost[act]):
-				pass 
-			
-		Action.Special3:
-			if GameManager.diceManager.Consume(stats.action_cost[act]):
-				pass 
-			
-		Action.Special4:
-			if GameManager.diceManager.Consume(stats.action_cost[act]):
-				pass 
+		else:
+			if act.isArea:
+				for i in GameManager.enemies:
+					i.effects.AddTemporaryEffect(e)
+			elif GameManager.selected_enemy:
+				GameManager.selected_enemy.effects.AddTemporaryEffect(e)
 
 # Wywołanie akcji poprzez naciśnięcie odopowiedniego guzika.
 func _on_button_press():
-	HandleAction(action, GameManager.player.stats)
+	var index = get_parent().get_children().find(self)
+	if index < len(GameManager.player.actions):
+		HandleAction(GameManager.player.actions[index])
 
 func _on_mouse_entered():
-	$"../../ActionDescription".text = Action.keys()[action].replace("Plus","+")
+	var index = get_parent().get_children().find(self)
+	if index < len(GameManager.player.actions):
+		$"../../ActionDescription".text = GameManager.player.actions[index].name
 	
 func _on_mouse_exited():
 	$"../../ActionDescription".text = ""

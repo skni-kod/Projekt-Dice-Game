@@ -21,6 +21,7 @@ func _ready() -> void:
 			stats = child as Stats
 		elif child is EffectArray:
 			effects = child as EffectArray
+	effects.stats = stats
 
 	# Połączenie sygnału input
 	var area = $Area2D
