@@ -78,9 +78,13 @@ func _on_armor_removed(slot: ItemSlot):
 func _on_weapon_inserted(slot: ItemSlot):
 	var item = slot.item_inside as Weapon
 	
-	for i in range(len(item.actions)):
-		actions[i] = item.actions[i]
-
+	var ind = 0
+	for k in weapon_slots:
+		var weapon = k.item_inside as Weapon
+		for i in range(len(weapon.actions)):
+			actions[ind] = weapon.actions[i]
+			ind+=1
+			
 	for effect in item.effects:
 		effect._ApplyEffect(stats)
 
