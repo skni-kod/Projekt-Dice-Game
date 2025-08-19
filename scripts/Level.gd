@@ -40,9 +40,11 @@ func find_node(nodeName : String):
 	var parent = get_parent()
 	while parent:
 		if parent.name == "Map":
-			var node = parent.get_node(nodeName)
+			var node = parent.get_node("Control")
 			if node:
-				return node
+				node = node.get_node(nodeName)
+				if node:
+					return node
 		parent = parent.get_parent()
 	return null
 
