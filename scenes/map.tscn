@@ -27,6 +27,7 @@ script = ExtResource("2_qenvd")
 width = 2.0
 
 [node name="Label" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = 41.0
 offset_top = 140.0
 offset_right = 178.0
@@ -35,6 +36,7 @@ theme_override_font_sizes/font_size = 6
 text = "Wybrany Poziom:"
 
 [node name="Button" type="Button" parent="Control"]
+layout_mode = 0
 offset_left = 265.0
 offset_top = 163.0
 offset_right = 350.0

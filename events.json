@@ -1,0 +1,20 @@
+[
+  {
+	"id": "life_decision",
+	"title": "Ścieżka życiowa",
+	"description": "Musisz dokonać życiowego wyboru",
+	"options":[
+	  {"text": "Dumnie krocz z podniesioną głową", "effect": { "hp": -5 }, "output": "Potknąłeś się"},
+	  {"text": "Uważnie patrz pod nogi", "effect": {}, "output": "Dobrze, że dbasz o bezpieczeństwo"}
+	]
+  },
+  {
+	"id": "Suspicious_plants",
+	"title": "Podejrzane rośliny",
+	"description": "Spotykasz na swojej drodze dwie nęcące rośliny. Nie możesz się im oprzeć",
+	"options":[
+	  {"text": "Wybierz czerwoną", "effect": { "hp": -5 }, "output": "Język. Język piecze. BÓL. BÓL nie do zniesienia"},
+	  {"text": "Wybierz żółtą", "effect": { "hp": 5 }, "output": "To najdoskonalszy z najdoskonalszych posiłków bogów OMNOMNOMNOM ONOMNOM..."}
+	]
+  }
+]

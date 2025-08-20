@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://btey7tnumsyrk"]
+
+[ext_resource type="Script" uid="uid://b26mrp0ot86ut" path="res://scenes/EventManager.gd" id="1_lb7m0"]
+[ext_resource type="Texture2D" uid="uid://co7mm373yydr" path="res://resources/sprites/eventBG.png" id="1_y83ao"]
+
+[node name="Event" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 384.0
+offset_bottom = 256.0
+script = ExtResource("1_lb7m0")
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+z_index = 1
+offset_left = 16.0
+offset_top = 14.0
+offset_right = 368.0
+offset_bottom = 254.0
+texture = ExtResource("1_y83ao")
+
+[node name="Title_label" type="Label" parent="Control/TextureRect"]
+layout_mode = 0
+offset_top = -1.0
+offset_right = 352.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 18
+text = "Title"
+horizontal_alignment = 1
+
+[node name="Description_label" type="Label" parent="Control/TextureRect"]
+layout_mode = 0
+offset_top = 20.0
+offset_right = 351.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 12
+text = "Description"
+horizontal_alignment = 1
+
+[node name="Choices_Container" type="VBoxContainer" parent="Control/TextureRect"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 105.0
+offset_right = 352.0
+offset_bottom = 240.0

@@ -68,23 +68,30 @@ func _process(delta: float) -> void:
 	position.y = clamp(position.y, upper_limit, lower_limit)
 
 func _on_button_pressed() -> void:
-	get_tree().root.get_node("Map").visible = false
-	GameManager.enemy_waves = enemiesWave
-	GameManager.current_wave = 0
-	GameManager.SpawnWave(GameManager.enemy_waves[0])
-	GameManager.diceManager.Reroll()
-	if currentLevel:
-		currentLevel.level_completed = true
-		currentLevel.update_visual_state_completed()
-	currentLevel = selectedLevel
-	for lvl in levels[currentLevel.levelLayer]:
-		lvl.level_accessible = false
-		lvl.update_visual_state_deactivated()
-	currentLevel.level_started = true
-	currentLevel.update_visual_state_active()
-	selectedLevel = null
-	isLevelSelected = false
-	button.visible = false
+	if selectedLevel is Event:
+		var event_scene = load("res://scenes/event.tscn")
+		var instance = event_scene.instantiate()
+		var container := get_node("/root/Map/Control")
+		container.add_child(instance)
+	elif selectedLevel is Level:
+		get_tree().root.get_node("Map").visible = false
+		GameManager.enemy_waves = enemiesWave
+		GameManager.current_wave = 0
+		GameManager.SpawnWave(GameManager.enemy_waves[0])
+		GameManager.diceManager.Reroll()
+		if currentLevel:
+			currentLevel.level_completed = true
+			currentLevel.update_visual_state_completed()
+		currentLevel = selectedLevel
+		for lvl in levels[currentLevel.levelLayer]:
+			lvl.level_accessible = false
+			lvl.update_visual_state_deactivated()
+		currentLevel.level_started = true
+		currentLevel.update_visual_state_active()
+		selectedLevel = null
+		isLevelSelected = false
+		button.visible = false
+
 
 #funkcja do generowania fal potworow na podstawie dostepnych przeciwnikow
 func generate_waves() -> Array[Wave]:
@@ -131,11 +138,18 @@ func create_levels_layer(previous_layer, current_layer) -> Array:
 			parentsArray.push_back(levels[previous_layer][parent])
 		parents.push_back(parentsArray)
 	for i in range(n):
-		var waves = generate_waves()
-		var currentlyGeneratedLevel = Level.new(nextLevelIndex, waves, parents[i])
-		currentlyGeneratedLevel.levelLayer = current_layer
-		nextLevelIndex += 1
-		levelsArr.append(currentlyGeneratedLevel)
+		var fightProbability = randi_range(0, 10)
+		if fightProbability < 8:
+			var waves = generate_waves()
+			var currentlyGeneratedLevel = Level.new(nextLevelIndex, waves, parents[i])
+			currentlyGeneratedLevel.levelLayer = current_layer
+			nextLevelIndex += 1
+			levelsArr.append(currentlyGeneratedLevel)
+		else: 
+			var currentlyGeneratedLevel = Event.new(nextLevelIndex, parents[i])
+			currentlyGeneratedLevel.levelLayer = current_layer
+			nextLevelIndex += 1
+			levelsArr.append(currentlyGeneratedLevel)
 	return levelsArr
 
 
